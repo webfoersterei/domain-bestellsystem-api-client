@@ -16,7 +16,7 @@ abstract class AbstractResponse
     private $returnCode;
 
     /**
-     * @var string|null
+     * @var integer|null
      */
     private $returnSubCode;
 
@@ -54,15 +54,15 @@ abstract class AbstractResponse
     }
 
     /**
-     * @return null|string
+     * @return null|integer
      */
-    public function getReturnSubCode(): ?string
+    public function getReturnSubCode(): ?int
     {
         return $this->returnSubCode;
     }
 
     /**
-     * @param null|string $returnSubCode
+     * @param null|integer $returnSubCode
      * @return $this
      */
     public function setReturnSubCode($returnSubCode)
