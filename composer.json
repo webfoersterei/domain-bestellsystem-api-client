@@ -9,5 +9,19 @@
             "email": "tfoerster@webfoersterei.de"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "Webfoersterei\\DomainBestellSystemApiClient\\": "src/"
+        }
+    },
+    "require": {
+        "phpro/soap-client": "^0.5.3",
+        "symfony/serializer": "^3.3",
+        "symfony/property-access": "^3.3",
+        "symfony/property-info": "^3.3",
+        "phpdocumentor/reflection-docblock": "^4.1"
+    },
+    "require-dev": {
+        "zendframework/zend-code": "^3.0.4"
+    }
 }
