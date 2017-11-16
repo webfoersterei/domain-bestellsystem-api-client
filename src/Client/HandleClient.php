@@ -9,6 +9,7 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\MoveResponse;
 
 class HandleClient extends AbstractClient
 {
@@ -34,6 +35,21 @@ class HandleClient extends AbstractClient
         $listResponse = $this->doApiCall('handleList', ListResponse::class);
 
         return $listResponse;
+    }
+
+    /**
+     * @param string $handle
+     * @param string $targetReseller
+     * @return MoveResponse
+     */
+    public function move(string $handle, string $targetReseller): MoveResponse
+    {
+        $parameters = ['handle' => $handle, 'moveTo' => $targetReseller];
+
+        /** @var MoveResponse $moveResponse */
+        $moveResponse = $this->doApiCall('handleMove', MoveResponse::class, $parameters);
+
+        return $moveResponse;
     }
 
 }
