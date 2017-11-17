@@ -8,6 +8,10 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
 use Symfony\Component\Serializer\Serializer;
+use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Enum\ResponseReturnCodeEnum;
+use Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException;
+use Webfoersterei\DomainBestellSystemApiClient\Exception\ResponseException;
 
 abstract class AbstractClient
 {
@@ -32,18 +36,29 @@ abstract class AbstractClient
      * @param string $type
      * @param array|null $arguments
      * @return object
+     * @throws InvalidArgumentException
+     * @throws ResponseException
      */
     protected function doApiCall(string $method, string $type, array $arguments = [])
     {
+        if (!is_subclass_of($type, AbstractResponse::class)) {
+            throw new InvalidArgumentException('Parameter type must be subclass of AbstractResponse');
+        }
+
         $txId = uniqid('TXID.', true);
 
         $parameters = array_merge($arguments, ['clientTRID' => $txId]);
-        $response = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
+        $rawResponse = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
 
-        $arrayResponse = $this->convertResponseToArray($response);
+        $arrayResponse = $this->convertResponseToArray($rawResponse);
         $filteredResponse = $this->filterResponse($arrayResponse);
 
-        return $this->serializer->deserialize(json_encode($filteredResponse), $type, 'json');
+        /** @var AbstractResponse $response */
+        $response = $this->serializer->deserialize(json_encode($filteredResponse), $type, 'json');
+
+        $this->raiseExceptions($response);
+
+        return $response;
     }
 
     /**
@@ -76,6 +91,19 @@ abstract class AbstractClient
         }
 
         return $filteredArray;
+    }
+
+    /**
+     * @param AbstractResponse $response
+     * @throws ResponseException
+     */
+    private function raiseExceptions(AbstractResponse $response): void
+    {
+        $returnCode = $response->getReturnCode();
+        if (ResponseReturnCodeEnum::hasKey($returnCode) && null !== ResponseReturnCodeEnum::getValue($returnCode)) {
+            $exceptionClass = ResponseReturnCodeEnum::getValue($returnCode);
+            throw new $exceptionClass($response);
+        }
     }
 
 }
