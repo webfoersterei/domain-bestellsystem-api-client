@@ -7,12 +7,25 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\MoveResponse;
 
 class HandleClient extends AbstractClient
 {
+
+    /**
+     * @param string $handleId
+     * @return CheckResponse
+     */
+    public function check(string $handleId): CheckResponse
+    {
+        /** @var CheckResponse $checkResponse */
+        $checkResponse = $this->doApiCall('handleCheck', CheckResponse::class, ['handle' => $handleId]);
+
+        return $checkResponse;
+    }
 
     /**
      * @param string $handleId
