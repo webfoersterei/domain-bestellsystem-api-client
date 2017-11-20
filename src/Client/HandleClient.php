@@ -8,6 +8,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CheckResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CreateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CreateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\MoveResponse;
@@ -27,6 +29,20 @@ class HandleClient extends AbstractClient
         $checkResponse = $this->doApiCall('handleCheck', CheckResponse::class, ['handle' => $handleId]);
 
         return $checkResponse;
+    }
+
+    /**
+     * @param CreateRequest $createRequest
+     * @return CreateResponse
+     */
+    public function create(CreateRequest $createRequest): CreateResponse
+    {
+        $arrayRequest = $this->convertRequestToArray($createRequest);
+
+        /** @var CreateResponse $createResponse */
+        $createResponse = $this->doApiCall('handleCreate', CreateResponse::class, $arrayRequest);
+
+        return $createResponse;
     }
 
     /**
