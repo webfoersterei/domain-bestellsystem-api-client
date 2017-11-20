@@ -57,8 +57,6 @@ abstract class AbstractClient
         $parameters = array_merge($arguments, ['clientTRID' => $txId]);
         $rawResponse = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
 
-        echo $this->soapClient->__getLastResponse();
-
         $arrayResponse = $this->convertResponseToArray($rawResponse);
         $filteredResponse = $this->filterResponse($arrayResponse);
 

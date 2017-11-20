@@ -15,6 +15,7 @@ class InfoResponse extends AbstractResponse
     use NameTrait;
     use AddressTrait;
     use ContactTrait;
+    use ExtensionTrait;
 
     /**
      * @var string

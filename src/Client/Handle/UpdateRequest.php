@@ -13,4 +13,5 @@ class UpdateRequest
     use NameTrait;
     use AddressTrait;
     use ContactTrait;
+    use ExtensionTrait;
 }

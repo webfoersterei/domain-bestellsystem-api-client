@@ -16,11 +16,6 @@ trait BasicTrait
     private $handle;
 
     /**
-     * @var InfoResponseExtension|null
-     */
-    private $extension;
-
-    /**
      * @return string
      */
     public function getHandle(): string
@@ -38,21 +33,4 @@ trait BasicTrait
         return $this;
     }
 
-    /**
-     * @return InfoResponseExtension|null
-     */
-    public function getExtension(): ?InfoResponseExtension
-    {
-        return $this->extension;
-    }
-
-    /**
-     * @param InfoResponseExtension|null $extension
-     * @return $this
-     */
-    public function setExtension(?InfoResponseExtension $extension)
-    {
-        $this->extension = $extension;
-        return $this;
-    }
 }
