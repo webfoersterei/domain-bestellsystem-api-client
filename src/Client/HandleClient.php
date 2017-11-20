@@ -11,6 +11,8 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\MoveResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\UpdateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\UpdateResponse;
 
 class HandleClient extends AbstractClient
 {
@@ -63,6 +65,20 @@ class HandleClient extends AbstractClient
         $moveResponse = $this->doApiCall('handleMove', MoveResponse::class, $parameters);
 
         return $moveResponse;
+    }
+
+    /**
+     * @param UpdateRequest $updateRequest
+     * @return UpdateResponse
+     */
+    public function update(UpdateRequest $updateRequest): UpdateResponse
+    {
+        $arrayRequest = $this->convertRequestToArray($updateRequest);
+
+        /** @var UpdateResponse $updateResponse */
+        $updateResponse = $this->doApiCall('handleUpdate', UpdateResponse::class, $arrayRequest);
+
+        return $updateResponse;
     }
 
 }

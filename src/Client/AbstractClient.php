@@ -7,6 +7,7 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Enum\ResponseReturnCodeEnum;
@@ -25,10 +26,16 @@ abstract class AbstractClient
      */
     protected $serializer;
 
-    public function __construct(\SoapClient $soapClient, Serializer $serializer)
+    /**
+     * @var ObjectNormalizer
+     */
+    private $objectNormalizer;
+
+    public function __construct(\SoapClient $soapClient, Serializer $serializer, ObjectNormalizer $arrayNormalizer)
     {
         $this->soapClient = $soapClient;
         $this->serializer = $serializer;
+        $this->objectNormalizer = $arrayNormalizer;
     }
 
     /**
@@ -49,6 +56,8 @@ abstract class AbstractClient
 
         $parameters = array_merge($arguments, ['clientTRID' => $txId]);
         $rawResponse = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
+
+        echo $this->soapClient->__getLastResponse();
 
         $arrayResponse = $this->convertResponseToArray($rawResponse);
         $filteredResponse = $this->filterResponse($arrayResponse);
@@ -104,6 +113,18 @@ abstract class AbstractClient
             $exceptionClass = ResponseReturnCodeEnum::getValue($returnCode);
             throw new $exceptionClass($response);
         }
+    }
+
+    /**
+     * @param $request
+     * @return array
+     * @throws \Symfony\Component\Serializer\Exception\LogicException
+     * @throws \Symfony\Component\Serializer\Exception\InvalidArgumentException
+     * @throws \Symfony\Component\Serializer\Exception\CircularReferenceException
+     */
+    protected function convertRequestToArray($request): array
+    {
+        return $this->objectNormalizer->normalize($request);
     }
 
 }
