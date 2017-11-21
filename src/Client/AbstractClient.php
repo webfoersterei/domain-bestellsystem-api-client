@@ -123,7 +123,32 @@ abstract class AbstractClient
      */
     protected function convertRequestToArray($request): array
     {
-        return $this->objectNormalizer->normalize($request);
+        $requestArray = $this->objectNormalizer->normalize($request);
+
+        return $this->createArrayWrapper($requestArray);
+    }
+
+    /**
+     * @param $requestArray
+     * @return mixed
+     */
+    private function createArrayWrapper($requestArray)
+    {
+        $filteredArray = [];
+
+        if (!is_array($requestArray)) {
+            return $requestArray;
+        }
+
+        foreach ($requestArray as $key => $value) {
+            if (is_array($value)) {
+                $filteredArray[$key] = ['item' => $value];
+            } else {
+                $filteredArray[$key] = $this->createArrayWrapper($value);
+            }
+        }
+
+        return $filteredArray;
     }
 
 }
