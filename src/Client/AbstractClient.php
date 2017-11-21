@@ -42,11 +42,12 @@ abstract class AbstractClient
      * @param string $method
      * @param string $type
      * @param array|null $arguments
+     * @param array $context
      * @return object
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\ResponseException
      * @throws InvalidArgumentException
-     * @throws ResponseException
      */
-    protected function doApiCall(string $method, string $type, array $arguments = [])
+    protected function doApiCall(string $method, string $type, array $arguments = [], array $context = [])
     {
         if (!is_subclass_of($type, AbstractResponse::class)) {
             throw new InvalidArgumentException('Parameter type must be subclass of AbstractResponse');
@@ -61,7 +62,7 @@ abstract class AbstractClient
         $filteredResponse = $this->filterResponse($arrayResponse);
 
         /** @var AbstractResponse $response */
-        $response = $this->serializer->deserialize(json_encode($filteredResponse), $type, 'json');
+        $response = $this->serializer->deserialize(json_encode($filteredResponse), $type, 'json', $context);
 
         $this->raiseExceptions($response);
 

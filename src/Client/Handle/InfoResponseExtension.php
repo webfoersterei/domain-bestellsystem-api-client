@@ -35,7 +35,7 @@ class InfoResponseExtension
     private $birthplace;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     private $birthdate;
 
@@ -180,18 +180,18 @@ class InfoResponseExtension
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getBirthdate(): \DateTime
+    public function getBirthdate(): ?\DateTime
     {
         return $this->birthdate;
     }
 
     /**
-     * @param \DateTime $birthdate
+     * @param \DateTime|null $birthdate
      * @return $this
      */
-    public function setBirthdate(\DateTime $birthdate)
+    public function setBirthdate(?\DateTime $birthdate)
     {
         $this->birthdate = $birthdate;
         return $this;
