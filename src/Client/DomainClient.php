@@ -9,6 +9,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\UpdateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\UpdateResponse;
 
@@ -42,6 +44,19 @@ class DomainClient extends AbstractClient
         return $infoResponse;
     }
 
+    /**
+     * @param TradeRequest $tradeRequest
+     * @return TradeResponse
+     */
+    public function trade(TradeRequest $tradeRequest): TradeResponse
+    {
+        $requestArray = $this->convertRequestToArray($tradeRequest);
+
+        /** @var TradeResponse $tradeResponse */
+        $tradeResponse = $this->doApiCall('domainTrade', TradeResponse::class, $requestArray);
+
+        return $tradeResponse;
+    }
 
     /**
      * @param UpdateRequest $updateRequest
