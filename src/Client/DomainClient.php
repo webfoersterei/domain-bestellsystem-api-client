@@ -12,6 +12,8 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\DeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TransferRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TransferResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\UpdateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\UpdateResponse;
 
@@ -69,6 +71,20 @@ class DomainClient extends AbstractClient
         $tradeResponse = $this->doApiCall('domainTrade', TradeResponse::class, $requestArray);
 
         return $tradeResponse;
+    }
+
+    /**
+     * @param TransferRequest $transferRequest
+     * @return TransferResponse
+     */
+    public function transfer(TransferRequest $transferRequest): TransferResponse
+    {
+        $requestArray = $this->convertRequestToArray($transferRequest);
+
+        /** @var TransferResponse $transferResponse */
+        $transferResponse = $this->doApiCall('domainTransfer', TransferResponse::class, $requestArray);
+
+        return $transferResponse;
     }
 
     /**
