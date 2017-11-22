@@ -10,6 +10,7 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\DeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\ListResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TransferRequest;
@@ -57,6 +58,22 @@ class DomainClient extends AbstractClient
         $infoResponse = $this->doApiCall('domainInfo', InfoResponse::class, $parameters, ['datetime_format' => 'U']);
 
         return $infoResponse;
+    }
+
+    /**
+     * @param string $level
+     * @param int|null $limit
+     * @param int|null $offset
+     * @return ListResponse
+     */
+    public function list($level = 'all', $limit = null, $offset = null): ListResponse
+    {
+        $parameters = ['level' => $level, 'limit' => $limit, 'offset' => $offset];
+
+        /** @var ListResponse $listResponse */
+        $listResponse = $this->doApiCall('domainList', ListResponse::class, $parameters);
+
+        return $listResponse;
     }
 
     /**
