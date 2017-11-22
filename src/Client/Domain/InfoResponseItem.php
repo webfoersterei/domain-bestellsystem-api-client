@@ -120,7 +120,7 @@ class InfoResponseItem
     private $notifyEmail;
 
     /**
-     * @var string[]|null
+     * @var string[]|null|string
      */
     private $tags;
 
@@ -526,7 +526,7 @@ class InfoResponseItem
     }
 
     /**
-     * @return null|string[]
+     * @return null|string[]|string
      */
     public function getTags()
     {
@@ -534,7 +534,7 @@ class InfoResponseItem
     }
 
     /**
-     * @param null|string[] $tags
+     * @param null|string[]|string $tags
      * @return InfoResponseItem
      */
     public function setTags($tags)
