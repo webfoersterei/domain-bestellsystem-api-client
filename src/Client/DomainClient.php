@@ -8,6 +8,7 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\DeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\TradeResponse;
@@ -27,6 +28,18 @@ class DomainClient extends AbstractClient
         $checkResponse = $this->doApiCall('domainCheck', CheckResponse::class, ['domainName' => $domainName]);
 
         return $checkResponse;
+    }
+
+    /**
+     * @param string $domainName
+     * @return DeleteResponse
+     */
+    public function delete(string $domainName): DeleteResponse
+    {
+        /** @var DeleteResponse $deleteResponse */
+        $deleteResponse = $this->doApiCall('domainDelete', DeleteResponse::class, ['domainName' => $domainName]);
+
+        return $deleteResponse;
     }
 
     /**
