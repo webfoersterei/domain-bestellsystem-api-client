@@ -8,6 +8,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CreateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CreateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\DeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\ListResponse;
@@ -31,6 +33,20 @@ class DomainClient extends AbstractClient
         $checkResponse = $this->doApiCall('domainCheck', CheckResponse::class, ['domainName' => $domainName]);
 
         return $checkResponse;
+    }
+
+    /**
+     * @param CreateRequest $createRequest
+     * @return CreateResponse
+     */
+    public function create(CreateRequest $createRequest): CreateResponse
+    {
+        $requestArray = $this->convertRequestToArray($createRequest);
+
+        /** @var CreateResponse $createResponse */
+        $createResponse = $this->doApiCall('domainCreate', CreateResponse::class, $requestArray);
+
+        return $createResponse;
     }
 
     /**
