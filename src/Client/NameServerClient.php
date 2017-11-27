@@ -7,6 +7,7 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneInfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
 
@@ -25,6 +26,18 @@ class NameServerClient extends AbstractClient
         $createResponse = $this->doApiCall('nameserverZoneCreate', ZoneCreateResponse::class, $arrayRequest);
 
         return $createResponse;
+    }
+
+    /**
+     * @param string $domain
+     * @return ZoneInfoResponse
+     */
+    public function zoneInfo(string $domain): ZoneInfoResponse
+    {
+        /** @var ZoneInfoResponse $infoResponse */
+        $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $domain]);
+
+        return $infoResponse;
     }
 
 }
