@@ -141,7 +141,7 @@ abstract class AbstractClient
         }
 
         foreach ($requestArray as $key => $value) {
-            if (is_array($value)) {
+            if ($this->isItemArray($value)) {
                 $filteredArray[$key] = ['item' => $value];
             } else {
                 $filteredArray[$key] = $this->createArrayWrapper($value);
@@ -151,4 +151,25 @@ abstract class AbstractClient
         return $filteredArray;
     }
 
+    /**
+     * @param $value
+     * @return bool
+     */
+    private function isItemArray($value): bool
+    {
+        if (!is_array($value)) {
+            return false;
+        }
+
+        // If multiDimension-array: true
+        foreach ($value as $v) {
+            if (is_array($v)) {
+                return true;
+            }
+        }
+
+        // If array has more than one key and the keys are numeric (list of something...)
+        // List of String is needed for DomainUpdate.nameserver
+        return count($value) > 1 && count(array_filter(array_keys($value), 'is_string')) === 0;
+    }
 }
