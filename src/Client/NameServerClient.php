@@ -9,6 +9,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneInfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
@@ -27,6 +29,20 @@ class NameServerClient extends AbstractClient
         $createResponse = $this->doApiCall('nameserverRRCreate', ResourceRecordCreateResponse::class, $arrayRequest);
 
         return $createResponse;
+    }
+
+    /**
+     * @param ResourceRecordDeleteRequest $resourceRecordDeleteRequest
+     * @return ResourceRecordDeleteResponse
+     */
+    public function rrDelete(ResourceRecordDeleteRequest $resourceRecordDeleteRequest): ResourceRecordDeleteResponse
+    {
+        $arrayRequest = $this->convertRequestToArray($resourceRecordDeleteRequest);
+
+        /** @var ResourceRecordDeleteResponse $deleteResponse */
+        $deleteResponse = $this->doApiCall('nameserverRRDelete', ResourceRecordDeleteResponse::class, $arrayRequest);
+
+        return $deleteResponse;
     }
 
     /**
