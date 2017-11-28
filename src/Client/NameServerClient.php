@@ -7,12 +7,27 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneInfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
 
 class NameServerClient extends AbstractClient
 {
+    /**
+     * @param ResourceRecordCreateRequest $resourceRecordCreateRequest
+     * @return ResourceRecordCreateResponse
+     */
+    public function rrCreate(ResourceRecordCreateRequest $resourceRecordCreateRequest): ResourceRecordCreateResponse
+    {
+        $arrayRequest = $this->convertRequestToArray($resourceRecordCreateRequest);
+
+        /** @var ResourceRecordCreateResponse $createResponse */
+        $createResponse = $this->doApiCall('nameserverRRCreate', ResourceRecordCreateResponse::class, $arrayRequest);
+
+        return $createResponse;
+    }
 
     /**
      * @param ZoneCreateRequest $zoneCreateRequest
