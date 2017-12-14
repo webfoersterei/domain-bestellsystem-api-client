@@ -10,8 +10,8 @@ composer require webfoersterei/domain-bestellsystem-api-client
 
 ## Usage
 ```
-$soapClient = new \SoapClient(API_URL, ['login' => API_USERNAME, 'password' => API_PASSWORD]);
-$domainClient = new DomainClient($soapClient, new Serializer(), new ObjectNormalizer());
+$domainClient = ClientFactory::createDomainClient(API_URL, API_USER, API_PASSWORD);
+$domainClient->check('webfoersterei.de')->isAvailable(); # false
 ```
 
 ## Contribute
