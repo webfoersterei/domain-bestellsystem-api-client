@@ -1,0 +1,3398 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.localhost/soap/1.1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="SoapHandler" targetNamespace="http://soap.localhost/soap/1.1/">
+    <types>
+        <xsd:schema targetNamespace="http://soap.localhost/soap/1.1/">
+            <xsd:complexType name="DomainCheckRequestObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainCheckResponseObject">
+                <xsd:all>
+                    <xsd:element name="available" type="xsd:boolean"/>
+                    <xsd:element name="detailedStatus" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="requestLockStatus" type="xsd:boolean" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverArray">
+                <xsd:all>
+                    <xsd:element name="ns" type="xsd:string"/>
+                    <xsd:element name="ipv4" type="xsd:string" nillable="true"/>
+                    <xsd:element name="ipv6" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfNameserverarray">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:NameserverArray" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfString">
+                <xsd:sequence>
+                    <xsd:element name="item" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfoDomainsExtension">
+                <xsd:all>
+                    <xsd:element name="ownerCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="adminCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="techCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="zoneCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="dnsSecKeyData" type="tns:ArrayOfDnsseckeydataitem" nillable="true"/>
+                    <xsd:element name="dnsSecDSData" type="tns:ArrayOfDnssecdsdataitem" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfoDomains">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="tld" type="xsd:string"/>
+                    <xsd:element name="adminC" type="xsd:string"/>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="techC" type="xsd:string"/>
+                    <xsd:element name="zoneC" type="xsd:string"/>
+                    <xsd:element name="primaryNameserver" type="xsd:string"/>
+                    <xsd:element name="secondaryNameserver" type="tns:ArrayOfString"/>
+                    <xsd:element name="nameservers" type="tns:ArrayOfNameserverarray"/>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                    <xsd:element name="orderDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="executionDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="systemInDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="paidUntilDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="toBeDeletedDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="domainStatus" type="xsd:string"/>
+                    <xsd:element name="domainSubStatus" type="tns:ArrayOfString"/>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="regType" type="xsd:string"/>
+                    <xsd:element name="remarks" type="xsd:string" nillable="true"/>
+                    <xsd:element name="notifyEmail" type="xsd:string" nillable="true"/>
+                    <xsd:element name="tags" type="tns:ArrayOfString" nillable="true"/>
+                    <xsd:element name="extension" type="tns:DomainInfoDomainsExtension"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDomaininfodomains">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DomainInfoDomains" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="domainsList" type="tns:ArrayOfDomaininfodomains"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="CEDHandleType">
+                <xsd:all/>
+            </xsd:complexType>
+            <xsd:complexType name="dnsSecKeyDataItem">
+                <xsd:all>
+                    <xsd:element name="keyFlag" type="xsd:string"/>
+                    <xsd:element name="digestType" type="xsd:string"/>
+                    <xsd:element name="algorithm" type="xsd:string"/>
+                    <xsd:element name="key" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDnsseckeydataitem">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:dnsSecKeyDataItem" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="dnsSecDSDataItem">
+                <xsd:all>
+                    <xsd:element name="keyTag" type="xsd:string"/>
+                    <xsd:element name="algorithm" type="xsd:string"/>
+                    <xsd:element name="digestType" type="xsd:string"/>
+                    <xsd:element name="digest" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDnssecdsdataitem">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:dnsSecDSDataItem" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainCreateRequestExtension">
+                <xsd:all>
+                    <xsd:element name="adminCTrustee" type="xsd:string"/>
+                    <xsd:element name="ownerCTrustee" type="xsd:string"/>
+                    <xsd:element name="techCTrustee" type="xsd:string"/>
+                    <xsd:element name="zoneCTrustee" type="xsd:string"/>
+                    <xsd:element name="adminCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="ownerCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="techCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="zoneCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="asiaCEDHandle" type="tns:CEDHandleType"/>
+                    <xsd:element name="claimNoticeId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="claimNoticeExpiryDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="claimNoticeAcceptedDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="authCode" type="xsd:string" nillable="true"/>
+                    <xsd:element name="dnsSecKeyData" type="tns:ArrayOfDnsseckeydataitem" nillable="true"/>
+                    <xsd:element name="dnsSecDSData" type="tns:ArrayOfDnssecdsdataitem" nillable="true"/>
+                    <xsd:element name="seIDNumber" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="adminC" type="xsd:string"/>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="techC" type="xsd:string"/>
+                    <xsd:element name="zoneC" type="xsd:string"/>
+                    <xsd:element name="nameserver" type="tns:ArrayOfString"/>
+                    <xsd:element name="nsEntry" type="tns:ArrayOfString"/>
+                    <xsd:element name="remarks" type="xsd:string"/>
+                    <xsd:element name="quoting" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="extension" type="tns:DomainCreateRequestExtension"/>
+                    <xsd:element name="startDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainListRequestObject">
+                <xsd:all>
+                    <xsd:element name="level" type="xsd:string" nillable="true"/>
+                    <xsd:element name="limit" type="xsd:string" nillable="true"/>
+                    <xsd:element name="offset" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainListDomains">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="tld" type="xsd:string"/>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDomainlistdomains">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DomainListDomains" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainListResponseObject">
+                <xsd:all>
+                    <xsd:element name="domainsList" type="tns:ArrayOfDomainlistdomains"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="FilterItem">
+                <xsd:all>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfFilteritem">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:FilterItem" minOccurs="0" maxOccurs="unbounded" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainListExtendedRequestObject">
+                <xsd:all>
+                    <xsd:element name="level" type="xsd:string" nillable="true" />
+                    <xsd:element name="limit" type="xsd:string" nillable="true" />
+                    <xsd:element name="offset" type="xsd:string" nillable="true" />
+                    <xsd:element name="filter" type="tns:ArrayOfFilteritem" />
+                    <xsd:element name="fields" type="tns:ArrayOfString" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfoItem">
+                <xsd:all>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDomaininfoitem">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DomainInfoItem" minOccurs="0" maxOccurs="unbounded" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainInfo">
+                <xsd:all>
+                    <xsd:element name="domainInfoItem" type="tns:ArrayOfDomaininfoitem" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDomaininfo">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DomainInfo" minOccurs="0" maxOccurs="unbounded" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainListExtendedResponseObject">
+                <xsd:all>
+                    <xsd:element name="domainInfo" type="tns:ArrayOfDomaininfo" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainContactValidationListRequestObject">
+                <xsd:all>
+                    <xsd:element name="hold" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainContactListDomains">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="reseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="status" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfDomaincontactlistdomains">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:DomainContactListDomains" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DomainContactValidationListResponseObject">
+                <xsd:all>
+                    <xsd:element name="domainsContactList" type="tns:ArrayOfDomaincontactlistdomains"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainContactValidationResendRequestObject">
+                <xsd:all>
+                    <xsd:element name="domain" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainContactValidationResendResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainFOAResendRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainFOAResendResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTransferRequestExtension">
+                <xsd:all>
+                    <xsd:element name="ukNewTag" type="xsd:string"/>
+                    <xsd:element name="adminCTrustee" type="xsd:string"/>
+                    <xsd:element name="ownerCTrustee" type="xsd:string"/>
+                    <xsd:element name="techCTrustee" type="xsd:string"/>
+                    <xsd:element name="zoneCTrustee" type="xsd:string"/>
+                    <xsd:element name="adminCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="ownerCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="techCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="zoneCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="asiaCEDHandle" type="tns:CEDHandleType"/>
+                    <xsd:element name="claimNoticeId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="claimNoticeExpiryDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="claimNoticeAcceptedDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="dnsSecKeyData" type="tns:ArrayOfDnsseckeydataitem" nillable="true"/>
+                    <xsd:element name="dnsSecDSData" type="tns:ArrayOfDnssecdsdataitem" nillable="true"/>
+                    <xsd:element name="seIDNumber" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTransferRequestObject">
+                <xsd:all>
+                    <xsd:element name="action" type="xsd:string"/>
+                    <xsd:element name="nackReason" type="xsd:string"/>
+                    <xsd:element name="authCode" type="xsd:string"/>
+                    <xsd:element name="extension" type="tns:DomainTransferRequestExtension"/>
+                    <xsd:element name="adminC" type="xsd:string"/>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="techC" type="xsd:string"/>
+                    <xsd:element name="zoneC" type="xsd:string"/>
+                    <xsd:element name="nameserver" type="tns:ArrayOfString"/>
+                    <xsd:element name="nsEntry" type="tns:ArrayOfString"/>
+                    <xsd:element name="remarks" type="xsd:string"/>
+                    <xsd:element name="quoting" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="startDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTransferResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainUpdateRequestExtension">
+                <xsd:all>
+                    <xsd:element name="addStatusFlag" type="tns:ArrayOfString"/>
+                    <xsd:element name="removeStatusFlag" type="tns:ArrayOfString"/>
+                    <xsd:element name="adminCTrustee" type="xsd:string"/>
+                    <xsd:element name="ownerCTrustee" type="xsd:string"/>
+                    <xsd:element name="techCTrustee" type="xsd:string"/>
+                    <xsd:element name="zoneCTrustee" type="xsd:string"/>
+                    <xsd:element name="ownerCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="adminCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="techCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="zoneCWPP" type="xsd:string" nillable="true"/>
+                    <xsd:element name="asiaCEDHandle" type="tns:CEDHandleType"/>
+                    <xsd:element name="dnsSecKeyData" type="tns:ArrayOfDnsseckeydataitem" nillable="true"/>
+                    <xsd:element name="dnsSecDSData" type="tns:ArrayOfDnssecdsdataitem" nillable="true"/>
+                    <xsd:element name="seIDNumber" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="remarks" type="xsd:string"/>
+                    <xsd:element name="anycastDelete" type="xsd:string" nillable="true"/>
+                    <xsd:element name="extension" type="tns:DomainUpdateRequestExtension" nillable="true"/>
+                    <xsd:element name="adminC" type="xsd:string"/>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="techC" type="xsd:string"/>
+                    <xsd:element name="zoneC" type="xsd:string"/>
+                    <xsd:element name="nameserver" type="tns:ArrayOfString"/>
+                    <xsd:element name="nsEntry" type="tns:ArrayOfString"/>
+                    <xsd:element name="quoting" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTradeRequestObject">
+                <xsd:all>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTradeResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="startDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRevokeRequestObject">
+                <xsd:all>
+                    <xsd:element name="action" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRevokeResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTransitRequestObject">
+                <xsd:all>
+                    <xsd:element name="transitType" type="xsd:string" nillable="true"/>
+                    <xsd:element name="startDate" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainTransitResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainSetAuthCodeRequestObject">
+                <xsd:all>
+                    <xsd:element name="deLiveTime" type="xsd:string"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainSetAuthCodeResponseObject">
+                <xsd:all>
+                    <xsd:element name="authCode" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRequestAuthInfo2RequestObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRequestAuthInfo2ResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRestoreRequestObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainRestoreResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainMoveRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="moveTo" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainMoveResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainNotifyRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="email" type="tns:ArrayOfString"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainNotifyResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainAnycastActivateRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainAnycastActivateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainDnssecDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainDnssecDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainBindRequestExtension">
+                <xsd:all>
+                    <xsd:element name="smdId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="smdFile" type="soap-enc:base64Binary" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainBindRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="phase" type="xsd:string" nillable="true"/>
+                    <xsd:element name="extension" type="tns:DomainBindRequestExtension" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="DomainBindResponseObject">
+                <xsd:all>
+                    <xsd:element name="smdId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="addHosts" type="tns:ArrayOfString"/>
+                    <xsd:element name="remHosts" type="tns:ArrayOfString"/>
+                    <xsd:element name="hostName" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="hosts" type="tns:ArrayOfString"/>
+                    <xsd:element name="hostName" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="hostName" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HostInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="hosts" type="tns:ArrayOfString"/>
+                    <xsd:element name="hostName" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="handle" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleInfoResponseExtension">
+                <xsd:all>
+                    <xsd:element name="vatId" type="xsd:string"/>
+                    <xsd:element name="companyId" type="xsd:string"/>
+                    <xsd:element name="personId" type="xsd:string"/>
+                    <xsd:element name="trademarkId" type="xsd:string"/>
+                    <xsd:element name="birthplace" type="xsd:string"/>
+                    <xsd:element name="birthdate" type="xsd:string"/>
+                    <xsd:element name="state" type="xsd:string"/>
+                    <xsd:element name="atDiscloseVoice" type="xsd:string"/>
+                    <xsd:element name="atDiscloseFax" type="xsd:string"/>
+                    <xsd:element name="atDiscloseMail" type="xsd:string"/>
+                    <xsd:element name="idAuthority" type="xsd:string"/>
+                    <xsd:element name="companyUrl" type="xsd:string"/>
+                    <xsd:element name="companyType" type="xsd:string"/>
+                    <xsd:element name="personJobTitle" type="xsd:string"/>
+                    <xsd:element name="dunsId" type="xsd:string"/>
+                    <xsd:element name="xxxId" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="company" type="xsd:string"/>
+                    <xsd:element name="street" type="xsd:string"/>
+                    <xsd:element name="pcode" type="xsd:string"/>
+                    <xsd:element name="city" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string"/>
+                    <xsd:element name="phone" type="xsd:string"/>
+                    <xsd:element name="fax" type="xsd:string"/>
+                    <xsd:element name="email" type="xsd:string"/>
+                    <xsd:element name="handle" type="xsd:string"/>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                    <xsd:element name="extension" type="tns:HandleInfoResponseExtension"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleCheckRequestObject">
+                <xsd:all>
+                    <xsd:element name="handle" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleCheckResponseObject">
+                <xsd:all>
+                    <xsd:element name="available" type="xsd:boolean"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleListRequestObject">
+                <xsd:all>
+                    <xsd:element name="level" type="xsd:string" nillable="true"/>
+                    <xsd:element name="limit" type="xsd:string" nillable="true"/>
+                    <xsd:element name="offset" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleListHandles">
+                <xsd:all>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="company" type="xsd:string"/>
+                    <xsd:element name="handleId" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfHandlelisthandles">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:HandleListHandles" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="HandleListResponseObject">
+                <xsd:all>
+                    <xsd:element name="handleList" type="tns:ArrayOfHandlelisthandles"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleCreateRequestExtension">
+                <xsd:all>
+                    <xsd:element name="vatId" type="xsd:string"/>
+                    <xsd:element name="companyId" type="xsd:string"/>
+                    <xsd:element name="personId" type="xsd:string"/>
+                    <xsd:element name="trademarkId" type="xsd:string"/>
+                    <xsd:element name="birthplace" type="xsd:string"/>
+                    <xsd:element name="birthdate" type="xsd:string"/>
+                    <xsd:element name="state" type="xsd:string"/>
+                    <xsd:element name="atDiscloseVoice" type="xsd:string"/>
+                    <xsd:element name="atDiscloseFax" type="xsd:string"/>
+                    <xsd:element name="atDiscloseMail" type="xsd:string"/>
+                    <xsd:element name="idAuthority" type="xsd:string"/>
+                    <xsd:element name="companyUrl" type="xsd:string"/>
+                    <xsd:element name="companyType" type="xsd:string"/>
+                    <xsd:element name="personJobTitle" type="xsd:string"/>
+                    <xsd:element name="dunsId" type="xsd:string"/>
+                    <xsd:element name="xxxId" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="firstname" type="xsd:string"/>
+                    <xsd:element name="lastname" type="xsd:string"/>
+                    <xsd:element name="company" type="xsd:string"/>
+                    <xsd:element name="street" type="xsd:string"/>
+                    <xsd:element name="pcode" type="xsd:string"/>
+                    <xsd:element name="city" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string"/>
+                    <xsd:element name="phone" type="xsd:string"/>
+                    <xsd:element name="fax" type="xsd:string"/>
+                    <xsd:element name="email" type="xsd:string"/>
+                    <xsd:element name="forceNew" type="xsd:boolean" nillable="true"/>
+                    <xsd:element name="extension" type="tns:HandleCreateRequestExtension"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="handleId" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleUpdateRequestExtension">
+                <xsd:all>
+                    <xsd:element name="vatId" type="xsd:string"/>
+                    <xsd:element name="companyId" type="xsd:string"/>
+                    <xsd:element name="personId" type="xsd:string"/>
+                    <xsd:element name="trademarkId" type="xsd:string"/>
+                    <xsd:element name="birthplace" type="xsd:string"/>
+                    <xsd:element name="birthdate" type="xsd:string"/>
+                    <xsd:element name="state" type="xsd:string"/>
+                    <xsd:element name="atDiscloseVoice" type="xsd:string"/>
+                    <xsd:element name="atDiscloseFax" type="xsd:string"/>
+                    <xsd:element name="atDiscloseMail" type="xsd:string"/>
+                    <xsd:element name="idAuthority" type="xsd:string"/>
+                    <xsd:element name="companyUrl" type="xsd:string"/>
+                    <xsd:element name="companyType" type="xsd:string"/>
+                    <xsd:element name="personJobTitle" type="xsd:string"/>
+                    <xsd:element name="dunsId" type="xsd:string"/>
+                    <xsd:element name="xxxId" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="handle" type="xsd:string"/>
+                    <xsd:element name="street" type="xsd:string"/>
+                    <xsd:element name="pcode" type="xsd:string"/>
+                    <xsd:element name="city" type="xsd:string"/>
+                    <xsd:element name="country" type="xsd:string" nillable="true"/>
+                    <xsd:element name="phone" type="xsd:string"/>
+                    <xsd:element name="fax" type="xsd:string"/>
+                    <xsd:element name="email" type="xsd:string"/>
+                    <xsd:element name="company" type="xsd:string" nillable="true"/>
+                    <xsd:element name="extension" type="tns:HandleUpdateRequestExtension"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleMoveRequestObject">
+                <xsd:all>
+                    <xsd:element name="handle" type="xsd:string" nillable="true"/>
+                    <xsd:element name="moveTo" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="HandleMoveResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRObject">
+                <xsd:all>
+                    <xsd:element name="aux" type="xsd:string"/>
+                    <xsd:element name="data" type="xsd:string"/>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="ttl" type="xsd:string"/>
+                    <xsd:element name="type" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfNameserverrrobject">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:NameserverRRObject" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="origin" type="xsd:string"/>
+                    <xsd:element name="refresh" type="xsd:string"/>
+                    <xsd:element name="retry" type="xsd:string"/>
+                    <xsd:element name="expire" type="xsd:string"/>
+                    <xsd:element name="ttl" type="xsd:string"/>
+                    <xsd:element name="minimumTtl" type="xsd:string"/>
+                    <xsd:element name="rrList" type="tns:ArrayOfNameserverrrobject"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRElement">
+                <xsd:all>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="type" type="xsd:string"/>
+                    <xsd:element name="data" type="xsd:string"/>
+                    <xsd:element name="aux" type="xsd:string"/>
+                    <xsd:element name="ttl" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfNameserverrrelement">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:NameserverRRElement" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="soaExpire" type="xsd:string"/>
+                    <xsd:element name="soaMbox" type="xsd:string"/>
+                    <xsd:element name="soaMinimum" type="xsd:string"/>
+                    <xsd:element name="soaRefresh" type="xsd:string"/>
+                    <xsd:element name="soaRetry" type="xsd:string"/>
+                    <xsd:element name="soaTtl" type="xsd:string"/>
+                    <xsd:element name="rr" type="tns:ArrayOfNameserverrrelement"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="dns1" type="xsd:string"/>
+                    <xsd:element name="dns2" type="xsd:string"/>
+                    <xsd:element name="dns3" type="xsd:string"/>
+                    <xsd:element name="dns4" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="dns1" type="xsd:string"/>
+                    <xsd:element name="dns2" type="xsd:string"/>
+                    <xsd:element name="dns3" type="xsd:string"/>
+                    <xsd:element name="dns4" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverVirtualListResponseObject">
+                <xsd:all>
+                    <xsd:element name="dns1" type="xsd:string"/>
+                    <xsd:element name="dns2" type="xsd:string"/>
+                    <xsd:element name="dns3" type="xsd:string"/>
+                    <xsd:element name="dns4" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverSOAUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="soaExpire" type="xsd:string"/>
+                    <xsd:element name="soaMbox" type="xsd:string"/>
+                    <xsd:element name="soaMinimum" type="xsd:string"/>
+                    <xsd:element name="soaRefresh" type="xsd:string"/>
+                    <xsd:element name="soaRetry" type="xsd:string"/>
+                    <xsd:element name="soaTtl" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverSOAUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverZoneDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="rr" type="tns:NameserverRRElement"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="rr" type="tns:ArrayOfNameserverrrelement"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverRRCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterInsertRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="masterIP" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterInsertResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="masterIP" type="xsd:string"/>
+                    <xsd:element name="lastCheck" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="masterIP" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="soaOrigin" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="NameserverMasterDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="type" type="xsd:string"/>
+                    <xsd:element name="webTarget" type="xsd:string"/>
+                    <xsd:element name="mailTarget" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="webTarget" type="xsd:string" nillable="true"/>
+                    <xsd:element name="mailTarget" type="xsd:string" nillable="true"/>
+                    <xsd:element name="type" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="webTarget" type="xsd:string" nillable="true"/>
+                    <xsd:element name="mailTarget" type="xsd:string" nillable="true"/>
+                    <xsd:element name="type" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="RedirectUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="ownerC" type="xsd:string"/>
+                    <xsd:element name="dcvmail" type="xsd:string"/>
+                    <xsd:element name="productId" type="xsd:string"/>
+                    <xsd:element name="software" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="remarks" type="xsd:string"/>
+                    <xsd:element name="regId" type="xsd:string"/>
+                    <xsd:element name="csr" type="xsd:string"/>
+                    <xsd:element name="onBehalf" type="xsd:string"/>
+                    <xsd:element name="coDomains" type="tns:ArrayOfString"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="token" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="getCSR" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ComodoStatus">
+                <xsd:all>
+                    <xsd:element name="certificateStatus" type="xsd:string"/>
+                    <xsd:element name="csrStatus" type="xsd:string"/>
+                    <xsd:element name="ovCallbackStatus" type="xsd:string"/>
+                    <xsd:element name="organizationValidationStatus" type="xsd:string"/>
+                    <xsd:element name="freeDVUPStatus" type="xsd:string"/>
+                    <xsd:element name="evClickThroughStatus" type="xsd:string"/>
+                    <xsd:element name="brandValStatus" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                    <xsd:element name="zertifikat" type="xsd:string"/>
+                    <xsd:element name="intermediateCertificate" type="xsd:string"/>
+                    <xsd:element name="notValidBefore" type="xsd:string"/>
+                    <xsd:element name="notValidAfter" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="productId" type="xsd:string"/>
+                    <xsd:element name="software" type="xsd:string"/>
+                    <xsd:element name="csr" type="xsd:string" nillable="true"/>
+                    <xsd:element name="comodostatus" type="tns:ComodoStatus" nillable="true"/>
+                    <xsd:element name="token" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslListCerts">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="domain" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfSsllistcerts">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:SslListCerts" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SslListResponseObject">
+                <xsd:all>
+                    <xsd:element name="sslList" type="tns:ArrayOfSsllistcerts"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslListExtendedRequestObject">
+                <xsd:all>
+                    <xsd:element name="level" type="xsd:string" nillable="true"/>
+                    <xsd:element name="limit" type="xsd:string" nillable="true"/>
+                    <xsd:element name="offset" type="xsd:string" nillable="true"/>
+                    <xsd:element name="fields" type="tns:ArrayOfString"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslInfo">
+                <xsd:all>
+                    <xsd:element name="domain" type="xsd:string" nillable="true"/>
+                    <xsd:element name="orderNumber" type="xsd:string" nillable="true"/>
+                    <xsd:element name="reseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="status" type="xsd:string" nillable="true"/>
+                    <xsd:element name="software" type="xsd:string" nillable="true"/>
+                    <xsd:element name="productId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="notValidBefore" type="xsd:string" nillable="true"/>
+                    <xsd:element name="notValidAfter" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfSslinfo">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:SslInfo" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SslListExtendedResponseObject">
+                <xsd:all>
+                    <xsd:element name="sslInfo" type="tns:ArrayOfSslinfo"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetDCVListRequestObject">
+                <xsd:all>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="productId" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetDCVListResponseObject">
+                <xsd:all>
+                    <xsd:element name="dcvList" type="tns:ArrayOfString"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslReplaceRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="dcvmail" type="xsd:string"/>
+                    <xsd:element name="software" type="xsd:string"/>
+                    <xsd:element name="notify" type="xsd:string"/>
+                    <xsd:element name="csr" type="xsd:string"/>
+                    <xsd:element name="onBehalf" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslReplaceResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslResendDCVRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="dcvmail" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslResendDCVResponseObject">
+                <xsd:all>
+                    <xsd:element name="dcvmail" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetSoftwareListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslSoftwareList">
+                <xsd:all>
+                    <xsd:element name="id" type="xsd:string"/>
+                    <xsd:element name="name" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfSslsoftwarelist">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:SslSoftwareList" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetSoftwareListResponseObject">
+                <xsd:all>
+                    <xsd:element name="sslSoftwareList" type="tns:ArrayOfSslsoftwarelist"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetProductListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="SslProductList">
+                <xsd:all>
+                    <xsd:element name="name" type="xsd:string"/>
+                    <xsd:element name="id" type="xsd:string"/>
+                    <xsd:element name="term" type="xsd:string"/>
+                    <xsd:element name="maxDomains" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfSslproductlist">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:SslProductList" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SslGetProductListResponseObject">
+                <xsd:all>
+                    <xsd:element name="sslProductList" type="tns:ArrayOfSslproductlist"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="PriceDomainListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="PriceDomainList">
+                <xsd:all>
+                    <xsd:element name="tld" type="xsd:string"/>
+                    <xsd:element name="sld" type="xsd:string"/>
+                    <xsd:element name="activated" type="xsd:boolean"/>
+                    <xsd:element name="lifetime" type="xsd:float"/>
+                    <xsd:element name="lifetime_entity" type="xsd:string"/>
+                    <xsd:element name="regSetup" type="xsd:float"/>
+                    <xsd:element name="reg_setup_currency" type="xsd:string"/>
+                    <xsd:element name="kk_setup" type="xsd:float"/>
+                    <xsd:element name="kk_setup_currency" type="xsd:string"/>
+                    <xsd:element name="annually" type="xsd:float"/>
+                    <xsd:element name="annually_currency" type="xsd:string"/>
+                    <xsd:element name="restore" type="xsd:float"/>
+                    <xsd:element name="restore_currency" type="xsd:string"/>
+                    <xsd:element name="ownerchange" type="xsd:float"/>
+                    <xsd:element name="ownerchange_currency" type="xsd:string"/>
+                    <xsd:element name="update" type="xsd:float"/>
+                    <xsd:element name="update_currency" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfPricedomainlist">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:PriceDomainList" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="PriceDomainListResponseObject">
+                <xsd:all>
+                    <xsd:element name="priceDomainList" type="tns:ArrayOfPricedomainlist"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="BillingDataRequestObject">
+                <xsd:all>
+                    <xsd:element name="month" type="xsd:string"/>
+                    <xsd:element name="includeOwn" type="xsd:boolean"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="BillingDataList">
+                <xsd:all>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                    <xsd:element name="path" type="xsd:string"/>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="action" type="xsd:string"/>
+                    <xsd:element name="fromDate" type="xsd:string"/>
+                    <xsd:element name="toDate" type="xsd:string"/>
+                    <xsd:element name="lifetime" type="xsd:string"/>
+                    <xsd:element name="price" type="xsd:float"/>
+                    <xsd:element name="currency" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfBillingdatalist">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:BillingDataList" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="BillingDataResponseObject">
+                <xsd:all>
+                    <xsd:element name="billingDataList" type="tns:ArrayOfBillingdatalist"/>
+                    <xsd:element name="month" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="BillingAdditionalDataRequestObject">
+                <xsd:all>
+                    <xsd:element name="month" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="BillingAdditionalDataList">
+                <xsd:all>
+                    <xsd:element name="reseller" type="xsd:string"/>
+                    <xsd:element name="path" type="xsd:string"/>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="action" type="xsd:string"/>
+                    <xsd:element name="fromDate" type="xsd:string"/>
+                    <xsd:element name="toDate" type="xsd:string"/>
+                    <xsd:element name="lifetime" type="xsd:string"/>
+                    <xsd:element name="price" type="xsd:float"/>
+                    <xsd:element name="currency" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfBillingadditionaldatalist">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:BillingAdditionalDataList" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="BillingAdditionalDataResponseObject">
+                <xsd:all>
+                    <xsd:element name="billingAdditionalDataList" type="tns:ArrayOfBillingadditionaldatalist"/>
+                    <xsd:element name="month" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchGetLabelListRequestObject">
+                <xsd:all>
+                    <xsd:element name="trademarkName" type="xsd:string"/>
+                    <xsd:element name="trademarkRegister" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchGetLabelListResponseObject">
+                <xsd:all>
+                    <xsd:element name="labelList" type="tns:ArrayOfString"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="trademarkRegister" type="xsd:string"/>
+                    <xsd:element name="trademarkNumber" type="xsd:string"/>
+                    <xsd:element name="trademarkName" type="xsd:string"/>
+                    <xsd:element name="trademarkHolder" type="xsd:string"/>
+                    <xsd:element name="labels" type="tns:ArrayOfString"/>
+                    <xsd:element name="useSunriseService" type="xsd:boolean"/>
+                    <xsd:element name="declarationProofOfUse" type="soap-enc:base64Binary"/>
+                    <xsd:element name="declarationProofOfUseName" type="xsd:string"/>
+                    <xsd:element name="proofOfUse" type="soap-enc:base64Binary"/>
+                    <xsd:element name="proofOfUseName" type="xsd:string"/>
+                    <xsd:element name="term" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="orderDate" type="xsd:string"/>
+                    <xsd:element name="trademarkRegister" type="xsd:string"/>
+                    <xsd:element name="trademarkNumber" type="xsd:string"/>
+                    <xsd:element name="trademarkName" type="xsd:string"/>
+                    <xsd:element name="trademarkHolder" type="xsd:string"/>
+                    <xsd:element name="labels" type="tns:ArrayOfString"/>
+                    <xsd:element name="useSunriseService" type="xsd:boolean"/>
+                    <xsd:element name="term" type="xsd:string"/>
+                    <xsd:element name="smdFile" type="soap-enc:base64Binary"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchListRequestObject">
+                <xsd:all>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchApplication">
+                <xsd:all>
+                    <xsd:element name="orderNumber" type="xsd:string"/>
+                    <xsd:element name="domain" type="xsd:string"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfTmchapplication">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:TmchApplication" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TmchListResponseObject">
+                <xsd:all>
+                    <xsd:element name="tmchApplicationList" type="tns:ArrayOfTmchapplication"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCheckClaimRequestObject">
+                <xsd:all>
+                    <xsd:element name="domainName" type="xsd:string"/>
+                    <xsd:element name="domainNameAce" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCheckClaimMarkClass">
+                <xsd:all>
+                    <xsd:element name="id" type="xsd:string" nillable="true"/>
+                    <xsd:element name="description" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfTmchcheckclaimmarkclass">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:TmchCheckClaimMarkClass" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCheckClaimClaims">
+                <xsd:all>
+                    <xsd:element name="markName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderOrg" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderStreet" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderCc" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderPc" type="xsd:string" nillable="true"/>
+                    <xsd:element name="holderCity" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactOrg" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactStreet" type="tns:ArrayOfString" nillable="true"/>
+                    <xsd:element name="contactCc" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactPc" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactCity" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactVoice" type="xsd:string" nillable="true"/>
+                    <xsd:element name="contactEmail" type="xsd:string" nillable="true"/>
+                    <xsd:element name="markJurisdiction" type="xsd:string" nillable="true"/>
+                    <xsd:element name="markClass" type="tns:ArrayOfTmchcheckclaimmarkclass" nillable="true"/>
+                    <xsd:element name="markGoods" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfTmchcheckclaimclaims">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:TmchCheckClaimClaims" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TmchCheckClaimResponseObject">
+                <xsd:all>
+                    <xsd:element name="id" type="xsd:string" nillable="true"/>
+                    <xsd:element name="notBefore" type="xsd:string" nillable="true"/>
+                    <xsd:element name="notAfter" type="xsd:string" nillable="true"/>
+                    <xsd:element name="label" type="xsd:string" nillable="true"/>
+                    <xsd:element name="claimsList" type="tns:ArrayOfTmchcheckclaimclaims" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerCreateRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" nillable="true" />
+                    <xsd:element name="billingEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="firstname" type="xsd:string" nillable="true" />
+                    <xsd:element name="lastname" type="xsd:string" nillable="true" />
+                    <xsd:element name="company" type="xsd:string" nillable="true" />
+                    <xsd:element name="remarks" type="xsd:string" nillable="true" />
+                    <xsd:element name="street" type="xsd:string" nillable="true" />
+                    <xsd:element name="pcode" type="xsd:string" nillable="true" />
+                    <xsd:element name="city" type="xsd:string" nillable="true" />
+                    <xsd:element name="country" type="xsd:string" nillable="true" />
+                    <xsd:element name="phone" type="xsd:string" nillable="true" />
+                    <xsd:element name="fax" type="xsd:string" nillable="true" />
+                    <xsd:element name="password" type="xsd:string" />
+                    <xsd:element name="language" type="xsd:string" nillable="true" />
+                    <xsd:element name="priceList" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerCreateResponseObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" nillable="true" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerPasswordRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="password" type="xsd:string" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerPasswordResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerDeleteRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerDeleteResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="FOA">
+                <xsd:all>
+                    <xsd:element name="senderCompany" type="xsd:string" nillable="true"/>
+                    <xsd:element name="email" type="xsd:string" nillable="true"/>
+                    <xsd:element name="reminder" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ERRP">
+                <xsd:all>
+                    <xsd:element name="senderCompany" type="xsd:string" nillable="true"/>
+                    <xsd:element name="senderName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="footerText" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="WDRP">
+                <xsd:all>
+                    <xsd:element name="senderCompany" type="xsd:string" nillable="true"/>
+                    <xsd:element name="senderName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="footerText" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ContactValidationClass">
+                <xsd:all>
+                    <xsd:element name="senderName" type="xsd:string" nillable="true"/>
+                    <xsd:element name="footerText" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerExtension">
+                <xsd:all>
+                    <xsd:element name="foa" type="tns:FOA" nillable="true"/>
+                    <xsd:element name="errp" type="tns:ERRP" nillable="true"/>
+                    <xsd:element name="wdrp" type="tns:WDRP" nillable="true"/>
+                    <xsd:element name="contactValidation" type="tns:ContactValidationClass" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerUpdateRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="loginNew" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" nillable="true" />
+                    <xsd:element name="billingEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="firstname" type="xsd:string" nillable="true" />
+                    <xsd:element name="lastname" type="xsd:string" nillable="true" />
+                    <xsd:element name="company" type="xsd:string" nillable="true" />
+                    <xsd:element name="remarks" type="xsd:string" nillable="true" />
+                    <xsd:element name="street" type="xsd:string" nillable="true" />
+                    <xsd:element name="pcode" type="xsd:string" nillable="true" />
+                    <xsd:element name="city" type="xsd:string" nillable="true" />
+                    <xsd:element name="country" type="xsd:string" nillable="true" />
+                    <xsd:element name="phone" type="xsd:string" nillable="true" />
+                    <xsd:element name="fax" type="xsd:string" nillable="true" />
+                    <xsd:element name="language" type="xsd:string" nillable="true" />
+                    <xsd:element name="extension" type="tns:ResellerExtension"/>
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerUpdateResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerRightsItem">
+                <xsd:all>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfResellerrightsitem">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:ResellerRightsItem" minOccurs="0" maxOccurs="unbounded" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerRightsRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="ResellerRightsList" type="tns:ArrayOfResellerrightsitem" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerRightsResponseObject">
+                <xsd:all>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerListRequestObject">
+                <xsd:all>
+                    <xsd:element name="limit" type="xsd:string" nillable="true" />
+                    <xsd:element name="offset" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfResellerlistclass">
+                <xsd:sequence>
+                    <xsd:element name="item" type="tns:ResellerListClass" minOccurs="0" maxOccurs="unbounded" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerListClass">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="depth" type="xsd:string" />
+                    <xsd:element name="company" type="xsd:string" />
+                    <xsd:element name="firstname" type="xsd:string" />
+                    <xsd:element name="lastname" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" />
+                    <xsd:element name="subReseller" type="tns:ArrayOfResellerlistclass" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerListResponseObject">
+                <xsd:all>
+                    <xsd:element name="resellerList" type="tns:ArrayOfResellerlistclass" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerInfoRequestObject">
+                <xsd:all>
+                    <xsd:element name="login" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string"/>
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+            <xsd:complexType name="ResellerInfoResponseObject">
+                <xsd:all>
+                    <xsd:element name="active" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" nillable="true"/>
+                    <xsd:element name="company" type="xsd:string" nillable="true"/>
+                    <xsd:element name="firstname" type="xsd:string" nillable="true"/>
+                    <xsd:element name="lastname" type="xsd:string" nillable="true"/>
+                    <xsd:element name="email" type="xsd:string" nillable="true"/>
+                    <xsd:element name="billingEmail" type="xsd:string" nillable="true"/>
+                    <xsd:element name="street" type="xsd:string" nillable="true"/>
+                    <xsd:element name="pcode" type="xsd:string" nillable="true"/>
+                    <xsd:element name="city" type="xsd:string" nillable="true"/>
+                    <xsd:element name="country" type="xsd:string" nillable="true"/>
+                    <xsd:element name="language" type="xsd:string" nillable="true"/>
+                    <xsd:element name="phone" type="xsd:string" nillable="true"/>
+                    <xsd:element name="fax" type="xsd:string" nillable="true"/>
+                    <xsd:element name="remarks" type="xsd:string" nillable="true"/>
+                    <xsd:element name="extension" type="tns:ResellerExtension"/>
+                    <xsd:element name="returnCode" type="xsd:int"/>
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                </xsd:all>
+            </xsd:complexType>
+
+        </xsd:schema>
+    </types>
+    <portType name="SoapHandlerPort">
+        <operation name="domainCheck">
+            <documentation>Check a Domain</documentation>
+            <input message="tns:domainCheckIn"/>
+            <output message="tns:domainCheckOut"/>
+        </operation>
+        <operation name="domainInfo">
+            <documentation>Info for Domain</documentation>
+            <input message="tns:domainInfoIn"/>
+            <output message="tns:domainInfoOut"/>
+        </operation>
+        <operation name="domainCreate">
+            <documentation>Create a Domain</documentation>
+            <input message="tns:domainCreateIn"/>
+            <output message="tns:domainCreateOut"/>
+        </operation>
+        <operation name="domainList">
+            <documentation>List own Domains</documentation>
+            <input message="tns:domainListIn"/>
+            <output message="tns:domainListOut"/>
+        </operation>
+        <operation name="domainListExtended">
+            <documentation>List own Domains extended</documentation>
+            <input message="tns:domainListExtendedIn" />
+            <output message="tns:domainListExtendedOut" />
+        </operation>
+        <operation name="domainContactValidationList">
+            <documentation>List own Locked Domains</documentation>
+            <input message="tns:domainContactValidationListIn"/>
+            <output message="tns:domainContactValidationListOut"/>
+        </operation>
+        <operation name="domainContactValidationResend">
+            <documentation>Resend Contact Validation</documentation>
+            <input message="tns:domainContactValidationResendIn"/>
+            <output message="tns:domainContactValidationResendOut"/>
+        </operation>
+        <operation name="domainFOAResend">
+            <documentation>Resend FOA</documentation>
+            <input message="tns:domainFOAResendIn"/>
+            <output message="tns:domainFOAResendOut"/>
+        </operation>
+        <operation name="domainTransfer">
+            <input message="tns:domainTransferIn"/>
+            <output message="tns:domainTransferOut"/>
+        </operation>
+        <operation name="domainUpdate">
+            <input message="tns:domainUpdateIn"/>
+            <output message="tns:domainUpdateOut"/>
+        </operation>
+        <operation name="domainAnycastActivate">
+            <input message="tns:domainAnycastActivateIn"/>
+            <output message="tns:domainAnycastActivateOut"/>
+        </operation>
+        <operation name="domainDnssecDelete">
+            <input message="tns:domainDnssecDeleteIn"/>
+            <output message="tns:domainDnssecDeleteOut"/>
+        </operation>
+        <operation name="domainTrade">
+            <input message="tns:domainTradeIn"/>
+            <output message="tns:domainTradeOut"/>
+        </operation>
+        <operation name="domainDelete">
+            <input message="tns:domainDeleteIn"/>
+            <output message="tns:domainDeleteOut"/>
+        </operation>
+        <operation name="domainRevoke">
+            <input message="tns:domainRevokeIn"/>
+            <output message="tns:domainRevokeOut"/>
+        </operation>
+        <operation name="domainTransit">
+            <input message="tns:domainTransitIn"/>
+            <output message="tns:domainTransitOut"/>
+        </operation>
+        <operation name="domainSetAuthCode">
+            <input message="tns:domainSetAuthCodeIn"/>
+            <output message="tns:domainSetAuthCodeOut"/>
+        </operation>
+        <operation name="domainRequestAuthInfo2">
+            <input message="tns:domainRequestAuthInfo2In"/>
+            <output message="tns:domainRequestAuthInfo2Out"/>
+        </operation>
+        <operation name="domainRestore">
+            <input message="tns:domainRestoreIn"/>
+            <output message="tns:domainRestoreOut"/>
+        </operation>
+        <operation name="domainMove">
+            <input message="tns:domainMoveIn"/>
+            <output message="tns:domainMoveOut"/>
+        </operation>
+        <operation name="domainNotify">
+            <input message="tns:domainNotifyIn"/>
+            <output message="tns:domainNotifyOut"/>
+        </operation>
+        <operation name="domainBind">
+            <input message="tns:domainBindIn"/>
+            <output message="tns:domainBindOut"/>
+        </operation>
+        <operation name="hostUpdate">
+            <input message="tns:hostUpdateIn"/>
+            <output message="tns:hostUpdateOut"/>
+        </operation>
+        <operation name="hostCreate">
+            <input message="tns:hostCreateIn"/>
+            <output message="tns:hostCreateOut"/>
+        </operation>
+        <operation name="hostInfo">
+            <input message="tns:hostInfoIn"/>
+            <output message="tns:hostInfoOut"/>
+        </operation>
+        <operation name="handleInfo">
+            <input message="tns:handleInfoIn"/>
+            <output message="tns:handleInfoOut"/>
+        </operation>
+        <operation name="handleCheck">
+            <input message="tns:handleCheckIn"/>
+            <output message="tns:handleCheckOut"/>
+        </operation>
+        <operation name="handleList">
+            <input message="tns:handleListIn"/>
+            <output message="tns:handleListOut"/>
+        </operation>
+        <operation name="handleCreate">
+            <input message="tns:handleCreateIn"/>
+            <output message="tns:handleCreateOut"/>
+        </operation>
+        <operation name="handleUpdate">
+            <input message="tns:handleUpdateIn"/>
+            <output message="tns:handleUpdateOut"/>
+        </operation>
+        <operation name="handleMove">
+            <input message="tns:handleMoveIn"/>
+            <output message="tns:handleMoveOut"/>
+        </operation>
+        <operation name="nameserverZoneInfo">
+            <input message="tns:nameserverZoneInfoIn"/>
+            <output message="tns:nameserverZoneInfoOut"/>
+        </operation>
+        <operation name="nameserverZoneCreate">
+            <input message="tns:nameserverZoneCreateIn"/>
+            <output message="tns:nameserverZoneCreateOut"/>
+        </operation>
+        <operation name="nameserverVirtualCreate">
+            <input message="tns:nameserverVirtualCreateIn"/>
+            <output message="tns:nameserverVirtualCreateOut"/>
+        </operation>
+        <operation name="nameserverVirtualUpdate">
+            <input message="tns:nameserverVirtualUpdateIn"/>
+            <output message="tns:nameserverVirtualUpdateOut"/>
+        </operation>
+        <operation name="nameserverVirtualDelete">
+            <input message="tns:nameserverVirtualDeleteIn"/>
+            <output message="tns:nameserverVirtualDeleteOut"/>
+        </operation>
+        <operation name="nameserverVirtualList">
+            <input message="tns:nameserverVirtualListIn"/>
+            <output message="tns:nameserverVirtualListOut"/>
+        </operation>
+        <operation name="nameserverSOAUpdate">
+            <input message="tns:nameserverSOAUpdateIn"/>
+            <output message="tns:nameserverSOAUpdateOut"/>
+        </operation>
+        <operation name="nameserverZoneDelete">
+            <input message="tns:nameserverZoneDeleteIn"/>
+            <output message="tns:nameserverZoneDeleteOut"/>
+        </operation>
+        <operation name="nameserverRRDelete">
+            <input message="tns:nameserverRRDeleteIn"/>
+            <output message="tns:nameserverRRDeleteOut"/>
+        </operation>
+        <operation name="nameserverRRCreate">
+            <input message="tns:nameserverRRCreateIn"/>
+            <output message="tns:nameserverRRCreateOut"/>
+        </operation>
+        <operation name="nameserverMasterInsert">
+            <input message="tns:nameserverMasterInsertIn"/>
+            <output message="tns:nameserverMasterInsertOut"/>
+        </operation>
+        <operation name="nameserverMasterInfo">
+            <input message="tns:nameserverMasterInfoIn"/>
+            <output message="tns:nameserverMasterInfoOut"/>
+        </operation>
+        <operation name="nameserverMasterUpdate">
+            <input message="tns:nameserverMasterUpdateIn"/>
+            <output message="tns:nameserverMasterUpdateOut"/>
+        </operation>
+        <operation name="nameserverMasterDelete">
+            <input message="tns:nameserverMasterDeleteIn"/>
+            <output message="tns:nameserverMasterDeleteOut"/>
+        </operation>
+        <operation name="redirectInfo">
+            <input message="tns:redirectInfoIn"/>
+            <output message="tns:redirectInfoOut"/>
+        </operation>
+        <operation name="redirectCreate">
+            <input message="tns:redirectCreateIn"/>
+            <output message="tns:redirectCreateOut"/>
+        </operation>
+        <operation name="redirectUpdate">
+            <input message="tns:redirectUpdateIn"/>
+            <output message="tns:redirectUpdateOut"/>
+        </operation>
+        <operation name="sslCreate">
+            <input message="tns:sslCreateIn"/>
+            <output message="tns:sslCreateOut"/>
+        </operation>
+        <operation name="sslInfo">
+            <input message="tns:sslInfoIn"/>
+            <output message="tns:sslInfoOut"/>
+        </operation>
+        <operation name="sslList">
+            <input message="tns:sslListIn"/>
+            <output message="tns:sslListOut"/>
+        </operation>
+        <operation name="sslListExtended">
+            <input message="tns:sslListExtendedIn"/>
+            <output message="tns:sslListExtendedOut"/>
+        </operation>
+        <operation name="sslGetDCVList">
+            <input message="tns:sslGetDCVListIn"/>
+            <output message="tns:sslGetDCVListOut"/>
+        </operation>
+        <operation name="sslReplace">
+            <input message="tns:sslReplaceIn"/>
+            <output message="tns:sslReplaceOut"/>
+        </operation>
+        <operation name="sslResendDCV">
+            <input message="tns:sslResendDCVIn"/>
+            <output message="tns:sslResendDCVOut"/>
+        </operation>
+        <operation name="sslGetSoftwareList">
+            <input message="tns:sslGetSoftwareListIn"/>
+            <output message="tns:sslGetSoftwareListOut"/>
+        </operation>
+        <operation name="sslGetProductList">
+            <input message="tns:sslGetProductListIn"/>
+            <output message="tns:sslGetProductListOut"/>
+        </operation>
+        <operation name="priceDomainList">
+            <input message="tns:priceDomainListIn"/>
+            <output message="tns:priceDomainListOut"/>
+        </operation>
+        <operation name="billingData">
+            <input message="tns:billingDataIn"/>
+            <output message="tns:billingDataOut"/>
+        </operation>
+        <operation name="billingAdditionalData">
+            <input message="tns:billingAdditionalDataIn"/>
+            <output message="tns:billingAdditionalDataOut"/>
+        </operation>
+        <operation name="tmchGetLabelList">
+            <input message="tns:tmchGetLabelListIn"/>
+            <output message="tns:tmchGetLabelListOut"/>
+        </operation>
+        <operation name="tmchCreate">
+            <input message="tns:tmchCreateIn"/>
+            <output message="tns:tmchCreateOut"/>
+        </operation>
+        <operation name="tmchInfo">
+            <input message="tns:tmchInfoIn"/>
+            <output message="tns:tmchInfoOut"/>
+        </operation>
+        <operation name="tmchList">
+            <input message="tns:tmchListIn"/>
+            <output message="tns:tmchListOut"/>
+        </operation>
+        <operation name="tmchCheckClaim">
+            <input message="tns:tmchCheckClaimIn"/>
+            <output message="tns:tmchCheckClaimOut"/>
+        </operation>
+        <operation name="resellerCreate">
+            <input message="tns:resellerCreateIn" />
+            <output message="tns:resellerCreateOut" />
+        </operation>
+        <operation name="resellerPassword">
+            <input message="tns:resellerPasswordIn" />
+            <output message="tns:resellerPasswordOut" />
+        </operation>
+        <operation name="resellerDelete">
+            <input message="tns:resellerDeleteIn" />
+            <output message="tns:resellerDeleteOut" />
+        </operation>
+        <operation name="resellerUpdate">
+            <input message="tns:resellerUpdateIn" />
+            <output message="tns:resellerUpdateOut" />
+        </operation>
+        <operation name="resellerRights">
+            <input message="tns:resellerRightsIn" />
+            <output message="tns:resellerRightsOut" />
+        </operation>
+        <operation name="resellerList">
+            <input message="tns:resellerListIn" />
+            <output message="tns:resellerListOut" />
+        </operation>
+        <operation name="resellerInfo">
+            <input message="tns:resellerInfoIn"/>
+            <output message="tns:resellerInfoOut"/>
+        </operation>
+    </portType>
+    <binding name="SoapHandlerBinding" type="tns:SoapHandlerPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="domainCheck">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainCheck"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainListExtended">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainListExtended" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="domainContactValidationList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainContactValidationList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainContactValidationResend">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainContactValidationResend"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainFOAResend">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainFOAResend"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainTransfer">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainTransfer"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainAnycastActivate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainAnycastActivate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainDnssecDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainDnssecDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainTrade">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainTrade"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainRevoke">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainRevoke"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainTransit">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainTransit"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainSetAuthCode">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainSetAuthCode"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainRequestAuthInfo2">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainRequestAuthInfo2"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainRestore">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainRestore"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainMove">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainMove"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainNotify">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainNotify"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="domainBind">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#domainBind"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="hostUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#hostUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="hostCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#hostCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="hostInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#hostInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleCheck">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleCheck"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="handleMove">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#handleMove"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverZoneInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverZoneInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverZoneCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverZoneCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverVirtualCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverVirtualCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverVirtualUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverVirtualUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverVirtualDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverVirtualDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverVirtualList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverVirtualList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverSOAUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverSOAUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverZoneDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverZoneDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverRRDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverRRDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverRRCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverRRCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverMasterInsert">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverMasterInsert"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverMasterInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverMasterInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverMasterUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverMasterUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="nameserverMasterDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#nameserverMasterDelete"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="redirectInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#redirectInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="redirectCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#redirectCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="redirectUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#redirectUpdate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslListExtended">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslListExtended"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslGetDCVList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslGetDCVList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslReplace">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslReplace"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslResendDCV">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslResendDCV"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslGetSoftwareList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslGetSoftwareList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="sslGetProductList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#sslGetProductList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="priceDomainList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#priceDomainList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="billingData">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#billingData"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="billingAdditionalData">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#billingAdditionalData"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="tmchGetLabelList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#tmchGetLabelList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="tmchCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#tmchCreate"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="tmchInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#tmchInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="tmchList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#tmchList"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="tmchCheckClaim">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#tmchCheckClaim"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+        <operation name="resellerCreate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerCreate" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerPassword">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerPassword" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerDelete">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerDelete" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerUpdate">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerUpdate" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerRights">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerRights" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerList">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerList" />
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/" />
+            </output>
+        </operation>
+        <operation name="resellerInfo">
+            <soap:operation soapAction="http://soap.localhost/soap/1.1/#resellerInfo"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.localhost/soap/1.1/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="SoapHandlerService">
+        <port name="SoapHandlerPort" binding="tns:SoapHandlerBinding">
+            <soap:address location="https://soap.localhost/soap.php"/>
+        </port>
+    </service>
+    <message name="domainCheckIn">
+        <part name="domainCheckRequest" type="tns:DomainCheckRequestObject"/>
+    </message>
+    <message name="domainCheckOut">
+        <part name="return" type="tns:DomainCheckResponseObject"/>
+    </message>
+    <message name="domainInfoIn">
+        <part name="domainInfoRequest" type="tns:DomainInfoRequestObject"/>
+    </message>
+    <message name="domainInfoOut">
+        <part name="return" type="tns:DomainInfoResponseObject"/>
+    </message>
+    <message name="domainCreateIn">
+        <part name="domainCreateRequestObject" type="tns:DomainCreateRequestObject"/>
+    </message>
+    <message name="domainCreateOut">
+        <part name="return" type="tns:DomainCreateResponseObject"/>
+    </message>
+    <message name="domainListIn">
+        <part name="domainListRequest" type="tns:DomainListRequestObject"/>
+    </message>
+    <message name="domainListOut">
+        <part name="return" type="tns:DomainListResponseObject"/>
+    </message>
+    <message name="domainListExtendedIn">
+        <part name="domainListExtendedRequest" type="tns:DomainListExtendedRequestObject" />
+    </message>
+    <message name="domainListExtendedOut">
+        <part name="return" type="tns:DomainListExtendedResponseObject" />
+    </message>
+    <message name="domainContactValidationListIn">
+        <part name="domainContactValidationListRequest" type="tns:DomainContactValidationListRequestObject"/>
+    </message>
+    <message name="domainContactValidationListOut">
+        <part name="return" type="tns:DomainContactValidationListResponseObject"/>
+    </message>
+    <message name="domainContactValidationResendIn">
+        <part name="domainContactValidationResendRequest" type="tns:DomainContactValidationResendRequestObject"/>
+    </message>
+    <message name="domainContactValidationResendOut">
+        <part name="return" type="tns:DomainContactValidationResendResponseObject"/>
+    </message>
+    <message name="domainFOAResendIn">
+        <part name="domainFOAResendRequest" type="tns:DomainFOAResendRequestObject"/>
+    </message>
+    <message name="domainFOAResendOut">
+        <part name="return" type="tns:DomainFOAResendResponseObject"/>
+    </message>
+    <message name="domainTransferIn">
+        <part name="domainTransferRequest" type="tns:DomainTransferRequestObject"/>
+    </message>
+    <message name="domainTransferOut">
+        <part name="return" type="tns:DomainTransferResponseObject"/>
+    </message>
+    <message name="domainUpdateIn">
+        <part name="domainUpdateRequest" type="tns:DomainUpdateRequestObject"/>
+    </message>
+    <message name="domainUpdateOut">
+        <part name="return" type="tns:DomainUpdateResponseObject"/>
+    </message>
+    <message name="domainAnycastActivateIn">
+        <part name="domainAnycastActivateRequest" type="tns:DomainAnycastActivateRequestObject"/>
+    </message>
+    <message name="domainAnycastActivateOut">
+        <part name="return" type="tns:DomainAnycastActivateResponseObject"/>
+    </message>
+    <message name="domainDnssecDeleteIn">
+        <part name="domainDnssecDeleteRequest" type="tns:DomainDnssecDeleteRequestObject"/>
+    </message>
+    <message name="domainDnssecDeleteOut">
+        <part name="return" type="tns:DomainDnssecDeleteResponseObject"/>
+    </message>
+    <message name="domainTradeIn">
+        <part name="domainTradeRequest" type="tns:DomainTradeRequestObject"/>
+    </message>
+    <message name="domainTradeOut">
+        <part name="return" type="tns:DomainTradeResponseObject"/>
+    </message>
+    <message name="domainDeleteIn">
+        <part name="domainDeleteRequest" type="tns:DomainDeleteRequestObject"/>
+    </message>
+    <message name="domainDeleteOut">
+        <part name="return" type="tns:DomainDeleteResponseObject"/>
+    </message>
+    <message name="domainRevokeIn">
+        <part name="domainRevokeRequest" type="tns:DomainRevokeRequestObject"/>
+    </message>
+    <message name="domainRevokeOut">
+        <part name="return" type="tns:DomainRevokeResponseObject"/>
+    </message>
+    <message name="domainTransitIn">
+        <part name="domainTransitRequest" type="tns:DomainTransitRequestObject"/>
+    </message>
+    <message name="domainTransitOut">
+        <part name="return" type="tns:DomainTransitResponseObject"/>
+    </message>
+    <message name="domainSetAuthCodeIn">
+        <part name="domainSetAuthCodeRequest" type="tns:DomainSetAuthCodeRequestObject"/>
+    </message>
+    <message name="domainSetAuthCodeOut">
+        <part name="return" type="tns:DomainSetAuthCodeResponseObject"/>
+    </message>
+    <message name="domainRequestAuthInfo2In">
+        <part name="domainRequestAuthInfo2Request" type="tns:DomainRequestAuthInfo2RequestObject"/>
+    </message>
+    <message name="domainRequestAuthInfo2Out">
+        <part name="return" type="tns:DomainRequestAuthInfo2ResponseObject"/>
+    </message>
+    <message name="domainRestoreIn">
+        <part name="domainRestoreRequest" type="tns:DomainRestoreRequestObject"/>
+    </message>
+    <message name="domainRestoreOut">
+        <part name="return" type="tns:DomainRestoreResponseObject"/>
+    </message>
+    <message name="domainMoveIn">
+        <part name="domainMoveRequest" type="tns:DomainMoveRequestObject"/>
+    </message>
+    <message name="domainMoveOut">
+        <part name="return" type="tns:DomainMoveResponseObject"/>
+    </message>
+    <message name="domainNotifyIn">
+        <part name="domainNotifyRequest" type="tns:DomainNotifyRequestObject"/>
+    </message>
+    <message name="domainNotifyOut">
+        <part name="return" type="tns:DomainNotifyResponseObject"/>
+    </message>
+    <message name="domainBindIn">
+        <part name="domainBindRequest" type="tns:DomainBindRequestObject"/>
+    </message>
+    <message name="domainBindOut">
+        <part name="return" type="tns:DomainBindResponseObject"/>
+    </message>
+    <message name="hostUpdateIn">
+        <part name="hostUpdateRequest" type="tns:HostUpdateRequestObject"/>
+    </message>
+    <message name="hostUpdateOut">
+        <part name="return" type="tns:HostUpdateResponseObject"/>
+    </message>
+    <message name="hostCreateIn">
+        <part name="hostCreateRequest" type="tns:HostCreateRequestObject"/>
+    </message>
+    <message name="hostCreateOut">
+        <part name="return" type="tns:HostCreateResponseObject"/>
+    </message>
+    <message name="hostInfoIn">
+        <part name="hostInfoRequest" type="tns:HostInfoRequestObject"/>
+    </message>
+    <message name="hostInfoOut">
+        <part name="return" type="tns:HostInfoResponseObject"/>
+    </message>
+    <message name="handleInfoIn">
+        <part name="handleInfoRequest" type="tns:HandleInfoRequestObject"/>
+    </message>
+    <message name="handleInfoOut">
+        <part name="return" type="tns:HandleInfoResponseObject"/>
+    </message>
+    <message name="handleCheckIn">
+        <part name="handleCheckRequest" type="tns:HandleCheckRequestObject"/>
+    </message>
+    <message name="handleCheckOut">
+        <part name="return" type="tns:HandleCheckResponseObject"/>
+    </message>
+    <message name="handleListIn">
+        <part name="handleListRequest" type="tns:HandleListRequestObject"/>
+    </message>
+    <message name="handleListOut">
+        <part name="return" type="tns:HandleListResponseObject"/>
+    </message>
+    <message name="handleCreateIn">
+        <part name="handleCreateRequest" type="tns:HandleCreateRequestObject"/>
+    </message>
+    <message name="handleCreateOut">
+        <part name="return" type="tns:HandleCreateResponseObject"/>
+    </message>
+    <message name="handleUpdateIn">
+        <part name="handleUpdateRequest" type="tns:HandleUpdateRequestObject"/>
+    </message>
+    <message name="handleUpdateOut">
+        <part name="return" type="tns:HandleUpdateResponseObject"/>
+    </message>
+    <message name="handleMoveIn">
+        <part name="handleMoveRequest" type="tns:HandleMoveRequestObject"/>
+    </message>
+    <message name="handleMoveOut">
+        <part name="return" type="tns:HandleMoveResponseObject"/>
+    </message>
+    <message name="nameserverZoneInfoIn">
+        <part name="nameserverZoneInfoRequest" type="tns:NameserverZoneInfoRequestObject"/>
+    </message>
+    <message name="nameserverZoneInfoOut">
+        <part name="return" type="tns:NameserverZoneInfoResponseObject"/>
+    </message>
+    <message name="nameserverZoneCreateIn">
+        <part name="nameserverZoneCreateRequest" type="tns:NameserverZoneCreateRequestObject"/>
+    </message>
+    <message name="nameserverZoneCreateOut">
+        <part name="return" type="tns:NameserverZoneCreateResponseObject"/>
+    </message>
+    <message name="nameserverVirtualCreateIn">
+        <part name="nameserverVirtualCreateRequest" type="tns:NameserverVirtualCreateRequestObject"/>
+    </message>
+    <message name="nameserverVirtualCreateOut">
+        <part name="return" type="tns:NameserverVirtualCreateResponseObject"/>
+    </message>
+    <message name="nameserverVirtualUpdateIn">
+        <part name="nameserverVirtualUpdateRequest" type="tns:NameserverVirtualUpdateRequestObject"/>
+    </message>
+    <message name="nameserverVirtualUpdateOut">
+        <part name="return" type="tns:NameserverVirtualUpdateResponseObject"/>
+    </message>
+    <message name="nameserverVirtualDeleteIn">
+        <part name="nameserverVirtualDeleteRequest" type="tns:NameserverVirtualDeleteRequestObject"/>
+    </message>
+    <message name="nameserverVirtualDeleteOut">
+        <part name="return" type="tns:NameserverVirtualDeleteResponseObject"/>
+    </message>
+    <message name="nameserverVirtualListIn">
+        <part name="nameserverVirtualListRequest" type="tns:NameserverVirtualListRequestObject"/>
+    </message>
+    <message name="nameserverVirtualListOut">
+        <part name="return" type="tns:NameserverVirtualListResponseObject"/>
+    </message>
+    <message name="nameserverSOAUpdateIn">
+        <part name="nameserverSOAUpdateRequest" type="tns:NameserverSOAUpdateRequestObject"/>
+    </message>
+    <message name="nameserverSOAUpdateOut">
+        <part name="return" type="tns:NameserverSOAUpdateResponseObject"/>
+    </message>
+    <message name="nameserverZoneDeleteIn">
+        <part name="nameserverZoneDeleteRequest" type="tns:NameserverZoneDeleteRequestObject"/>
+    </message>
+    <message name="nameserverZoneDeleteOut">
+        <part name="return" type="tns:NameserverZoneDeleteResponseObject"/>
+    </message>
+    <message name="nameserverRRDeleteIn">
+        <part name="nameserverRRDeleteRequest" type="tns:NameserverRRDeleteRequestObject"/>
+    </message>
+    <message name="nameserverRRDeleteOut">
+        <part name="return" type="tns:NameserverRRDeleteResponseObject"/>
+    </message>
+    <message name="nameserverRRCreateIn">
+        <part name="nameserverRRCreateRequest" type="tns:NameserverRRCreateRequestObject"/>
+    </message>
+    <message name="nameserverRRCreateOut">
+        <part name="return" type="tns:NameserverRRCreateResponseObject"/>
+    </message>
+    <message name="nameserverMasterInsertIn">
+        <part name="nameserverMasterInsertRequest" type="tns:NameserverMasterInsertRequestObject"/>
+    </message>
+    <message name="nameserverMasterInsertOut">
+        <part name="return" type="tns:NameserverMasterInsertResponseObject"/>
+    </message>
+    <message name="nameserverMasterInfoIn">
+        <part name="nameserverMasterInfoRequest" type="tns:NameserverMasterInfoRequestObject"/>
+    </message>
+    <message name="nameserverMasterInfoOut">
+        <part name="return" type="tns:NameserverMasterInfoResponseObject"/>
+    </message>
+    <message name="nameserverMasterUpdateIn">
+        <part name="nameserverMasterUpdateRequest" type="tns:NameserverMasterUpdateRequestObject"/>
+    </message>
+    <message name="nameserverMasterUpdateOut">
+        <part name="return" type="tns:NameserverMasterUpdateResponseObject"/>
+    </message>
+    <message name="nameserverMasterDeleteIn">
+        <part name="nameserverMasterDeleteRequest" type="tns:NameserverMasterDeleteRequestObject"/>
+    </message>
+    <message name="nameserverMasterDeleteOut">
+        <part name="return" type="tns:NameserverMasterDeleteResponseObject"/>
+    </message>
+    <message name="redirectInfoIn">
+        <part name="redirectInfoRequest" type="tns:RedirectInfoRequestObject"/>
+    </message>
+    <message name="redirectInfoOut">
+        <part name="return" type="tns:RedirectInfoResponseObject"/>
+    </message>
+    <message name="redirectCreateIn">
+        <part name="redirectCreateRequest" type="tns:RedirectCreateRequestObject"/>
+    </message>
+    <message name="redirectCreateOut">
+        <part name="return" type="tns:RedirectCreateResponseObject"/>
+    </message>
+    <message name="redirectUpdateIn">
+        <part name="redirectUpdateRequest" type="tns:RedirectUpdateRequestObject"/>
+    </message>
+    <message name="redirectUpdateOut">
+        <part name="return" type="tns:RedirectUpdateResponseObject"/>
+    </message>
+    <message name="sslCreateIn">
+        <part name="sslCreateRequest" type="tns:SslCreateRequestObject"/>
+    </message>
+    <message name="sslCreateOut">
+        <part name="return" type="tns:SslCreateResponseObject"/>
+    </message>
+    <message name="sslInfoIn">
+        <part name="sslInfoRequest" type="tns:SslInfoRequestObject"/>
+    </message>
+    <message name="sslInfoOut">
+        <part name="return" type="tns:SslInfoResponseObject"/>
+    </message>
+    <message name="sslListIn">
+        <part name="sslListRequest" type="tns:SslListRequestObject"/>
+    </message>
+    <message name="sslListOut">
+        <part name="return" type="tns:SslListResponseObject"/>
+    </message>
+    <message name="sslListExtendedIn">
+        <part name="sslListExtendedRequest" type="tns:SslListExtendedRequestObject"/>
+    </message>
+    <message name="sslListExtendedOut">
+        <part name="return" type="tns:SslListExtendedResponseObject"/>
+    </message>
+    <message name="sslGetDCVListIn">
+        <part name="sslGetDCVListRequest" type="tns:SslGetDCVListRequestObject"/>
+    </message>
+    <message name="sslGetDCVListOut">
+        <part name="return" type="tns:SslGetDCVListResponseObject"/>
+    </message>
+    <message name="sslReplaceIn">
+        <part name="sslReplaceRequest" type="tns:SslReplaceRequestObject"/>
+    </message>
+    <message name="sslReplaceOut">
+        <part name="return" type="tns:SslReplaceResponseObject"/>
+    </message>
+    <message name="sslResendDCVIn">
+        <part name="sslResendDCVRequest" type="tns:SslResendDCVRequestObject"/>
+    </message>
+    <message name="sslResendDCVOut">
+        <part name="return" type="tns:SslResendDCVResponseObject"/>
+    </message>
+    <message name="sslGetSoftwareListIn">
+        <part name="sslGetSoftwareListRequest" type="tns:SslGetSoftwareListRequestObject"/>
+    </message>
+    <message name="sslGetSoftwareListOut">
+        <part name="return" type="tns:SslGetSoftwareListResponseObject"/>
+    </message>
+    <message name="sslGetProductListIn">
+        <part name="sslGetProductListRequest" type="tns:SslGetProductListRequestObject"/>
+    </message>
+    <message name="sslGetProductListOut">
+        <part name="return" type="tns:SslGetProductListResponseObject"/>
+    </message>
+    <message name="priceDomainListIn">
+        <part name="priceDomainListRequest" type="tns:PriceDomainListRequestObject"/>
+    </message>
+    <message name="priceDomainListOut">
+        <part name="return" type="tns:PriceDomainListResponseObject"/>
+    </message>
+    <message name="billingDataIn">
+        <part name="billingDataRequestObject" type="tns:BillingDataRequestObject"/>
+    </message>
+    <message name="billingDataOut">
+        <part name="return" type="tns:BillingDataResponseObject"/>
+    </message>
+    <message name="billingAdditionalDataIn">
+        <part name="billingAdditionalDataRequestObject" type="tns:BillingAdditionalDataRequestObject"/>
+    </message>
+    <message name="billingAdditionalDataOut">
+        <part name="return" type="tns:BillingAdditionalDataResponseObject"/>
+    </message>
+    <message name="tmchGetLabelListIn">
+        <part name="tmchGetLabelListRequestObject" type="tns:TmchGetLabelListRequestObject"/>
+    </message>
+    <message name="tmchGetLabelListOut">
+        <part name="return" type="tns:TmchGetLabelListResponseObject"/>
+    </message>
+    <message name="tmchCreateIn">
+        <part name="tmchCreateRequestObject" type="tns:TmchCreateRequestObject"/>
+    </message>
+    <message name="tmchCreateOut">
+        <part name="return" type="tns:TmchCreateResponseObject"/>
+    </message>
+    <message name="tmchInfoIn">
+        <part name="tmchInfoRequestObject" type="tns:TmchInfoRequestObject"/>
+    </message>
+    <message name="tmchInfoOut">
+        <part name="return" type="tns:TmchInfoResponseObject"/>
+    </message>
+    <message name="tmchListIn">
+        <part name="tmchListRequestObject" type="tns:TmchListRequestObject"/>
+    </message>
+    <message name="tmchListOut">
+        <part name="return" type="tns:TmchListResponseObject"/>
+    </message>
+    <message name="tmchCheckClaimIn">
+        <part name="tmchCheckClaimRequestObject" type="tns:TmchCheckClaimRequestObject"/>
+    </message>
+    <message name="tmchCheckClaimOut">
+        <part name="return" type="tns:TmchCheckClaimResponseObject"/>
+    </message>
+    <message name="resellerCreateIn">
+        <part name="resellerCreateRequest" type="tns:ResellerCreateRequestObject" />
+    </message>
+    <message name="resellerCreateOut">
+        <part name="return" type="tns:ResellerCreateResponseObject" />
+    </message>
+    <message name="resellerPasswordIn">
+        <part name="resellerPasswordRequest" type="tns:ResellerPasswordRequestObject" />
+    </message>
+    <message name="resellerPasswordOut">
+        <part name="return" type="tns:ResellerPasswordResponseObject" />
+    </message>
+    <message name="resellerDeleteIn">
+        <part name="resellerDeleteRequest" type="tns:ResellerDeleteRequestObject" />
+    </message>
+    <message name="resellerDeleteOut">
+        <part name="return" type="tns:ResellerDeleteResponseObject" />
+    </message>
+    <message name="resellerUpdateIn">
+        <part name="resellerUpdateRequest" type="tns:ResellerUpdateRequestObject" />
+    </message>
+    <message name="resellerUpdateOut">
+        <part name="return" type="tns:ResellerUpdateResponseObject" />
+    </message>
+    <message name="resellerRightsIn">
+        <part name="resellerRightsRequest" type="tns:ResellerRightsRequestObject" />
+    </message>
+    <message name="resellerRightsOut">
+        <part name="return" type="tns:ResellerRightsResponseObject" />
+    </message>
+    <message name="resellerListIn">
+        <part name="resellerListRequest" type="tns:ResellerListRequestObject" />
+    </message>
+    <message name="resellerListOut">
+        <part name="return" type="tns:ResellerListResponseObject" />
+    </message>
+    <message name="resellerInfoIn">
+        <part name="resellerInfoRequest" type="tns:ResellerInfoRequestObject"/>
+    </message>
+    <message name="resellerInfoOut">
+        <part name="return" type="tns:ResellerInfoResponseObject"/>
+    </message>
+</definitions>

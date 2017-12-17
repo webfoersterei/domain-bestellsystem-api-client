@@ -11,7 +11,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Webfoersterei\\DomainBestellSystemApiClient\\": "src/"
+            "Webfoersterei\\DomainBestellSystemApiClient\\": "src/",
+            "Webfoersterei\\DomainBestellSystemApiClient\\Tests": "tests/"
         }
     },
     "require": {
@@ -22,6 +23,7 @@
         "phpdocumentor/reflection-docblock": "^4.1"
     },
     "require-dev": {
-        "zendframework/zend-code": "^3.0.4"
+        "zendframework/zend-code": "^3.0.4",
+        "phpunit/phpunit": "^6.5"
     }
 }
