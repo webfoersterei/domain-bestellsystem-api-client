@@ -1,6 +1,6 @@
 {
     "name": "webfoersterei/domain-bestellsystem-api-client",
-    "description": "A client to use the XML-SOAP-API of domain-bestellsystem.de (used by domain-offensive)",
+    "description": "A client to use the XML-SOAP-API of domain-bestellsystem.de (usable for domain-offensive)",
     "type": "library",
     "license": "MIT",
     "authors": [
