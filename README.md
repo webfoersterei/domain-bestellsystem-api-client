@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/webfoersterei/domain-bestellsystem-api-client.svg?branch=develop)](https://travis-ci.org/webfoersterei/domain-bestellsystem-api-client)
+
 # domain-bestellsystem-api-client
 A client to use the XML-SOAP-API of domain-bestellsystem.de (usable for domain-offensive)
 
