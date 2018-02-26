@@ -18,6 +18,11 @@ class CheckResponse extends AbstractResponse
     private $available;
 
     /**
+     * @var string
+     */
+    private $detailedStatus;
+
+    /**
      * @return bool
      */
     public function isAvailable(): bool
@@ -32,6 +37,26 @@ class CheckResponse extends AbstractResponse
     public function setAvailable(bool $available): CheckResponse
     {
         $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetailedStatus(): string
+    {
+        return $this->detailedStatus;
+    }
+
+    /**
+     * @param string $detailedStatus
+     * @return CheckResponse
+     */
+    public function setDetailedStatus(string $detailedStatus): CheckResponse
+    {
+        $this->detailedStatus = $detailedStatus;
+
         return $this;
     }
 
