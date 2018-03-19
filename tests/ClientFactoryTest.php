@@ -28,24 +28,24 @@ class ClientFactoryTest extends TestCase
 
     public function testCreateHandleClient()
     {
-        $domainClient = ClientFactory::createHandleClient(
+        $handleClient = ClientFactory::createHandleClient(
             __DIR__.'/Resources/domain-bestellsystem.wsdl',
             'username',
             'password'
         );
 
-        $this->assertInstanceOf(HandleClient::class, $domainClient);
+        $this->assertInstanceOf(HandleClient::class, $handleClient);
     }
 
     public function testCreateNameServerClient()
     {
-        $domainClient = ClientFactory::createNameServerClient(
+        $nameServerClient = ClientFactory::createNameServerClient(
             __DIR__.'/Resources/domain-bestellsystem.wsdl',
             'username',
             'password'
         );
 
-        $this->assertInstanceOf(NameServerClient::class, $domainClient);
+        $this->assertInstanceOf(NameServerClient::class, $nameServerClient);
     }
 
 }

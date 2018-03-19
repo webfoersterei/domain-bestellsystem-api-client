@@ -36,9 +36,9 @@ abstract class AbstractResponse
     private $serverTRID;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getReturnCode(): int
+    public function getReturnCode(): ?int
     {
         return $this->returnCode;
     }

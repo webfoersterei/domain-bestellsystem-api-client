@@ -6,6 +6,7 @@
 
 namespace Webfoersterei\DomainBestellSystemApiClient;
 
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
@@ -57,7 +58,10 @@ class ClientFactory
      */
     protected static function createSerializer(): Serializer
     {
-        return new Serializer();
+        $objectNormalizer = static::createObjectNormalizer();
+        $jsonEncoder = new JsonEncoder();
+
+        return new Serializer([$objectNormalizer], [$jsonEncoder]);
     }
 
     /**
