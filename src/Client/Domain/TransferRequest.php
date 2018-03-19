@@ -62,6 +62,11 @@ class TransferRequest
     private $notify;
 
     /**
+     * @var TransferExtension|null
+     */
+    private $extension;
+
+    /**
      * @return null|string
      */
     public function getAction()
@@ -76,6 +81,7 @@ class TransferRequest
     public function setAction($action)
     {
         $this->action = $action;
+
         return $this;
     }
 
@@ -94,6 +100,7 @@ class TransferRequest
     public function setNackReason($nackReason)
     {
         $this->nackReason = $nackReason;
+
         return $this;
     }
 
@@ -112,6 +119,7 @@ class TransferRequest
     public function setAuthCode($authCode)
     {
         $this->authCode = $authCode;
+
         return $this;
     }
 
@@ -130,6 +138,7 @@ class TransferRequest
     public function setNameserver($nameserver)
     {
         $this->nameserver = $nameserver;
+
         return $this;
     }
 
@@ -148,6 +157,7 @@ class TransferRequest
     public function setDomainName(string $domainName): TransferRequest
     {
         $this->domainName = $domainName;
+
         return $this;
     }
 
@@ -166,6 +176,7 @@ class TransferRequest
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
+
         return $this;
     }
 
@@ -184,6 +195,7 @@ class TransferRequest
     public function setNsEntry($nsEntry)
     {
         $this->nsEntry = $nsEntry;
+
         return $this;
     }
 
@@ -202,6 +214,7 @@ class TransferRequest
     public function setRemarks($remarks)
     {
         $this->remarks = $remarks;
+
         return $this;
     }
 
@@ -220,6 +233,26 @@ class TransferRequest
     public function setQuoting($quoting)
     {
         $this->quoting = $quoting;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExtension()
+    {
+        return $this->extension;
+    }
+
+    /**
+     * @param mixed $extension
+     * @return TransferRequest
+     */
+    public function setExtension($extension)
+    {
+        $this->extension = $extension;
+
         return $this;
     }
 
@@ -238,6 +271,7 @@ class TransferRequest
     public function setNotify($notify)
     {
         $this->notify = $notify;
+
         return $this;
     }
 }
