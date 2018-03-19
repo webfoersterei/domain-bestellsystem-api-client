@@ -105,7 +105,7 @@ abstract class AbstractClient
      * @param AbstractResponse $response
      * @throws ResponseException
      */
-    private function raiseExceptions(AbstractResponse $response): void
+    private function raiseExceptions(AbstractResponse $response)
     {
         $returnCode = $response->getReturnCode();
         if (ResponseReturnCodeEnum::hasKey($returnCode) && null !== ResponseReturnCodeEnum::getValue($returnCode)) {
