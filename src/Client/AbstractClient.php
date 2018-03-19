@@ -71,9 +71,9 @@ abstract class AbstractClient
 
     /**
      * @param \stdClass $response
-     * @return array
+     * @return array|null
      */
-    private function convertResponseToArray($response): ?array
+    private function convertResponseToArray($response)
     {
         return json_decode(json_encode($response), true);
     }
