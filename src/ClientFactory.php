@@ -6,12 +6,15 @@
 
 namespace Webfoersterei\DomainBestellSystemApiClient;
 
+use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\HandleClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
+use Webfoersterei\DomainBestellSystemApiClient\Serializer\DateTimeTimestampNormalizer;
 
 
 /**
@@ -58,10 +61,12 @@ class ClientFactory
      */
     protected static function createSerializer(): Serializer
     {
-        $objectNormalizer = static::createObjectNormalizer();
-        $jsonEncoder = new JsonEncoder();
 
-        return new Serializer([$objectNormalizer], [$jsonEncoder]);
+        $objectNormalizer = static::createObjectNormalizer();
+        $normalizers = [new DateTimeTimestampNormalizer(), $objectNormalizer, new ArrayDenormalizer()];
+        $encoders = [new JsonEncoder()];
+
+        return new Serializer($normalizers, $encoders);
     }
 
     /**
@@ -69,7 +74,9 @@ class ClientFactory
      */
     protected static function createObjectNormalizer(): ObjectNormalizer
     {
-        return new ObjectNormalizer();
+        $extractor = new PhpDocExtractor();
+
+        return new ObjectNormalizer(null, null, null, $extractor);
     }
 
     /**
