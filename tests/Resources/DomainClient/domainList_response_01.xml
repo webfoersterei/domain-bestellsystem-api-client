@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:domainListResponse>
+            <return xsi:type="ns1:DomainListResponseObject">
+                <domainsList xsi:type="ns1:ArrayOfDomainlistdomains">
+                    <item xsi:type="ns1:DomainListDomains">
+                        <domainName xsi:type="xsd:string">example.com</domainName>
+                        <tld xsi:type="xsd:string">com</tld>
+                        <reseller xsi:type="xsd:string">FAKE-12345</reseller>
+                    </item>
+                    <item xsi:type="ns1:DomainListDomains">
+                        <domainName xsi:type="xsd:string">example.org</domainName>
+                        <tld xsi:type="xsd:string">org</tld>
+                        <reseller xsi:type="xsd:string">FAKE-12345</reseller>
+                    </item>
+                    <item xsi:type="ns1:DomainListDomains">
+                        <domainName xsi:type="xsd:string">webfoersterei.de</domainName>
+                        <tld xsi:type="xsd:string">de</tld>
+                        <reseller xsi:type="xsd:string">FAKE-12345</reseller>
+                    </item>
+                </domainsList>
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:type="xsd:string">domainList</returnMessage>
+                <clientTRID xsi:type="xsd:string">FAKE.5b4fc6ab71f387.27570483</clientTRID>
+                <serverTRID xsi:type="xsd:string" />
+            </return>
+        </ns1:domainListResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

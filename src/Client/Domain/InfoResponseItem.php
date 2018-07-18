@@ -95,12 +95,12 @@ class InfoResponseItem
     private $domainStatus;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
     private $domainSubStatus;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $orderNumber;
 
@@ -436,25 +436,25 @@ class InfoResponseItem
     }
 
     /**
-     * @return string[]
+     * @return string[]|null
      */
-    public function getDomainSubStatus(): array
+    public function getDomainSubStatus()
     {
         return $this->domainSubStatus;
     }
 
     /**
-     * @param string[] $domainSubStatus
+     * @param string[]|null $domainSubStatus
      * @return InfoResponseItem
      */
-    public function setDomainSubStatus(array $domainSubStatus): InfoResponseItem
+    public function setDomainSubStatus($domainSubStatus): InfoResponseItem
     {
         $this->domainSubStatus = $domainSubStatus;
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|integer
      */
     public function getOrderNumber(): string
     {
@@ -462,12 +462,12 @@ class InfoResponseItem
     }
 
     /**
-     * @param string $orderNumber
+     * @param string|integer $orderNumber
      * @return InfoResponseItem
      */
-    public function setOrderNumber(string $orderNumber): InfoResponseItem
+    public function setOrderNumber($orderNumber): InfoResponseItem
     {
-        $this->orderNumber = $orderNumber;
+        $this->orderNumber = (string) $orderNumber;
         return $this;
     }
 

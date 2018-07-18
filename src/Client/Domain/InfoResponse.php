@@ -12,23 +12,23 @@ use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
 class InfoResponse extends AbstractResponse
 {
     /**
-     * @var InfoResponseItem
+     * @var InfoResponseItem[]
      */
     private $domainsList;
 
     /**
-     * @return InfoResponseItem
+     * @return InfoResponseItem[]
      */
-    public function getDomainsList(): InfoResponseItem
+    public function getDomainsList(): array
     {
         return $this->domainsList;
     }
 
     /**
-     * @param InfoResponseItem $domainsList
+     * @param InfoResponseItem[] $domainsList
      * @return InfoResponse
      */
-    public function setDomainsList(InfoResponseItem $domainsList): InfoResponse
+    public function setDomainsList(array $domainsList): InfoResponse
     {
         $this->domainsList = $domainsList;
         return $this;

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:domainInfoResponse>
+            <return xsi:type="ns1:DomainInfoResponseObject">
+                <domainsList xsi:type="ns1:ArrayOfDomaininfodomains">
+                    <item xsi:type="ns1:DomainInfoDomains">
+                        <domainName xsi:type="xsd:string">example.org</domainName>
+                        <tld xsi:type="xsd:string">org</tld>
+                        <adminC xsi:type="xsd:string">TT7777777@HANDLES.DE</adminC>
+                        <ownerC xsi:type="xsd:string">TT7777777@HANDLES.DE</ownerC>
+                        <techC xsi:type="xsd:string">TT7777777@HANDLES.DE</techC>
+                        <zoneC xsi:type="xsd:string">TT7777777@HANDLES.DE</zoneC>
+                        <primaryNameserver xsi:type="xsd:string">ns01.example.com</primaryNameserver>
+                        <secondaryNameserver xsi:type="ns1:ArrayOfString">
+                            <item xsi:type="xsd:string">ns02.example.com</item>
+                        </secondaryNameserver>
+                        <nameservers xsi:type="ns1:ArrayOfNameserverarray">
+                            <item xsi:type="ns1:NameserverArray">
+                                <ns xsi:type="xsd:string">ns01.example.com</ns>
+                                <ipv4 xsi:type="xsd:string">192.168.2.1</ipv4>
+                                <ipv6 xsi:nil="true" />
+                            </item>
+                            <item xsi:type="ns1:NameserverArray">
+                                <ns xsi:type="xsd:string">ns02.example.com</ns>
+                                <ipv4 xsi:type="xsd:string">192.168.2.2</ipv4>
+                                <ipv6 xsi:nil="true" />
+                            </item>
+                        </nameservers>
+                        <reseller xsi:type="xsd:string">FAKE-12345</reseller>
+                        <orderDate xsi:type="xsd:string">1042352959</orderDate>
+                        <executionDate xsi:nil="true" />
+                        <systemInDate xsi:type="xsd:string">1042352976</systemInDate>
+                        <paidUntilDate xsi:nil="true" />
+                        <toBeDeletedDate xsi:type="xsd:string" />
+                        <status xsi:type="xsd:string">kk_ok_com</status>
+                        <domainStatus xsi:type="xsd:string">active</domainStatus>
+                        <domainSubStatus xsi:type="ns1:ArrayOfString" />
+                        <transferFrom xsi:nil="true" />
+                        <transferTo xsi:nil="true" />
+                        <orderNumber xsi:type="xsd:string">123</orderNumber>
+                        <regType xsi:type="xsd:string">KK</regType>
+                        <remarks xsi:type="xsd:string" />
+                        <notifyEmail xsi:type="xsd:string">notify@example.com</notifyEmail>
+                        <tags xsi:nil="true" />
+                        <extension xsi:type="ns1:DomainInfoDomainsExtension" />
+                    </item>
+                </domainsList>
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:type="xsd:string" />
+                <clientTRID xsi:type="xsd:string">FAKE.5b4fc8516538e9.36416410</clientTRID>
+                <serverTRID xsi:type="xsd:string" />
+            </return>
+        </ns1:domainInfoResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

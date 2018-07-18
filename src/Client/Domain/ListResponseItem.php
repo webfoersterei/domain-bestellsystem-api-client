@@ -20,6 +20,11 @@ class ListResponseItem
     private $tld;
 
     /**
+     * @var string
+     */
+    private $reseller;
+
+    /**
      * @return string
      */
     public function getDomainName(): string
@@ -34,6 +39,7 @@ class ListResponseItem
     public function setDomainName(string $domainName): ListResponseItem
     {
         $this->domainName = $domainName;
+
         return $this;
     }
 
@@ -52,6 +58,26 @@ class ListResponseItem
     public function setTld(string $tld): ListResponseItem
     {
         $this->tld = $tld;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReseller(): string
+    {
+        return $this->reseller;
+    }
+
+    /**
+     * @param string $reseller
+     * @return ListResponseItem
+     */
+    public function setReseller(string $reseller): ListResponseItem
+    {
+        $this->reseller = $reseller;
+
         return $this;
     }
 }
