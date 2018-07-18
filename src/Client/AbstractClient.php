@@ -7,6 +7,8 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
@@ -16,6 +18,8 @@ use Webfoersterei\DomainBestellSystemApiClient\Exception\ResponseException;
 
 abstract class AbstractClient
 {
+    use LoggerAwareTrait;
+
     /**
      * @var \SoapClient
      */
@@ -36,6 +40,7 @@ abstract class AbstractClient
         $this->soapClient = $soapClient;
         $this->serializer = $serializer;
         $this->objectNormalizer = $arrayNormalizer;
+        $this->logger = new NullLogger();
     }
 
     /**
