@@ -15,7 +15,7 @@ class DomainClientTest extends AbstractClientTest
     public function testBasicJson()
     {
         $response = file_get_contents(__DIR__.'/../Resources/DomainClient/domainCheck_response_01.xml');
-        $soapClient = $this->getSoapClient('domainCheck', $response);
+        $soapClient = $this->getSoapClient('domainCheck', $this->createStdClassFromApiResponse($response));
         $domainClient = $this->getDomainClient($soapClient);
 
         $response = $domainClient->check('example.org');

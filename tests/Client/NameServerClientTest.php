@@ -16,7 +16,7 @@ class NameServerClientTest extends AbstractClientTest
     public function testZoneInfo()
     {
         $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverZoneInfo_response_01.xml');
-        $soapClient = $this->getSoapClient('nameserverZoneInfo', $response);
+        $soapClient = $this->getSoapClient('nameserverZoneInfo', $this->createStdClassFromApiResponse($response));
         $nameServerClient = $this->getNameServerClient($soapClient);
 
         $this->assertInstanceOf(ZoneInfoResponse::class, $nameServerClient->zoneInfo('example.org'));

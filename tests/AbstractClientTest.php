@@ -16,21 +16,32 @@ abstract class AbstractClientTest extends TestCase
 
     /**
      * @param $method
-     * @param $soapResponse
+     * @param mixed $response Most probably a stdClass (@see createStdClassFromApiResponse)
      * @return \PHPUnit\Framework\MockObject\MockObject|\SoapClient
      */
-    protected function getSoapClient($method, $soapResponse = null)
+    protected function getSoapClient($method, $response)
     {
         $stub = $this->getMockFromWsdl('http://www.domain-bestellsystem.de/soapstatus/wsdl/soap.wsdl');
 
-        $xml = preg_replace('/(<\/?)([\w-]+):([^>]*>)/', '$1$2$3', $soapResponse);
-        $returnValueInXml = (new \SimpleXMLElement($xml))->xpath('//return')[0];
-        $response = json_decode(json_encode($returnValueInXml));
-
-        $stub->method('__soapCall')
-            ->willReturn($response); # return stdclass of xml response
+        $stub->expects($this->once())->method('__soapCall')
+            ->with(
+                $this->equalTo($method),
+                $this->isType('array') // parameters
+            )
+            ->willReturn($response);
 
         return $stub;
+    }
+
+    /**
+     * Hack to return stdClass of api returnValue only (for XML-Mocks)
+     * @param $apiXmlResponseString
+     * @return mixed
+     */
+    protected function createStdClassFromApiResponse($apiXmlResponseString) {
+        $xml = preg_replace('/(<\/?)([\w-]+):([^>]*>)/', '$1$2$3', $apiXmlResponseString);
+        $returnValueInXml = (new \SimpleXMLElement($xml))->xpath('//return')[0];
+        return json_decode(json_encode($returnValueInXml));
     }
 
     /**
