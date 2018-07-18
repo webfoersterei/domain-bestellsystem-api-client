@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:nameserverZoneInfoResponse>
+            <return xsi:type="ns1:NameserverZoneInfoResponseObject">
+                <origin xsi:type="xsd:string">example.org</origin>
+                <refresh xsi:type="xsd:string">28800</refresh>
+                <retry xsi:type="xsd:string">7200</retry>
+                <expire xsi:type="xsd:string">604800</expire>
+                <ttl xsi:type="xsd:string">86400</ttl>
+                <minimumTtl xsi:type="xsd:string">300</minimumTtl>
+                <rrList xsi:type="ns1:ArrayOfNameserverrrobject">
+                    <item xsi:type="ns1:NameserverRRObject">
+                        <aux xsi:type="xsd:string">0</aux>
+                        <data xsi:type="xsd:string">192.168.1.3</data>
+                        <name xsi:type="xsd:string">myhost03</name>
+                        <ttl xsi:type="xsd:string">86400</ttl>
+                        <type xsi:type="xsd:string">A</type>
+                    </item>
+                </rrList>
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:nil="true" />
+                <returnMessage xsi:nil="true" />
+                <clientTRID xsi:type="xsd:string">FAKE.5b4f399a16a627.44097870</clientTRID>
+                <serverTRID xsi:nil="true" />
+            </return>
+        </ns1:nameserverZoneInfoResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
