@@ -8,9 +8,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Tests;
 
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
+use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
 
 abstract class AbstractClientTest extends TestCase
 {
@@ -34,24 +33,28 @@ abstract class AbstractClientTest extends TestCase
                 $this->equalTo($method),
                 $this->anything()
             )
-            ->willReturn($response);
+            ->willReturn(json_decode(json_encode(new \SimpleXMLElement($response)))); # return stdclass of xml response
 
         return $stub;
     }
 
     /**
-     * @return Serializer
+     * @param \SoapClient $soapClient
+     * @return NameServerClient
      */
-    protected function getSerializer()
+    protected function getNameServerClient($soapClient): NameServerClient
     {
-        return new Serializer([$this->getObjectNormalizer()], [new JsonEncoder()]);
+        SoapMockClientFactory::setSoapClient($soapClient);
+        return SoapMockClientFactory::createNameServerClient(null, null, null);
     }
 
     /**
-     * @return ObjectNormalizer
+     * @param \SoapClient $soapClient
+     * @return DomainClient
      */
-    protected function getObjectNormalizer()
+    protected function getDomainClient($soapClient): DomainClient
     {
-        return new ObjectNormalizer();
+        SoapMockClientFactory::setSoapClient($soapClient);
+        return SoapMockClientFactory::createDomainClient(null, null, null);
     }
 }

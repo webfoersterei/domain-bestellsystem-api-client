@@ -8,15 +8,15 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Client;
 
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
-use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
 use Webfoersterei\DomainBestellSystemApiClient\Tests\AbstractClientTest;
 
 class DomainClientTest extends AbstractClientTest
 {
     public function testBasicJson()
     {
-        $soapClient = $this->getSoapClient('domainCheck', null);
-        $domainClient = new DomainClient($soapClient, $this->getSerializer(), $this->getObjectNormalizer());
+        $response = file_get_contents(__DIR__.'/../Resources/DomainClient/domainCheck_response_01.xml');
+        $soapClient = $this->getSoapClient('domainCheck', $response);
+        $domainClient = $this->getDomainClient($soapClient);
 
         $this->assertInstanceOf(CheckResponse::class, $domainClient->check('webfoersterei.de'));
     }
