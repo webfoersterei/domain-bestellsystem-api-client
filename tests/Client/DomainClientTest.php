@@ -23,6 +23,9 @@ class DomainClientTest extends AbstractClientTest
         $this->assertInstanceOf(CheckResponse::class, $response);
         $this->assertFalse($response->isAvailable());
         $this->assertEquals('connect', $response->getDetailedStatus());
+        $this->assertEquals(1000, $response->getReturnCode());
+        $this->assertEquals(0, $response->getReturnSubCode());
+        $this->assertNull($response->getReturnMessage());
     }
 
 }
