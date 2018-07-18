@@ -18,7 +18,7 @@ class ClientFactoryTest extends TestCase
     public function testCreateDomainClient()
     {
         $domainClient = ClientFactory::createDomainClient(
-            __DIR__.'/Resources/domain-bestellsystem.wsdl',
+            __DIR__.'/../Resources/soap.wsdl',
             'username',
             'password'
         );
@@ -29,7 +29,7 @@ class ClientFactoryTest extends TestCase
     public function testCreateHandleClient()
     {
         $handleClient = ClientFactory::createHandleClient(
-            __DIR__.'/Resources/domain-bestellsystem.wsdl',
+            __DIR__.'/../Resources/soap.wsdl',
             'username',
             'password'
         );
@@ -40,7 +40,7 @@ class ClientFactoryTest extends TestCase
     public function testCreateNameServerClient()
     {
         $nameServerClient = ClientFactory::createNameServerClient(
-            __DIR__.'/Resources/domain-bestellsystem.wsdl',
+            __DIR__.'/../Resources/soap.wsdl',
             'username',
             'password'
         );
