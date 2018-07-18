@@ -25,12 +25,12 @@ class ResourceRecord
     private $data;
 
     /**
-     * @var string|null
+     * @var null|integer
      */
     private $aux;
 
     /**
-     * @var string
+     * @var integer
      */
     private $ttl = 86400;
 
@@ -49,6 +49,7 @@ class ResourceRecord
     public function setType(string $type)
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -67,11 +68,12 @@ class ResourceRecord
     public function setData(string $data)
     {
         $this->data = $data;
+
         return $this;
     }
 
     /**
-     * @return null|string
+     * @return int|null|string
      */
     public function getAux()
     {
@@ -79,30 +81,32 @@ class ResourceRecord
     }
 
     /**
-     * @param null|string $aux
+     * @param int|null|string $aux
      * @return ResourceRecord
      */
     public function setAux($aux)
     {
         $this->aux = $aux;
+
         return $this;
     }
 
     /**
-     * @return string
+     * @return int|string
      */
-    public function getTtl(): string
+    public function getTtl()
     {
         return $this->ttl;
     }
 
     /**
-     * @param string $ttl
-     * @return $this
+     * @param int|string $ttl
+     * @return ResourceRecord
      */
-    public function setTtl(string $ttl)
+    public function setTtl($ttl)
     {
         $this->ttl = $ttl;
+
         return $this;
     }
 
@@ -121,6 +125,7 @@ class ResourceRecord
     public function setName(string $name): ResourceRecord
     {
         $this->name = $name;
+
         return $this;
     }
 

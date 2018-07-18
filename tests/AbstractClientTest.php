@@ -16,24 +16,19 @@ abstract class AbstractClientTest extends TestCase
 
     /**
      * @param $method
-     * @param $response
+     * @param $soapResponse
      * @return \PHPUnit\Framework\MockObject\MockObject|\SoapClient
      */
-    protected function getSoapClient($method, $response = null)
+    protected function getSoapClient($method, $soapResponse = null)
     {
-        $stub = $this->getMockBuilder(\SoapClient::class)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
+        $stub = $this->getMockFromWsdl('http://www.domain-bestellsystem.de/soapstatus/wsdl/soap.wsdl');
+
+        $xml = preg_replace('/(<\/?)([\w-]+):([^>]*>)/', '$1$2$3', $soapResponse);
+        $returnValueInXml = (new \SimpleXMLElement($xml))->xpath('//return')[0];
+        $response = json_decode(json_encode($returnValueInXml));
 
         $stub->method('__soapCall')
-            ->with(
-                $this->equalTo($method),
-                $this->anything()
-            )
-            ->willReturn(json_decode(json_encode(new \SimpleXMLElement($response)))); # return stdclass of xml response
+            ->willReturn($response); # return stdclass of xml response
 
         return $stub;
     }
@@ -45,6 +40,7 @@ abstract class AbstractClientTest extends TestCase
     protected function getNameServerClient($soapClient): NameServerClient
     {
         SoapMockClientFactory::setSoapClient($soapClient);
+
         return SoapMockClientFactory::createNameServerClient(null, null, null);
     }
 
@@ -55,6 +51,7 @@ abstract class AbstractClientTest extends TestCase
     protected function getDomainClient($soapClient): DomainClient
     {
         SoapMockClientFactory::setSoapClient($soapClient);
+
         return SoapMockClientFactory::createDomainClient(null, null, null);
     }
 }

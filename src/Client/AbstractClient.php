@@ -98,26 +98,36 @@ abstract class AbstractClient
     }
 
     /**
-     * @param array $responseArray
+     * Converts string values that arent string to their correct value
+     * @param array $value
      * @return mixed
      */
-    private function filterResponse($responseArray)
+    private function filterResponse($value)
     {
-        $filteredArray = [];
 
-        if (!is_array($responseArray)) {
-            return $responseArray;
-        }
-
-        foreach ($responseArray as $key => $value) {
-            if (is_array($value) && isset($value['item'])) {
-                $filteredArray[$key] = $this->filterResponse($value['item']);
-            } else {
-                $filteredArray[$key] = $this->filterResponse($value);
+        if (!\is_array($value)) {
+            if($value === 'false') {
+                return false;
             }
+            if($value === 'true') {
+                return true;
+            }
+            if((string)(int)$value === $value) {
+                return (int)$value;
+            }
+            return $value;
         }
 
-        return $filteredArray;
+        if($value === []) {
+            return null;
+        }
+
+        $arr = [];
+        foreach ($value as $key => $val) {
+            $arr[$key] = $this->filterResponse($val);
+        }
+
+        return $arr;
     }
 
     /**

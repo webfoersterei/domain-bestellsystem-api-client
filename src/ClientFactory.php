@@ -17,6 +17,7 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\HandleClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
 use Webfoersterei\DomainBestellSystemApiClient\Serializer\DateTimeTimestampNormalizer;
+use Webfoersterei\DomainBestellSystemApiClient\Serializer\ApiItemArrayDenormalizer;
 
 
 /**
@@ -74,7 +75,12 @@ class ClientFactory
     {
 
         $objectNormalizer = static::createObjectNormalizer();
-        $normalizers = [new DateTimeTimestampNormalizer(), $objectNormalizer, new ArrayDenormalizer()];
+        $normalizers = [
+            new DateTimeTimestampNormalizer(),
+            $objectNormalizer,
+            new ApiItemArrayDenormalizer(),
+            new ArrayDenormalizer(),
+        ];
         $encoders = [new JsonEncoder()];
 
         $serializer = new Serializer($normalizers, $encoders);

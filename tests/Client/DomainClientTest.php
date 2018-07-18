@@ -18,7 +18,11 @@ class DomainClientTest extends AbstractClientTest
         $soapClient = $this->getSoapClient('domainCheck', $response);
         $domainClient = $this->getDomainClient($soapClient);
 
-        $this->assertInstanceOf(CheckResponse::class, $domainClient->check('webfoersterei.de'));
+        $response = $domainClient->check('example.org');
+
+        $this->assertInstanceOf(CheckResponse::class, $response);
+        $this->assertFalse($response->isAvailable());
+        $this->assertEquals('connect', $response->getDetailedStatus());
     }
 
 }

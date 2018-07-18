@@ -17,27 +17,27 @@ class ZoneInfoResponse extends AbstractResponse
     private $origin;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $refresh;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $retry;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $expire;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $ttl;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $minimumTtl;
 
@@ -61,96 +61,45 @@ class ZoneInfoResponse extends AbstractResponse
     public function setOrigin(string $origin)
     {
         $this->origin = $origin;
+
         return $this;
     }
 
     /**
-     * @return string
+     * @return int|string
      */
-    public function getRefresh(): string
-    {
-        return $this->refresh;
-    }
-
-    /**
-     * @param string $refresh
-     * @return $this
-     */
-    public function setRefresh(string $refresh)
-    {
-        $this->refresh = $refresh;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRetry(): string
+    public function getRetry()
     {
         return $this->retry;
     }
 
     /**
-     * @param string $retry
-     * @return $this
+     * @param int|string $retry
+     * @return ZoneInfoResponse
      */
-    public function setRetry(string $retry)
+    public function setRetry($retry)
     {
         $this->retry = $retry;
+
         return $this;
     }
 
     /**
-     * @return string
+     * @return int|string
      */
-    public function getExpire(): string
+    public function getExpire()
     {
         return $this->expire;
     }
 
     /**
-     * @param string $expire
-     * @return $this
+     * @param int|string $expire
+     * @return ZoneInfoResponse
      */
-    public function setExpire(string $expire)
+    public function setExpire($expire)
     {
         $this->expire = $expire;
-        return $this;
-    }
 
-    /**
-     * @return string
-     */
-    public function getTtl(): string
-    {
-        return $this->ttl;
-    }
-
-    /**
-     * @param string $ttl
-     * @return $this
-     */
-    public function setTtl(string $ttl)
-    {
-        $this->ttl = $ttl;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMinimumTtl(): string
-    {
-        return $this->minimumTtl;
-    }
-
-    /**
-     * @param string $minimumTtl
-     * @return $this
-     */
-    public function setMinimumTtl(string $minimumTtl)
-    {
-        $this->minimumTtl = $minimumTtl;
         return $this;
     }
 
@@ -169,7 +118,64 @@ class ZoneInfoResponse extends AbstractResponse
     public function setRrList($rrList)
     {
         $this->rrList = $rrList;
+
         return $this;
     }
 
+    /**
+     * @return int|string
+     */
+    public function getRefresh()
+    {
+        return $this->refresh;
+    }
+
+    /**
+     * @param int|string $refresh
+     * @return ZoneInfoResponse
+     */
+    public function setRefresh($refresh)
+    {
+        $this->refresh = $refresh;
+
+        return $this;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getTtl()
+    {
+        return $this->ttl;
+    }
+
+    /**
+     * @param int|string $ttl
+     * @return ZoneInfoResponse
+     */
+    public function setTtl($ttl)
+    {
+        $this->ttl = $ttl;
+
+        return $this;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getMinimumTtl()
+    {
+        return $this->minimumTtl;
+    }
+
+    /**
+     * @param int|string $minimumTtl
+     * @return ZoneInfoResponse
+     */
+    public function setMinimumTtl($minimumTtl)
+    {
+        $this->minimumTtl = $minimumTtl;
+
+        return $this;
+    }
 }
