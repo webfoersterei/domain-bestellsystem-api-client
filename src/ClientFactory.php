@@ -36,6 +36,7 @@ class ClientFactory
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
         $objectNormalizer = static::createObjectNormalizer();
+        $objectNormalizer->setSerializer($serializer);
 
         return new DomainClient($soapClient, $serializer, $objectNormalizer);
     }
@@ -66,7 +67,10 @@ class ClientFactory
         $normalizers = [new DateTimeTimestampNormalizer(), $objectNormalizer, new ArrayDenormalizer()];
         $encoders = [new JsonEncoder()];
 
-        return new Serializer($normalizers, $encoders);
+        $serializer = new Serializer($normalizers, $encoders);
+        $objectNormalizer->setSerializer($serializer);
+
+        return $serializer;
     }
 
     /**
@@ -90,6 +94,7 @@ class ClientFactory
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
         $objectNormalizer = static::createObjectNormalizer();
+        $objectNormalizer->setSerializer($serializer);
 
         return new HandleClient($soapClient, $serializer, $objectNormalizer);
     }
@@ -105,6 +110,7 @@ class ClientFactory
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
         $objectNormalizer = static::createObjectNormalizer();
+        $objectNormalizer->setSerializer($serializer);
 
         return new NameServerClient($soapClient, $serializer, $objectNormalizer);
     }
