@@ -6,6 +6,8 @@
 
 namespace Webfoersterei\DomainBestellSystemApiClient;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
@@ -26,6 +28,11 @@ class ClientFactory
     protected static $defaultSoapClientOptions = [];
 
     /**
+     * @var LoggerInterface
+     */
+    protected static $logger;
+
+    /**
      * @param $url
      * @param $username
      * @param $password
@@ -38,7 +45,10 @@ class ClientFactory
         $objectNormalizer = static::createObjectNormalizer();
         $objectNormalizer->setSerializer($serializer);
 
-        return new DomainClient($soapClient, $serializer, $objectNormalizer);
+        $domainClient = new DomainClient($soapClient, $serializer, $objectNormalizer);
+        $domainClient->setLogger(static::getLogger());
+
+        return $domainClient;
     }
 
     /**
@@ -84,6 +94,34 @@ class ClientFactory
     }
 
     /**
+     * @return LoggerInterface
+     */
+    protected static function getLogger(): LoggerInterface
+    {
+        if (!static::$logger) {
+            static::setLogger(static::createLogger());
+        }
+
+        return static::$logger;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public static function setLogger(LoggerInterface $logger)
+    {
+        static::$logger = $logger;
+    }
+
+    /**
+     * @return LoggerInterface
+     */
+    protected static function createLogger(): LoggerInterface
+    {
+        return new NullLogger();
+    }
+
+    /**
      * @param $url
      * @param $username
      * @param $password
@@ -96,7 +134,10 @@ class ClientFactory
         $objectNormalizer = static::createObjectNormalizer();
         $objectNormalizer->setSerializer($serializer);
 
-        return new HandleClient($soapClient, $serializer, $objectNormalizer);
+        $handleClient = new HandleClient($soapClient, $serializer, $objectNormalizer);
+        $handleClient->setLogger(static::getLogger());
+
+        return $handleClient;
     }
 
     /**
@@ -112,7 +153,10 @@ class ClientFactory
         $objectNormalizer = static::createObjectNormalizer();
         $objectNormalizer->setSerializer($serializer);
 
-        return new NameServerClient($soapClient, $serializer, $objectNormalizer);
+        $nameServerClient = new NameServerClient($soapClient, $serializer, $objectNormalizer);
+        $nameServerClient->setLogger(static::getLogger());
+
+        return $nameServerClient;
     }
 
 }

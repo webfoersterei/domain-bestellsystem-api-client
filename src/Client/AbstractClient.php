@@ -61,13 +61,27 @@ abstract class AbstractClient
         $txId = uniqid('TXID.', true);
 
         $parameters = array_merge($arguments, ['clientTRID' => $txId]);
-        $rawResponse = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
+        $this->logger->info(sprintf('Sending soapRequest for method "%s"', $method),
+            ['method' => $method, 'parameters' => $parameters]);
+        $stdClassResponse = $this->soapClient->__soapCall($method, ['parameters' => $parameters]);
 
-        $arrayResponse = $this->convertResponseToArray($rawResponse);
+        if (null !== $this->soapClient->__getLastRequest()) {
+            $this->logger->debug('Raw request', ['request_raw_body' => $this->soapClient->__getLastRequest()]);
+        }
+
+        if (null !== $this->soapClient->__getLastResponse()) {
+            $this->logger->debug('Raw response of request',
+                ['response_raw_body' => $this->soapClient->__getLastResponse()]);
+        }
+        $this->logger->debug('Stdobject response of request', ['response_stdobject_body' => $stdClassResponse]);
+
+        $arrayResponse = $this->convertResponseToArray($stdClassResponse);
         $filteredResponse = $this->filterResponse($arrayResponse);
+        $this->logger->debug('Filtered response of request', ['response_filtered_body' => $filteredResponse]);
 
         /** @var AbstractResponse $response */
         $response = $this->serializer->deserialize(json_encode($filteredResponse), $type, 'json', $context);
+        $this->logger->debug('Deserialized response of request', ['response_deserialized' => $response]);
 
         $this->raiseExceptions($response);
 

@@ -11,9 +11,31 @@ composer require webfoersterei/domain-bestellsystem-api-client
 ```
 
 ## Usage
+
+Just use the factory to create your needed API-client and use it:
 ```
 $domainClient = ClientFactory::createDomainClient(API_URL, API_USER, API_PASSWORD);
 $domainClient->check('webfoersterei.de')->isAvailable(); # false
+```
+
+### Logging
+
+You can inject your Monolog logger into all clients by telling the factory about it before using the factory:
+```
+$logger = new \Monolog\Logger('testlogger');
+$logger->pushHandler(new \Monolog\Handler\StreamHandler('domain-bestellsystem_info.log', \Psr\Log\LogLevel::INFO)); # will log INFO-messages to a file
+ClientFactory::setLogger($logger);
+// ... create clients
+```
+
+### Debugging
+
+There's a `DebugClientFactory` that sets the SOAP trace-flag and provides a default logger to STDOUT.
+You can use it alternatively to the `ClientFactory` to see the low level request and response bodies:
+
+```
+$domainClient = DebugClientFactory::createDomainClient(API_URL, API_USER, API_PASSWORD);
+$domainClient->check('webfoersterei.de')->isAvailable(); # will produce debug output on stdout
 ```
 
 ## Contribute
