@@ -21,7 +21,7 @@ abstract class AbstractClientTest extends TestCase
      */
     protected function getSoapClient($method, $response)
     {
-        $stub = $this->getMockFromWsdl('http://www.domain-bestellsystem.de/soapstatus/wsdl/soap.wsdl');
+        $stub = $this->getMockFromWsdl(__DIR__.'/Resources/soap.wsdl');
 
         $stub->expects($this->once())->method('__soapCall')
             ->with(
@@ -38,9 +38,11 @@ abstract class AbstractClientTest extends TestCase
      * @param $apiXmlResponseString
      * @return mixed
      */
-    protected function createStdClassFromApiResponse($apiXmlResponseString) {
+    protected function createStdClassFromApiResponse($apiXmlResponseString)
+    {
         $xml = preg_replace('/(<\/?)([\w-]+):([^>]*>)/', '$1$2$3', $apiXmlResponseString);
         $returnValueInXml = (new \SimpleXMLElement($xml))->xpath('//return')[0];
+
         return json_decode(json_encode($returnValueInXml));
     }
 

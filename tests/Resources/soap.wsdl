@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.domain-bestellsystem.de/soap/1.1/"
-             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-             xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-             name="SoapHandler" targetNamespace="http://soap.domain-bestellsystem.de/soap/1.1/">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="SoapHandler" targetNamespace="http://soap.domain-bestellsystem.de/soap/1.1/">
     <types>
         <xsd:schema targetNamespace="http://soap.domain-bestellsystem.de/soap/1.1/">
             <xsd:complexType name="DomainCheckRequestObject">
@@ -216,55 +213,55 @@
             </xsd:complexType>
             <xsd:complexType name="FilterItem">
                 <xsd:all>
-                    <xsd:element name="key" type="xsd:string"/>
-                    <xsd:element name="value" type="xsd:string" nillable="true"/>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfFilteritem">
                 <xsd:sequence>
-                    <xsd:element name="item" type="tns:FilterItem" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="item" type="tns:FilterItem" minOccurs="0" maxOccurs="unbounded" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="DomainListExtendedRequestObject">
                 <xsd:all>
-                    <xsd:element name="level" type="xsd:string" nillable="true"/>
-                    <xsd:element name="limit" type="xsd:string" nillable="true"/>
-                    <xsd:element name="offset" type="xsd:string" nillable="true"/>
-                    <xsd:element name="filter" type="tns:ArrayOfFilteritem"/>
-                    <xsd:element name="fields" type="tns:ArrayOfString"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="level" type="xsd:string" nillable="true" />
+                    <xsd:element name="limit" type="xsd:string" nillable="true" />
+                    <xsd:element name="offset" type="xsd:string" nillable="true" />
+                    <xsd:element name="filter" type="tns:ArrayOfFilteritem" />
+                    <xsd:element name="fields" type="tns:ArrayOfString" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="DomainInfoItem">
                 <xsd:all>
-                    <xsd:element name="key" type="xsd:string"/>
-                    <xsd:element name="value" type="xsd:string" nillable="true"/>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfDomaininfoitem">
                 <xsd:sequence>
-                    <xsd:element name="item" type="tns:DomainInfoItem" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="item" type="tns:DomainInfoItem" minOccurs="0" maxOccurs="unbounded" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="DomainInfo">
                 <xsd:all>
-                    <xsd:element name="domainInfoItem" type="tns:ArrayOfDomaininfoitem"/>
+                    <xsd:element name="domainInfoItem" type="tns:ArrayOfDomaininfoitem" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfDomaininfo">
                 <xsd:sequence>
-                    <xsd:element name="item" type="tns:DomainInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="item" type="tns:DomainInfo" minOccurs="0" maxOccurs="unbounded" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="DomainListExtendedResponseObject">
                 <xsd:all>
-                    <xsd:element name="domainInfo" type="tns:ArrayOfDomaininfo"/>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="domainInfo" type="tns:ArrayOfDomaininfo" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="DomainContactValidationListRequestObject">
@@ -1851,69 +1848,69 @@
             </xsd:complexType>
             <xsd:complexType name="ResellerCreateRequestObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="email" type="xsd:string" nillable="true"/>
-                    <xsd:element name="billingEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="abuseEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="generalEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="firstname" type="xsd:string" nillable="true"/>
-                    <xsd:element name="lastname" type="xsd:string" nillable="true"/>
-                    <xsd:element name="company" type="xsd:string" nillable="true"/>
-                    <xsd:element name="remarks" type="xsd:string" nillable="true"/>
-                    <xsd:element name="street" type="xsd:string" nillable="true"/>
-                    <xsd:element name="pcode" type="xsd:string" nillable="true"/>
-                    <xsd:element name="city" type="xsd:string" nillable="true"/>
-                    <xsd:element name="country" type="xsd:string" nillable="true"/>
-                    <xsd:element name="phone" type="xsd:string" nillable="true"/>
-                    <xsd:element name="fax" type="xsd:string" nillable="true"/>
-                    <xsd:element name="password" type="xsd:string"/>
-                    <xsd:element name="language" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" nillable="true" />
+                    <xsd:element name="billingEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="abuseEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="generalEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="firstname" type="xsd:string" nillable="true" />
+                    <xsd:element name="lastname" type="xsd:string" nillable="true" />
+                    <xsd:element name="company" type="xsd:string" nillable="true" />
+                    <xsd:element name="remarks" type="xsd:string" nillable="true" />
+                    <xsd:element name="street" type="xsd:string" nillable="true" />
+                    <xsd:element name="pcode" type="xsd:string" nillable="true" />
+                    <xsd:element name="city" type="xsd:string" nillable="true" />
+                    <xsd:element name="country" type="xsd:string" nillable="true" />
+                    <xsd:element name="phone" type="xsd:string" nillable="true" />
+                    <xsd:element name="fax" type="xsd:string" nillable="true" />
+                    <xsd:element name="password" type="xsd:string" />
+                    <xsd:element name="language" type="xsd:string" nillable="true" />
                     <xsd:element name="priceList" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerCreateResponseObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string" nillable="true"/>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" nillable="true" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerPasswordRequestObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="password" type="xsd:string"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="password" type="xsd:string" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerPasswordResponseObject">
                 <xsd:all>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerDeleteRequestObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerDeleteResponseObject">
                 <xsd:all>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="FOA">
@@ -1953,97 +1950,97 @@
             </xsd:complexType>
             <xsd:complexType name="ResellerUpdateRequestObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="loginNew" type="xsd:string"/>
-                    <xsd:element name="email" type="xsd:string" nillable="true"/>
-                    <xsd:element name="billingEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="abuseEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="generalEmail" type="xsd:string" nillable="true"/>
-                    <xsd:element name="firstname" type="xsd:string" nillable="true"/>
-                    <xsd:element name="lastname" type="xsd:string" nillable="true"/>
-                    <xsd:element name="company" type="xsd:string" nillable="true"/>
-                    <xsd:element name="remarks" type="xsd:string" nillable="true"/>
-                    <xsd:element name="street" type="xsd:string" nillable="true"/>
-                    <xsd:element name="pcode" type="xsd:string" nillable="true"/>
-                    <xsd:element name="city" type="xsd:string" nillable="true"/>
-                    <xsd:element name="country" type="xsd:string" nillable="true"/>
-                    <xsd:element name="phone" type="xsd:string" nillable="true"/>
-                    <xsd:element name="fax" type="xsd:string" nillable="true"/>
-                    <xsd:element name="language" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="loginNew" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" nillable="true" />
+                    <xsd:element name="billingEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="abuseEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="generalEmail" type="xsd:string" nillable="true" />
+                    <xsd:element name="firstname" type="xsd:string" nillable="true" />
+                    <xsd:element name="lastname" type="xsd:string" nillable="true" />
+                    <xsd:element name="company" type="xsd:string" nillable="true" />
+                    <xsd:element name="remarks" type="xsd:string" nillable="true" />
+                    <xsd:element name="street" type="xsd:string" nillable="true" />
+                    <xsd:element name="pcode" type="xsd:string" nillable="true" />
+                    <xsd:element name="city" type="xsd:string" nillable="true" />
+                    <xsd:element name="country" type="xsd:string" nillable="true" />
+                    <xsd:element name="phone" type="xsd:string" nillable="true" />
+                    <xsd:element name="fax" type="xsd:string" nillable="true" />
+                    <xsd:element name="language" type="xsd:string" nillable="true" />
                     <xsd:element name="extension" type="tns:ResellerExtension"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerUpdateResponseObject">
                 <xsd:all>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerRightsItem">
                 <xsd:all>
-                    <xsd:element name="key" type="xsd:string"/>
-                    <xsd:element name="value" type="xsd:string" nillable="true"/>
+                    <xsd:element name="key" type="xsd:string" />
+                    <xsd:element name="value" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfResellerrightsitem">
                 <xsd:sequence>
-                    <xsd:element name="item" type="tns:ResellerRightsItem" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="item" type="tns:ResellerRightsItem" minOccurs="0" maxOccurs="unbounded" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ResellerRightsRequestObject">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="ResellerRightsList" type="tns:ArrayOfResellerrightsitem"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="ResellerRightsList" type="tns:ArrayOfResellerrightsitem" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerRightsResponseObject">
                 <xsd:all>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerListRequestObject">
                 <xsd:all>
-                    <xsd:element name="limit" type="xsd:string" nillable="true"/>
-                    <xsd:element name="offset" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string"/>
-                    <xsd:element name="forReseller" type="xsd:string" nillable="true"/>
+                    <xsd:element name="limit" type="xsd:string" nillable="true" />
+                    <xsd:element name="offset" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" />
+                    <xsd:element name="forReseller" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfResellerlistclass">
                 <xsd:sequence>
-                    <xsd:element name="item" type="tns:ResellerListClass" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="item" type="tns:ResellerListClass" minOccurs="0" maxOccurs="unbounded" />
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ResellerListClass">
                 <xsd:all>
-                    <xsd:element name="login" type="xsd:string"/>
-                    <xsd:element name="depth" type="xsd:string"/>
-                    <xsd:element name="company" type="xsd:string"/>
-                    <xsd:element name="firstname" type="xsd:string"/>
-                    <xsd:element name="lastname" type="xsd:string"/>
-                    <xsd:element name="email" type="xsd:string"/>
-                    <xsd:element name="subReseller" type="tns:ArrayOfResellerlistclass" nillable="true"/>
+                    <xsd:element name="login" type="xsd:string" />
+                    <xsd:element name="depth" type="xsd:string" />
+                    <xsd:element name="company" type="xsd:string" />
+                    <xsd:element name="firstname" type="xsd:string" />
+                    <xsd:element name="lastname" type="xsd:string" />
+                    <xsd:element name="email" type="xsd:string" />
+                    <xsd:element name="subReseller" type="tns:ArrayOfResellerlistclass" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerListResponseObject">
                 <xsd:all>
-                    <xsd:element name="resellerList" type="tns:ArrayOfResellerlistclass"/>
-                    <xsd:element name="returnCode" type="xsd:int"/>
-                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true"/>
-                    <xsd:element name="returnMessage" type="xsd:string" nillable="true"/>
-                    <xsd:element name="clientTRID" type="xsd:string" nillable="true"/>
-                    <xsd:element name="serverTRID" type="xsd:string" nillable="true"/>
+                    <xsd:element name="resellerList" type="tns:ArrayOfResellerlistclass" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                    <xsd:element name="returnSubCode" type="xsd:int" nillable="true" />
+                    <xsd:element name="returnMessage" type="xsd:string" nillable="true" />
+                    <xsd:element name="clientTRID" type="xsd:string" nillable="true" />
+                    <xsd:element name="serverTRID" type="xsd:string" nillable="true" />
                 </xsd:all>
             </xsd:complexType>
             <xsd:complexType name="ResellerInfoRequestObject">
@@ -2104,8 +2101,8 @@
         </operation>
         <operation name="domainListExtended">
             <documentation>List own Domains extended</documentation>
-            <input message="tns:domainListExtendedIn"/>
-            <output message="tns:domainListExtendedOut"/>
+            <input message="tns:domainListExtendedIn" />
+            <output message="tns:domainListExtendedOut" />
         </operation>
         <operation name="domainContactValidationList">
             <documentation>List own Locked Domains</documentation>
@@ -2355,28 +2352,28 @@
             <output message="tns:tmchCheckClaimOut"/>
         </operation>
         <operation name="resellerCreate">
-            <input message="tns:resellerCreateIn"/>
-            <output message="tns:resellerCreateOut"/>
+            <input message="tns:resellerCreateIn" />
+            <output message="tns:resellerCreateOut" />
         </operation>
         <operation name="resellerPassword">
-            <input message="tns:resellerPasswordIn"/>
-            <output message="tns:resellerPasswordOut"/>
+            <input message="tns:resellerPasswordIn" />
+            <output message="tns:resellerPasswordOut" />
         </operation>
         <operation name="resellerDelete">
-            <input message="tns:resellerDeleteIn"/>
-            <output message="tns:resellerDeleteOut"/>
+            <input message="tns:resellerDeleteIn" />
+            <output message="tns:resellerDeleteOut" />
         </operation>
         <operation name="resellerUpdate">
-            <input message="tns:resellerUpdateIn"/>
-            <output message="tns:resellerUpdateOut"/>
+            <input message="tns:resellerUpdateIn" />
+            <output message="tns:resellerUpdateOut" />
         </operation>
         <operation name="resellerRights">
-            <input message="tns:resellerRightsIn"/>
-            <output message="tns:resellerRightsOut"/>
+            <input message="tns:resellerRightsIn" />
+            <output message="tns:resellerRightsOut" />
         </operation>
         <operation name="resellerList">
-            <input message="tns:resellerListIn"/>
-            <output message="tns:resellerListOut"/>
+            <input message="tns:resellerListIn" />
+            <output message="tns:resellerListOut" />
         </operation>
         <operation name="resellerInfo">
             <input message="tns:resellerInfoIn"/>
@@ -2388,804 +2385,658 @@
         <operation name="domainCheck">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainCheck"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainListExtended">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainListExtended"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainListExtended" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="domainContactValidationList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainContactValidationList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainContactValidationResend">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainContactValidationResend"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainFOAResend">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainFOAResend"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainTransfer">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainTransfer"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainAnycastActivate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainAnycastActivate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainDnssecDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainDnssecDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainTrade">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainTrade"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainRevoke">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainRevoke"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainTransit">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainTransit"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainSetAuthCode">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainSetAuthCode"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainRequestAuthInfo2">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainRequestAuthInfo2"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainRestore">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainRestore"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainMove">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainMove"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainNotify">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainNotify"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="domainBind">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#domainBind"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="hostUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#hostUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="hostCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#hostCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="hostInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#hostInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleCheck">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleCheck"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="handleMove">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#handleMove"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverZoneInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverZoneInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverZoneCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverZoneCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverVirtualCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverVirtualCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverVirtualUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverVirtualUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverVirtualDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverVirtualDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverVirtualList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverVirtualList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverSOAUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverSOAUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverZoneDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverZoneDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverRRDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverRRDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverRRCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverRRCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverMasterInsert">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverMasterInsert"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverMasterInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverMasterInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverMasterUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverMasterUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="nameserverMasterDelete">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#nameserverMasterDelete"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="redirectInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#redirectInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="redirectCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#redirectCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="redirectUpdate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#redirectUpdate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslListExtended">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslListExtended"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslGetDCVList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslGetDCVList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslReplace">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslReplace"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslResendDCV">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslResendDCV"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslGetSoftwareList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslGetSoftwareList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="sslGetProductList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#sslGetProductList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="priceDomainList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#priceDomainList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="billingData">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#billingData"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="billingDataExtra">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#billingDataExtra"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="billingAdditionalData">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#billingAdditionalData"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="tmchGetLabelList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#tmchGetLabelList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="tmchCreate">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#tmchCreate"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="tmchInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#tmchInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="tmchList">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#tmchList"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="tmchCheckClaim">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#tmchCheckClaim"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
         <operation name="resellerCreate">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerCreate"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerCreate" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerPassword">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerPassword"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerPassword" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerDelete">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerDelete"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerDelete" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerUpdate">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerUpdate"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerUpdate" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerRights">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerRights"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerRights" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerList">
-            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerList"/>
+            <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerList" />
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/" />
             </output>
         </operation>
         <operation name="resellerInfo">
             <soap:operation soapAction="http://soap.domain-bestellsystem.de/soap/1.1/#resellerInfo"/>
             <input>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </input>
             <output>
-                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
-                           namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://soap.domain-bestellsystem.de/soap/1.1/"/>
             </output>
         </operation>
     </binding>
@@ -3219,10 +3070,10 @@
         <part name="return" type="tns:DomainListResponseObject"/>
     </message>
     <message name="domainListExtendedIn">
-        <part name="domainListExtendedRequest" type="tns:DomainListExtendedRequestObject"/>
+        <part name="domainListExtendedRequest" type="tns:DomainListExtendedRequestObject" />
     </message>
     <message name="domainListExtendedOut">
-        <part name="return" type="tns:DomainListExtendedResponseObject"/>
+        <part name="return" type="tns:DomainListExtendedResponseObject" />
     </message>
     <message name="domainContactValidationListIn">
         <part name="domainContactValidationListRequest" type="tns:DomainContactValidationListRequestObject"/>
@@ -3591,40 +3442,40 @@
         <part name="return" type="tns:TmchCheckClaimResponseObject"/>
     </message>
     <message name="resellerCreateIn">
-        <part name="resellerCreateRequest" type="tns:ResellerCreateRequestObject"/>
+        <part name="resellerCreateRequest" type="tns:ResellerCreateRequestObject" />
     </message>
     <message name="resellerCreateOut">
-        <part name="return" type="tns:ResellerCreateResponseObject"/>
+        <part name="return" type="tns:ResellerCreateResponseObject" />
     </message>
     <message name="resellerPasswordIn">
-        <part name="resellerPasswordRequest" type="tns:ResellerPasswordRequestObject"/>
+        <part name="resellerPasswordRequest" type="tns:ResellerPasswordRequestObject" />
     </message>
     <message name="resellerPasswordOut">
-        <part name="return" type="tns:ResellerPasswordResponseObject"/>
+        <part name="return" type="tns:ResellerPasswordResponseObject" />
     </message>
     <message name="resellerDeleteIn">
-        <part name="resellerDeleteRequest" type="tns:ResellerDeleteRequestObject"/>
+        <part name="resellerDeleteRequest" type="tns:ResellerDeleteRequestObject" />
     </message>
     <message name="resellerDeleteOut">
-        <part name="return" type="tns:ResellerDeleteResponseObject"/>
+        <part name="return" type="tns:ResellerDeleteResponseObject" />
     </message>
     <message name="resellerUpdateIn">
-        <part name="resellerUpdateRequest" type="tns:ResellerUpdateRequestObject"/>
+        <part name="resellerUpdateRequest" type="tns:ResellerUpdateRequestObject" />
     </message>
     <message name="resellerUpdateOut">
-        <part name="return" type="tns:ResellerUpdateResponseObject"/>
+        <part name="return" type="tns:ResellerUpdateResponseObject" />
     </message>
     <message name="resellerRightsIn">
-        <part name="resellerRightsRequest" type="tns:ResellerRightsRequestObject"/>
+        <part name="resellerRightsRequest" type="tns:ResellerRightsRequestObject" />
     </message>
     <message name="resellerRightsOut">
-        <part name="return" type="tns:ResellerRightsResponseObject"/>
+        <part name="return" type="tns:ResellerRightsResponseObject" />
     </message>
     <message name="resellerListIn">
-        <part name="resellerListRequest" type="tns:ResellerListRequestObject"/>
+        <part name="resellerListRequest" type="tns:ResellerListRequestObject" />
     </message>
     <message name="resellerListOut">
-        <part name="return" type="tns:ResellerListResponseObject"/>
+        <part name="return" type="tns:ResellerListResponseObject" />
     </message>
     <message name="resellerInfoIn">
         <part name="resellerInfoRequest" type="tns:ResellerInfoRequestObject"/>
