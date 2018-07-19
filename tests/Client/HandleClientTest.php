@@ -36,4 +36,31 @@ class HandleClientTest extends AbstractClientTest
         $this->assertEquals('TT8888888@HANDLES.DE', $handle2->getHandleId());
     }
 
+    public function testGet()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleGet_response_01.xml');
+        $soapClient = $this->getSoapClient('handleInfo', $this->createStdClassFromApiResponse($response));
+        $handleClient = $this->getHandleClient($soapClient);
+
+        $response = $handleClient->get('TT7777777@HANDLES.DE');
+
+        $this->assertEquals('Tanja', $response->getFirstname());
+        $this->assertEquals('Testerin', $response->getLastname());
+        $this->assertEquals('Testfirma GmbH', $response->getCompany());
+        $this->assertEquals('Testgasse 29b', $response->getStreet());
+        $this->assertEquals('01255', $response->getPcode());
+
+        $this->assertEquals('Berlin', $response->getCity());
+        $this->assertEquals('DE', $response->getCountry());
+        $this->assertEquals('+49 555 12345678', $response->getPhone());
+        $this->assertNull($response->getFax());
+        $this->assertEquals('tanja.tester@example.com', $response->getEmail());
+
+        $this->assertEquals('TT7777777@HANDLES.DE', $response->getHandle());
+        $this->assertEquals('FAKE-12345', $response->getReseller());
+        $this->assertEquals(1000, $response->getReturnCode());
+        $this->assertEquals('FAKE.5b50afc6e89892.96756787', $response->getClientTRID());
+        $this->assertNull($response->getExtension());
+    }
+
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:handleInfoResponse>
+            <return xsi:type="ns1:HandleInfoResponseObject">
+                <firstname xsi:type="xsd:string">Tanja</firstname>
+                <lastname xsi:type="xsd:string">Testerin</lastname>
+                <company xsi:type="xsd:string">Testfirma GmbH</company>
+                <street xsi:type="xsd:string">Testgasse 29b</street>
+                <pcode xsi:type="xsd:string">01255</pcode>
+                <city xsi:type="xsd:string">Berlin</city>
+                <country xsi:type="xsd:string">DE</country>
+                <phone xsi:type="xsd:string">+49 555 12345678</phone>
+                <fax xsi:type="xsd:string" />
+                <email xsi:type="xsd:string">tanja.tester@example.com</email>
+                <handle xsi:type="xsd:string">TT7777777@HANDLES.DE</handle>
+                <reseller xsi:type="xsd:string">FAKE-12345</reseller>
+                <extension xsi:nil="true" xsi:type="ns1:HandleInfoResponseExtension" />
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:type="xsd:string" />
+                <clientTRID xsi:type="xsd:string">FAKE.5b50afc6e89892.96756787</clientTRID>
+                <serverTRID xsi:type="xsd:string" />
+            </return>
+        </ns1:handleInfoResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -11,24 +11,24 @@ trait ContactTrait
 {
 
     /**
-     * @var string
+     * @var string|null
      */
     private $phone;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $fax;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $email;
 
     /**
      * @return string
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
@@ -37,7 +37,7 @@ trait ContactTrait
      * @param string $phone
      * @return $this
      */
-    public function setPhone(string $phone)
+    public function setPhone(?string $phone)
     {
         $this->phone = $phone;
         return $this;
@@ -64,7 +64,7 @@ trait ContactTrait
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -73,7 +73,7 @@ trait ContactTrait
      * @param string $email
      * @return $this
      */
-    public function setEmail(string $email)
+    public function setEmail(?string $email)
     {
         $this->email = $email;
         return $this;

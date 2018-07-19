@@ -16,7 +16,7 @@ trait AddressTrait
     private $street;
 
     /**
-     * @var string
+     * @var string|integer
      */
     private $pcode;
 
@@ -58,12 +58,12 @@ trait AddressTrait
     }
 
     /**
-     * @param string $pcode
+     * @param string|integer $pcode
      * @return $this
      */
-    public function setPcode(string $pcode)
+    public function setPcode($pcode)
     {
-        $this->pcode = $pcode;
+        $this->pcode = (string) $pcode;
         return $this;
     }
 
