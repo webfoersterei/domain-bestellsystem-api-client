@@ -30,6 +30,16 @@ class InfoResponseItemExtension
     private $zoneCWPP;
 
     /**
+     * @var DnsSecKeyData[]
+     */
+    private $dnsSecKeyData;
+
+    /**
+     * @var DnsSecDSData[]
+     */
+    private $dnsSecDSData;
+
+    /**
      * @return null|string
      */
     public function getOwnerCWPP(): ?string
@@ -44,6 +54,7 @@ class InfoResponseItemExtension
     public function setOwnerCWPP($ownerCWPP)
     {
         $this->ownerCWPP = $ownerCWPP;
+
         return $this;
     }
 
@@ -62,6 +73,7 @@ class InfoResponseItemExtension
     public function setAdminCWPP($adminCWPP)
     {
         $this->adminCWPP = $adminCWPP;
+
         return $this;
     }
 
@@ -80,6 +92,7 @@ class InfoResponseItemExtension
     public function setTechCWPP($techCWPP)
     {
         $this->techCWPP = $techCWPP;
+
         return $this;
     }
 
@@ -98,7 +111,45 @@ class InfoResponseItemExtension
     public function setZoneCWPP($zoneCWPP)
     {
         $this->zoneCWPP = $zoneCWPP;
+
         return $this;
     }
 
+    /**
+     * @return DnsSecKeyData
+     */
+    public function getDnsSecKeyData(): DnsSecKeyData
+    {
+        return $this->dnsSecKeyData;
+    }
+
+    /**
+     * @param DnsSecKeyData $dnsSecKeyData
+     * @return InfoResponseItemExtension
+     */
+    public function setDnsSecKeyData(DnsSecKeyData $dnsSecKeyData): InfoResponseItemExtension
+    {
+        $this->dnsSecKeyData = $dnsSecKeyData;
+
+        return $this;
+    }
+
+    /**
+     * @return DnsSecDSData
+     */
+    public function getDnsSecDSData(): DnsSecDSData
+    {
+        return $this->dnsSecDSData;
+    }
+
+    /**
+     * @param DnsSecDSData $dnsSecDSData
+     * @return InfoResponseItemExtension
+     */
+    public function setDnsSecDSData(DnsSecDSData $dnsSecDSData): InfoResponseItemExtension
+    {
+        $this->dnsSecDSData = $dnsSecDSData;
+
+        return $this;
+    }
 }
