@@ -21,7 +21,7 @@ trait NameTrait
     private $lastname;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $company;
 
@@ -63,18 +63,18 @@ trait NameTrait
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCompany(): string
+    public function getCompany(): ?string
     {
         return $this->company;
     }
 
     /**
-     * @param string $company
+     * @param string|null $company
      * @return $this
      */
-    public function setCompany(string $company)
+    public function setCompany(?string $company)
     {
         $this->company = $company;
         return $this;

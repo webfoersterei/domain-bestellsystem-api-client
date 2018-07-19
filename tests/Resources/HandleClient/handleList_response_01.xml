@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:handleListResponse>
+            <return xsi:type="ns1:HandleListResponseObject">
+                <handleList xsi:type="ns1:ArrayOfHandlelisthandles">
+                    <item xsi:type="ns1:HandleListHandles">
+                        <firstname xsi:type="xsd:string">Toni</firstname>
+                        <lastname xsi:type="xsd:string">Tester</lastname>
+                        <company xsi:type="xsd:string" />
+                        <handleId xsi:type="xsd:string">TT7777777@HANDLES.DE</handleId>
+                    </item>
+                    <item xsi:type="ns1:HandleListHandles">
+                        <firstname xsi:type="xsd:string">Tanja</firstname>
+                        <lastname xsi:type="xsd:string">Testerin</lastname>
+                        <company xsi:type="xsd:string">Testfirma GmbH</company>
+                        <handleId xsi:type="xsd:string">TT8888888@HANDLES.DE</handleId>
+                    </item>
+                </handleList>
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:type="xsd:string" />
+                <clientTRID xsi:type="xsd:string">FAKE.5b50ac80755f85.60444533</clientTRID>
+                <serverTRID xsi:type="xsd:string" />
+            </return>
+        </ns1:handleListResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

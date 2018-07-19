@@ -9,6 +9,7 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
+use Webfoersterei\DomainBestellSystemApiClient\Client\HandleClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
 
 abstract class AbstractClientTest extends TestCase
@@ -66,5 +67,16 @@ abstract class AbstractClientTest extends TestCase
         SoapMockClientFactory::setSoapClient($soapClient);
 
         return SoapMockClientFactory::createDomainClient(null, null, null);
+    }
+
+    /**
+     * @param $soapClient
+     * @return HandleClient
+     */
+    protected function getHandleClient($soapClient): HandleClient
+    {
+        SoapMockClientFactory::setSoapClient($soapClient);
+
+        return SoapMockClientFactory::createHandleClient(null, null, null);
     }
 }
