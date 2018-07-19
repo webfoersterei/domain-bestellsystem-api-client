@@ -10,7 +10,7 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client\NameServer;
 class ResourceRecord
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $name;
 
@@ -111,18 +111,18 @@ class ResourceRecord
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      * @return ResourceRecord
      */
-    public function setName(string $name): ResourceRecord
+    public function setName($name): ResourceRecord
     {
         $this->name = $name;
 

@@ -45,6 +45,39 @@ class NameServerClientTest extends AbstractClientTest
         $this->assertEquals('A', $rr->getType());
     }
 
+    public function testZoneInfoMultipleRr()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverZoneInfo_response_02.xml');
+        $soapClient = $this->getSoapClient('nameserverZoneInfo', $this->createStdClassFromApiResponse($response));
+        $nameServerClient = $this->getNameServerClient($soapClient);
+
+        $response = $nameServerClient->zoneInfo('example.org');
+        $this->assertInstanceOf(ZoneInfoResponse::class, $response);
+
+        $this->assertCount(5, $response->getRrList());
+
+        $rr = $response->getRrList()[1];
+        $this->assertEquals(1, $rr->getAux());
+        $this->assertEquals('myhost03.example.org', $rr->getData());
+        $this->assertNull($rr->getName());
+        $this->assertEquals(900, $rr->getTtl());
+        $this->assertEquals('MX', $rr->getType());
+
+        $rr = $response->getRrList()[3];
+        $this->assertEquals(0, $rr->getAux());
+        $this->assertEquals('192.168.1.3', $rr->getData());
+        $this->assertEquals('myhost03', $rr->getName());
+        $this->assertEquals(86400, $rr->getTtl());
+        $this->assertEquals('A', $rr->getType());
+
+        $rr = $response->getRrList()[4];
+        $this->assertEquals(0, $rr->getAux());
+        $this->assertEquals('myhost03.example.org', $rr->getData());
+        $this->assertEquals('mysql', $rr->getName());
+        $this->assertEquals(300, $rr->getTtl());
+        $this->assertEquals('CNAME', $rr->getType());
+    }
+
     public function testZoneDelete()
     {
         $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverZoneDelete_response_01.xml');
