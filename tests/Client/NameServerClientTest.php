@@ -7,6 +7,10 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Client;
 
 
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecord;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneDeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneInfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Tests\AbstractClientTest;
 
@@ -39,6 +43,44 @@ class NameServerClientTest extends AbstractClientTest
         $this->assertEquals('myhost03', $rr->getName());
         $this->assertEquals(86400, $rr->getTtl());
         $this->assertEquals('A', $rr->getType());
+    }
+
+    public function testZoneDelete()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverZoneDelete_response_01.xml');
+        $soapClient = $this->getSoapClient('nameserverZoneDelete', $this->createStdClassFromApiResponse($response));
+        $nameServerClient = $this->getNameServerClient($soapClient);
+
+        $response = $nameServerClient->zoneDelete('example.org');
+
+        $this->assertInstanceOf(ZoneDeleteResponse::class, $response);
+        $this->assertEquals(1000, $response->getReturnCode());
+        $this->assertEquals(0, $response->getReturnSubCode());
+        $this->assertEquals('Zone successfully deleted', $response->getReturnMessage());
+    }
+
+    public function testZoneCreate()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverZoneCreate_response_01.xml');
+        $soapClient = $this->getSoapClient('nameserverZoneCreate', $this->createStdClassFromApiResponse($response));
+        $nameServerClient = $this->getNameServerClient($soapClient);
+
+        $zoneCreateRequest = new ZoneCreateRequest();
+        $resourceRecord = new ResourceRecord();
+        $resourceRecord->setName('example.org')
+            ->setType('A')
+            ->setData('123.123.123.123');
+        $resourceRecords[] = $resourceRecord;
+        $zoneCreateRequest->setSoaOrigin('example.org')
+            ->setSoaMbox('root.example.org')
+            ->setRr($resourceRecords);
+
+        $response = $nameServerClient->zoneCreate($zoneCreateRequest);
+
+        $this->assertInstanceOf(ZoneCreateResponse::class, $response);
+        $this->assertEquals(1000, $response->getReturnCode());
+        $this->assertEquals(0, $response->getReturnSubCode());
+        $this->assertNull($response->getReturnMessage());
     }
 
 }

@@ -11,6 +11,7 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordC
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneDeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneInfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
@@ -69,6 +70,18 @@ class NameServerClient extends AbstractClient
         $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $domain]);
 
         return $infoResponse;
+    }
+
+    /**
+     * @param string $domain
+     * @return ZoneDeleteResponse
+     */
+    public function zoneDelete(string $domain): ZoneDeleteResponse
+    {
+        /** @var ZoneDeleteResponse $deleteResponse */
+        $deleteResponse = $this->doApiCall('nameserverZoneDelete', ZoneDeleteResponse::class, ['soaOrigin' => $domain]);
+
+        return $deleteResponse;
     }
 
 }

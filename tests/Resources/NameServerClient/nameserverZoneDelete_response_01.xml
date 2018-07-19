@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:nameserverZoneDeleteResponse>
+            <return xsi:type="ns1:NameserverZoneDeleteResponseObject">
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:type="xsd:string">Zone successfully deleted</returnMessage>
+                <clientTRID xsi:type="xsd:string">FAKE.5b4fdad4888f70.14298687</clientTRID>
+                <serverTRID xsi:nil="true" />
+            </return>
+        </ns1:nameserverZoneDeleteResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
