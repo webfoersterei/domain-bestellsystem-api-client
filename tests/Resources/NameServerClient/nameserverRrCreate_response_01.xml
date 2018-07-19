@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:nameserverRRCreateResponse>
+            <return xsi:type="ns1:NameserverRRCreateResponseObject">
+                <returnCode xsi:type="xsd:int">1000</returnCode>
+                <returnSubCode xsi:type="xsd:int">0</returnSubCode>
+                <returnMessage xsi:nil="true" />
+                <clientTRID xsi:type="xsd:string">FAKE.5b5044cc6b6ae4.64054813</clientTRID>
+                <serverTRID xsi:nil="true" />
+            </return>
+        </ns1:nameserverRRCreateResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -8,6 +8,10 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Client;
 
 
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecord;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordCreateResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ResourceRecordDeleteResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneDeleteResponse;
@@ -76,6 +80,40 @@ class NameServerClientTest extends AbstractClientTest
         $this->assertEquals('mysql', $rr->getName());
         $this->assertEquals(300, $rr->getTtl());
         $this->assertEquals('CNAME', $rr->getType());
+    }
+
+    public function testRrCreate()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverRrCreate_response_01.xml');
+        $soapClient = $this->getSoapClient('nameserverRRCreate', $this->createStdClassFromApiResponse($response));
+        $nameServerClient = $this->getNameServerClient($soapClient);
+
+        $newRr = new ResourceRecord();
+        $newRr->setName('test')->setType('A')->setData('127.0.0.1')->setTtl(300);
+        $rrCreate = new ResourceRecordCreateRequest();
+        $rrCreate->setSoaOrigin('example.org')
+            ->setRr([$newRr]);
+
+        $response = $nameServerClient->rrCreate($rrCreate);
+        $this->assertInstanceOf(ResourceRecordCreateResponse::class, $response);
+        $this->assertEquals(1000, $response->getReturnCode());
+    }
+
+    public function testRrDelete()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/NameServerClient/nameserverRrDelete_response_01.xml');
+        $soapClient = $this->getSoapClient('nameserverRRDelete', $this->createStdClassFromApiResponse($response));
+        $nameServerClient = $this->getNameServerClient($soapClient);
+
+        $oldRr = new ResourceRecord();
+        $oldRr->setName('test')->setType('A')->setData('127.0.0.1')->setTtl(300);
+        $rrDelete = new ResourceRecordDeleteRequest();
+        $rrDelete->setSoaOrigin('example.org')
+            ->setRr($oldRr);
+
+        $response = $nameServerClient->rrDelete($rrDelete);
+        $this->assertInstanceOf(ResourceRecordDeleteResponse::class, $response);
+        $this->assertEquals(1000, $response->getReturnCode());
     }
 
     public function testZoneDelete()
