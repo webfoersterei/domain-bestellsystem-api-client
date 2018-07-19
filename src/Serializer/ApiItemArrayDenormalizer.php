@@ -42,7 +42,7 @@ class ApiItemArrayDenormalizer extends ArrayDenormalizer
     /**
      * @inheritDoc
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null, array $context = array())
     {
         if (false === strpos($type, 'Webfoersterei\DomainBestellSystemApiClient')) {
             return false;

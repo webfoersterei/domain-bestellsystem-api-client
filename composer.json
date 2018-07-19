@@ -16,14 +16,16 @@
         }
     },
     "require": {
-        "symfony/serializer": "^3.3",
-        "symfony/property-access": "^3.3",
-        "symfony/property-info": "^3.3",
+        "php": ">=7.1",
+        "ext-soap": "*",
+        "symfony/serializer": "^4.1",
+        "symfony/property-access": "^4.1",
+        "symfony/property-info": "^4.1",
         "phpdocumentor/reflection-docblock": "^4.1",
         "monolog/monolog": "^1.23"
     },
     "require-dev": {
         "zendframework/zend-code": "^3.0.4",
-        "phpunit/phpunit": "^6.5"
+        "phpunit/phpunit": "^7.2"
     }
 }
