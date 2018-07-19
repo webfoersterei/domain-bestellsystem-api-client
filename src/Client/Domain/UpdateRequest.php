@@ -108,7 +108,7 @@ class UpdateRequest
     /**
      * @param string|null $remarks
      */
-    public function setRemarks(?string $remarks)
+    public function setRemarks(?string $remarks): void
     {
         $this->remarks = $remarks;
     }
@@ -116,7 +116,7 @@ class UpdateRequest
     /**
      * @return array|null|string[]
      */
-    public function getNsEntry()
+    public function getNsEntry(): ?array
     {
         return $this->nsEntry;
     }
@@ -124,7 +124,7 @@ class UpdateRequest
     /**
      * @param array|null|string[] $nsEntry
      */
-    public function setNsEntry($nsEntry)
+    public function setNsEntry($nsEntry): void
     {
         $this->nsEntry = $nsEntry;
     }
@@ -132,7 +132,7 @@ class UpdateRequest
     /**
      * @return null|string
      */
-    public function getQuoting()
+    public function getQuoting(): ?string
     {
         return $this->quoting;
     }
@@ -140,7 +140,7 @@ class UpdateRequest
     /**
      * @param null|string $quoting
      */
-    public function setQuoting($quoting)
+    public function setQuoting($quoting): void
     {
         $this->quoting = $quoting;
     }
@@ -148,7 +148,7 @@ class UpdateRequest
     /**
      * @return null|string
      */
-    public function getDomainNameAce()
+    public function getDomainNameAce(): ?string
     {
         return $this->domainNameAce;
     }
@@ -156,7 +156,7 @@ class UpdateRequest
     /**
      * @param null|string $domainNameAce
      */
-    public function setDomainNameAce($domainNameAce)
+    public function setDomainNameAce($domainNameAce): void
     {
         $this->domainNameAce = $domainNameAce;
     }
@@ -172,7 +172,7 @@ class UpdateRequest
     /**
      * @param string $notify
      */
-    public function setNotify(string $notify)
+    public function setNotify(string $notify): void
     {
         $this->notify = $notify;
     }

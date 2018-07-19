@@ -46,7 +46,7 @@ class InfoResponseItemNameserver
     /**
      * @return null|string
      */
-    public function getIpv4()
+    public function getIpv4(): ?string
     {
         return $this->ipv4;
     }
@@ -64,7 +64,7 @@ class InfoResponseItemNameserver
     /**
      * @return null|string
      */
-    public function getIpv6()
+    public function getIpv6(): ?string
     {
         return $this->ipv6;
     }

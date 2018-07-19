@@ -22,6 +22,7 @@ class HandleClient extends AbstractClient
     /**
      * @param string $handleId
      * @return CheckResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function check(string $handleId): CheckResponse
     {
@@ -34,6 +35,7 @@ class HandleClient extends AbstractClient
     /**
      * @param CreateRequest $createRequest
      * @return CreateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function create(CreateRequest $createRequest): CreateResponse
     {
@@ -48,6 +50,7 @@ class HandleClient extends AbstractClient
     /**
      * @param string $handleId
      * @return InfoResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function get(string $handleId): InfoResponse
     {
@@ -59,33 +62,31 @@ class HandleClient extends AbstractClient
 
     /**
      * @return ListResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function getList(): ListResponse
     {
-        /** @var ListResponse $listResponse */
-        $listResponse = $this->doApiCall('handleList', ListResponse::class);
-
-        return $listResponse;
+        return $this->doApiCall('handleList', ListResponse::class);
     }
 
     /**
      * @param string $handle
      * @param string $targetReseller
      * @return MoveResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function move(string $handle, string $targetReseller): MoveResponse
     {
         $parameters = ['handle' => $handle, 'moveTo' => $targetReseller];
 
-        /** @var MoveResponse $moveResponse */
-        $moveResponse = $this->doApiCall('handleMove', MoveResponse::class, $parameters);
-
-        return $moveResponse;
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
+        return $this->doApiCall('handleMove', MoveResponse::class, $parameters);
     }
 
     /**
      * @param UpdateRequest $updateRequest
      * @return UpdateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function update(UpdateRequest $updateRequest): UpdateResponse
     {

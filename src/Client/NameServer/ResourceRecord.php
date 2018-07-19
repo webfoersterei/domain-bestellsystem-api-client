@@ -84,7 +84,7 @@ class ResourceRecord
      * @param int|null|string $aux
      * @return ResourceRecord
      */
-    public function setAux($aux)
+    public function setAux($aux): ResourceRecord
     {
         $this->aux = $aux;
 
@@ -103,7 +103,7 @@ class ResourceRecord
      * @param int|string $ttl
      * @return ResourceRecord
      */
-    public function setTtl($ttl)
+    public function setTtl($ttl): ResourceRecord
     {
         $this->ttl = $ttl;
 
@@ -113,7 +113,7 @@ class ResourceRecord
     /**
      * @return string|null
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }

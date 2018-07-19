@@ -14,7 +14,6 @@ use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Enum\ResponseReturnCodeEnum;
 use Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException;
-use Webfoersterei\DomainBestellSystemApiClient\Exception\ResponseException;
 
 abstract class AbstractClient
 {
@@ -41,7 +40,7 @@ abstract class AbstractClient
         $this->serializer = $serializer;
         $this->objectNormalizer = $arrayNormalizer;
         $this->logger = new NullLogger();
-    }
+    }/** @noinspection GenericObjectTypeUsageInspection */
 
     /**
      * @param string $method
@@ -49,7 +48,6 @@ abstract class AbstractClient
      * @param array|null $arguments
      * @param array $context
      * @return object
-     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\ResponseException
      * @throws InvalidArgumentException
      */
     protected function doApiCall(string $method, string $type, array $arguments = [], array $context = [])
@@ -92,7 +90,7 @@ abstract class AbstractClient
      * @param \stdClass $response
      * @return array|null
      */
-    private function convertResponseToArray($response)
+    private function convertResponseToArray($response): ?array
     {
         return json_decode(json_encode($response), true);
     }
@@ -132,9 +130,8 @@ abstract class AbstractClient
 
     /**
      * @param AbstractResponse $response
-     * @throws ResponseException
      */
-    private function raiseExceptions(AbstractResponse $response)
+    private function raiseExceptions(AbstractResponse $response): void
     {
         $returnCode = $response->getReturnCode();
         if (ResponseReturnCodeEnum::hasKey($returnCode) && null !== ResponseReturnCodeEnum::getValue($returnCode)) {
@@ -165,7 +162,7 @@ abstract class AbstractClient
     {
         $filteredArray = [];
 
-        if (!is_array($requestArray)) {
+        if (!\is_array($requestArray)) {
             return $requestArray;
         }
 
@@ -186,19 +183,19 @@ abstract class AbstractClient
      */
     private function isItemArray($value): bool
     {
-        if (!is_array($value)) {
+        if (!\is_array($value)) {
             return false;
         }
 
         // If multiDimension-array: true
         foreach ($value as $v) {
-            if (is_array($v)) {
+            if (\is_array($v)) {
                 return true;
             }
         }
 
         // If array has more than one key and the keys are numeric (list of something...)
         // List of String is needed for DomainUpdate.nameserver
-        return count($value) > 1 && count(array_filter(array_keys($value), 'is_string')) === 0;
+        return \count($value) > 1 && \count(array_filter(array_keys($value), '\is_string')) === 0;
     }
 }

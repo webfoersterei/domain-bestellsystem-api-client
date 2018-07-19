@@ -64,7 +64,7 @@ class TradeRequest
     /**
      * @return null|string
      */
-    public function getNotify()
+    public function getNotify(): ?string
     {
         return $this->notify;
     }
@@ -73,7 +73,7 @@ class TradeRequest
      * @param null|string $notify
      * @return TradeRequest
      */
-    public function setNotify($notify)
+    public function setNotify($notify): TradeRequest
     {
         $this->notify = $notify;
         return $this;

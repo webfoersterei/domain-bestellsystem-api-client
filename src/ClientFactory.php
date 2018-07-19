@@ -58,7 +58,7 @@ class ClientFactory
      * @param $password
      * @return \SoapClient
      */
-    protected static function createSoapClient($url, $username, $password)
+    protected static function createSoapClient($url, $username, $password): \SoapClient
     {
         $soapClientOptions = array_merge(
             static::$defaultSoapClientOptions,
@@ -114,7 +114,7 @@ class ClientFactory
     /**
      * @param LoggerInterface $logger
      */
-    public static function setLogger(LoggerInterface $logger)
+    public static function setLogger(LoggerInterface $logger): void
     {
         static::$logger = $logger;
     }

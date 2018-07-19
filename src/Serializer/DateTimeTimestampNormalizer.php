@@ -26,7 +26,9 @@ class DateTimeTimestampNormalizer extends DateTimeNormalizer
      */
     public function denormalize($data, $class, $format = null, array $context = array())
     {
-        if ('' === $data) return null;
+        if ('' === $data) {
+            return null;
+        }
 
         return parent::denormalize($data, $class, $format, $context);
     }

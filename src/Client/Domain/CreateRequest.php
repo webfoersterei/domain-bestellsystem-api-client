@@ -56,7 +56,7 @@ class CreateRequest
     /**
      * @return null|string[]
      */
-    public function getNsEntry()
+    public function getNsEntry(): ?array
     {
         return $this->nsEntry;
     }
@@ -65,7 +65,7 @@ class CreateRequest
      * @param null|string[] $nsEntry
      * @return CreateRequest
      */
-    public function setNsEntry($nsEntry)
+    public function setNsEntry($nsEntry): CreateRequest
     {
         $this->nsEntry = $nsEntry;
         return $this;

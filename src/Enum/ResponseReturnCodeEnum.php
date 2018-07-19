@@ -12,9 +12,9 @@ use Webfoersterei\DomainBestellSystemApiClient\Exception\UnknownCommandResponseE
 
 class ResponseReturnCodeEnum extends AbstractEnum
 {
-    const OK = 1000;
-    const UNKNOWN_COMMAND = 2000;
-    const INVALID_PARAMETER = 2004;
+    public const OK = 1000;
+    public const UNKNOWN_COMMAND = 2000;
+    public const INVALID_PARAMETER = 2004;
 
     protected static $values = [
         self::OK => null,

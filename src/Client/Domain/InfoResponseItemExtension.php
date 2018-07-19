@@ -32,7 +32,7 @@ class InfoResponseItemExtension
     /**
      * @return null|string
      */
-    public function getOwnerCWPP()
+    public function getOwnerCWPP(): ?string
     {
         return $this->ownerCWPP;
     }
@@ -50,7 +50,7 @@ class InfoResponseItemExtension
     /**
      * @return null|string
      */
-    public function getAdminCWPP()
+    public function getAdminCWPP(): ?string
     {
         return $this->adminCWPP;
     }
@@ -68,7 +68,7 @@ class InfoResponseItemExtension
     /**
      * @return null|string
      */
-    public function getTechCWPP()
+    public function getTechCWPP(): ?string
     {
         return $this->techCWPP;
     }
@@ -86,7 +86,7 @@ class InfoResponseItemExtension
     /**
      * @return null|string
      */
-    public function getZoneCWPP()
+    public function getZoneCWPP(): ?string
     {
         return $this->zoneCWPP;
     }

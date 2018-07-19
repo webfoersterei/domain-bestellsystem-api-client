@@ -11,9 +11,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
-use Webfoersterei\DomainBestellSystemApiClient\Client\HandleClient;
-use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
+
 
 class DebugClientFactory extends ClientFactory
 {

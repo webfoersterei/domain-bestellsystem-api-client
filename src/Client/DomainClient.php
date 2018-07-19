@@ -26,6 +26,7 @@ class DomainClient extends AbstractClient
     /**
      * @param string $domainName
      * @return CheckResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function check(string $domainName): CheckResponse
     {
@@ -38,6 +39,7 @@ class DomainClient extends AbstractClient
     /**
      * @param CreateRequest $createRequest
      * @return CreateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function create(CreateRequest $createRequest): CreateResponse
     {
@@ -52,6 +54,7 @@ class DomainClient extends AbstractClient
     /**
      * @param string $domainName
      * @return DeleteResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function delete(string $domainName): DeleteResponse
     {
@@ -65,6 +68,7 @@ class DomainClient extends AbstractClient
      * @param string $domainName
      * @param bool $requestLockStatus
      * @return InfoResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function info(string $domainName, bool $requestLockStatus = false): InfoResponse
     {
@@ -81,20 +85,19 @@ class DomainClient extends AbstractClient
      * @param int|null $limit
      * @param int|null $offset
      * @return ListResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function list($level = 'all', $limit = null, $offset = null): ListResponse
     {
         $parameters = ['level' => $level, 'limit' => $limit, 'offset' => $offset];
 
-        /** @var ListResponse $listResponse */
-        $listResponse = $this->doApiCall('domainList', ListResponse::class, $parameters);
-
-        return $listResponse;
+        return $this->doApiCall('domainList', ListResponse::class, $parameters);
     }
 
     /**
      * @param TradeRequest $tradeRequest
      * @return TradeResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function trade(TradeRequest $tradeRequest): TradeResponse
     {
@@ -109,6 +112,7 @@ class DomainClient extends AbstractClient
     /**
      * @param TransferRequest $transferRequest
      * @return TransferResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function transfer(TransferRequest $transferRequest): TransferResponse
     {
@@ -123,6 +127,7 @@ class DomainClient extends AbstractClient
     /**
      * @param UpdateRequest $updateRequest
      * @return UpdateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function update(UpdateRequest $updateRequest): UpdateResponse
     {

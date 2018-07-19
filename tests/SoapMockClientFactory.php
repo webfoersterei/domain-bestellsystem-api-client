@@ -23,7 +23,7 @@ class SoapMockClientFactory extends ClientFactory
      * Wrapper to allow injection of own mocked SoapClients to apiClients in tests
      * @inheritdoc
      */
-    protected static function createSoapClient($url, $username, $password)
+    protected static function createSoapClient($url, $username, $password): \SoapClient
     {
         return self::$soapClient;
     }

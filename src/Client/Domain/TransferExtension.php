@@ -272,7 +272,7 @@ class TransferExtension
      * @param mixed $asiaCEDHandle
      * @return TransferExtension
      */
-    public function setAsiaCEDHandle($asiaCEDHandle)
+    public function setAsiaCEDHandle($asiaCEDHandle): TransferExtension
     {
         $this->asiaCEDHandle = $asiaCEDHandle;
 

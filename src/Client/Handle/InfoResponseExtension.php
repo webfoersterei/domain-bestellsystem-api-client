@@ -101,7 +101,7 @@ class InfoResponseExtension
      * @param string $vatId
      * @return InfoResponseExtension
      */
-    public function setVatId(string $vatId)
+    public function setVatId(string $vatId): InfoResponseExtension
     {
         $this->vatId = $vatId;
         return $this;
@@ -119,7 +119,7 @@ class InfoResponseExtension
      * @param string $companyId
      * @return InfoResponseExtension
      */
-    public function setCompanyId(string $companyId)
+    public function setCompanyId(string $companyId): InfoResponseExtension
     {
         $this->companyId = $companyId;
         return $this;
@@ -137,7 +137,7 @@ class InfoResponseExtension
      * @param string $personId
      * @return InfoResponseExtension
      */
-    public function setPersonId(string $personId)
+    public function setPersonId(string $personId): InfoResponseExtension
     {
         $this->personId = $personId;
         return $this;

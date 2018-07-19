@@ -19,7 +19,7 @@ class ListResponse extends AbstractResponse
     /**
      * @return null|ListResponseItem[]
      */
-    public function getDomainsList()
+    public function getDomainsList(): ?array
     {
         return $this->domainsList;
     }
@@ -28,7 +28,7 @@ class ListResponse extends AbstractResponse
      * @param null|ListResponseItem[] $domainsList
      * @return ListResponse
      */
-    public function setDomainsList($domainsList)
+    public function setDomainsList($domainsList): ListResponse
     {
         $this->domainsList = $domainsList;
         return $this;

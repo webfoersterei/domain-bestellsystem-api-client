@@ -20,7 +20,7 @@ class TransferResponse extends AbstractResponse
     /**
      * @return null|string
      */
-    public function getOrderNumber()
+    public function getOrderNumber(): ?string
     {
         return $this->orderNumber;
     }
@@ -29,7 +29,7 @@ class TransferResponse extends AbstractResponse
      * @param null|string $orderNumber
      * @return TransferResponse
      */
-    public function setOrderNumber($orderNumber)
+    public function setOrderNumber($orderNumber): TransferResponse
     {
         $this->orderNumber = $orderNumber;
         return $this;

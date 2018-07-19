@@ -77,7 +77,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param int|string $retry
      * @return ZoneInfoResponse
      */
-    public function setRetry($retry)
+    public function setRetry($retry): ZoneInfoResponse
     {
         $this->retry = $retry;
 
@@ -96,7 +96,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param int|string $expire
      * @return ZoneInfoResponse
      */
-    public function setExpire($expire)
+    public function setExpire($expire): ZoneInfoResponse
     {
         $this->expire = $expire;
 
@@ -106,7 +106,7 @@ class ZoneInfoResponse extends AbstractResponse
     /**
      * @return null|ResourceRecord[]
      */
-    public function getRrList()
+    public function getRrList(): ?array
     {
         return $this->rrList;
     }
@@ -115,7 +115,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param null|ResourceRecord[] $rrList
      * @return ZoneInfoResponse
      */
-    public function setRrList($rrList)
+    public function setRrList($rrList): ZoneInfoResponse
     {
         $this->rrList = $rrList;
 
@@ -134,7 +134,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param int|string $refresh
      * @return ZoneInfoResponse
      */
-    public function setRefresh($refresh)
+    public function setRefresh($refresh): ZoneInfoResponse
     {
         $this->refresh = $refresh;
 
@@ -153,7 +153,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param int|string $ttl
      * @return ZoneInfoResponse
      */
-    public function setTtl($ttl)
+    public function setTtl($ttl): ZoneInfoResponse
     {
         $this->ttl = $ttl;
 
@@ -172,7 +172,7 @@ class ZoneInfoResponse extends AbstractResponse
      * @param int|string $minimumTtl
      * @return ZoneInfoResponse
      */
-    public function setMinimumTtl($minimumTtl)
+    public function setMinimumTtl($minimumTtl): ZoneInfoResponse
     {
         $this->minimumTtl = $minimumTtl;
 

@@ -69,7 +69,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getAction()
+    public function getAction(): ?string
     {
         return $this->action;
     }
@@ -78,7 +78,7 @@ class TransferRequest
      * @param null|string $action
      * @return TransferRequest
      */
-    public function setAction($action)
+    public function setAction($action): TransferRequest
     {
         $this->action = $action;
 
@@ -88,7 +88,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getNackReason()
+    public function getNackReason(): ?string
     {
         return $this->nackReason;
     }
@@ -97,7 +97,7 @@ class TransferRequest
      * @param null|string $nackReason
      * @return TransferRequest
      */
-    public function setNackReason($nackReason)
+    public function setNackReason($nackReason): TransferRequest
     {
         $this->nackReason = $nackReason;
 
@@ -107,7 +107,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getAuthCode()
+    public function getAuthCode(): ?string
     {
         return $this->authCode;
     }
@@ -116,7 +116,7 @@ class TransferRequest
      * @param null|string $authCode
      * @return TransferRequest
      */
-    public function setAuthCode($authCode)
+    public function setAuthCode($authCode): TransferRequest
     {
         $this->authCode = $authCode;
 
@@ -126,7 +126,7 @@ class TransferRequest
     /**
      * @return null|string[]
      */
-    public function getNameserver()
+    public function getNameserver(): ?array
     {
         return $this->nameserver;
     }
@@ -135,7 +135,7 @@ class TransferRequest
      * @param null|string[] $nameserver
      * @return TransferRequest
      */
-    public function setNameserver($nameserver)
+    public function setNameserver($nameserver): TransferRequest
     {
         $this->nameserver = $nameserver;
 
@@ -164,7 +164,7 @@ class TransferRequest
     /**
      * @return \DateTime|null
      */
-    public function getStartDate()
+    public function getStartDate(): ?\DateTime
     {
         return $this->startDate;
     }
@@ -173,7 +173,7 @@ class TransferRequest
      * @param \DateTime|null $startDate
      * @return TransferRequest
      */
-    public function setStartDate($startDate)
+    public function setStartDate($startDate): TransferRequest
     {
         $this->startDate = $startDate;
 
@@ -183,7 +183,7 @@ class TransferRequest
     /**
      * @return null|string[]
      */
-    public function getNsEntry()
+    public function getNsEntry(): ?array
     {
         return $this->nsEntry;
     }
@@ -192,7 +192,7 @@ class TransferRequest
      * @param null|string[] $nsEntry
      * @return TransferRequest
      */
-    public function setNsEntry($nsEntry)
+    public function setNsEntry($nsEntry): TransferRequest
     {
         $this->nsEntry = $nsEntry;
 
@@ -202,7 +202,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getRemarks()
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
@@ -211,7 +211,7 @@ class TransferRequest
      * @param null|string $remarks
      * @return TransferRequest
      */
-    public function setRemarks($remarks)
+    public function setRemarks($remarks): TransferRequest
     {
         $this->remarks = $remarks;
 
@@ -221,7 +221,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getQuoting()
+    public function getQuoting(): ?string
     {
         return $this->quoting;
     }
@@ -230,7 +230,7 @@ class TransferRequest
      * @param null|string $quoting
      * @return TransferRequest
      */
-    public function setQuoting($quoting)
+    public function setQuoting($quoting): TransferRequest
     {
         $this->quoting = $quoting;
 
@@ -249,7 +249,7 @@ class TransferRequest
      * @param mixed $extension
      * @return TransferRequest
      */
-    public function setExtension($extension)
+    public function setExtension($extension): TransferRequest
     {
         $this->extension = $extension;
 
@@ -259,7 +259,7 @@ class TransferRequest
     /**
      * @return null|string
      */
-    public function getNotify()
+    public function getNotify(): ?string
     {
         return $this->notify;
     }
@@ -268,7 +268,7 @@ class TransferRequest
      * @param null|string $notify
      * @return TransferRequest
      */
-    public function setNotify($notify)
+    public function setNotify($notify): TransferRequest
     {
         $this->notify = $notify;
 

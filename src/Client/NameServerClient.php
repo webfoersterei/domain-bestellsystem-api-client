@@ -21,6 +21,7 @@ class NameServerClient extends AbstractClient
     /**
      * @param ResourceRecordCreateRequest $resourceRecordCreateRequest
      * @return ResourceRecordCreateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function rrCreate(ResourceRecordCreateRequest $resourceRecordCreateRequest): ResourceRecordCreateResponse
     {
@@ -35,6 +36,7 @@ class NameServerClient extends AbstractClient
     /**
      * @param ResourceRecordDeleteRequest $resourceRecordDeleteRequest
      * @return ResourceRecordDeleteResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function rrDelete(ResourceRecordDeleteRequest $resourceRecordDeleteRequest): ResourceRecordDeleteResponse
     {
@@ -49,6 +51,7 @@ class NameServerClient extends AbstractClient
     /**
      * @param ZoneCreateRequest $zoneCreateRequest
      * @return ZoneCreateResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function zoneCreate(ZoneCreateRequest $zoneCreateRequest): ZoneCreateResponse
     {
@@ -63,6 +66,7 @@ class NameServerClient extends AbstractClient
     /**
      * @param string $domain
      * @return ZoneInfoResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function zoneInfo(string $domain): ZoneInfoResponse
     {
@@ -75,6 +79,7 @@ class NameServerClient extends AbstractClient
     /**
      * @param string $domain
      * @return ZoneDeleteResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
     public function zoneDelete(string $domain): ZoneDeleteResponse
     {

@@ -258,7 +258,7 @@ class InfoResponseItem
     /**
      * @return null|string[]
      */
-    public function getSecondaryNameserver()
+    public function getSecondaryNameserver(): ?array
     {
         return $this->secondaryNameserver;
     }
@@ -267,7 +267,7 @@ class InfoResponseItem
      * @param null|string[] $secondaryNameserver
      * @return InfoResponseItem
      */
-    public function setSecondaryNameserver($secondaryNameserver)
+    public function setSecondaryNameserver($secondaryNameserver): InfoResponseItem
     {
         $this->secondaryNameserver = $secondaryNameserver;
         return $this;
@@ -312,7 +312,7 @@ class InfoResponseItem
     /**
      * @return \DateTime|null
      */
-    public function getOrderDate()
+    public function getOrderDate(): ?\DateTime
     {
         return $this->orderDate;
     }
@@ -321,7 +321,7 @@ class InfoResponseItem
      * @param \DateTime|null $orderDate
      * @return InfoResponseItem
      */
-    public function setOrderDate($orderDate)
+    public function setOrderDate($orderDate): InfoResponseItem
     {
         $this->orderDate = $orderDate;
         return $this;
@@ -330,7 +330,7 @@ class InfoResponseItem
     /**
      * @return \DateTime|null
      */
-    public function getExecutionDate()
+    public function getExecutionDate(): ?\DateTime
     {
         return $this->executionDate;
     }
@@ -339,7 +339,7 @@ class InfoResponseItem
      * @param \DateTime|null $executionDate
      * @return InfoResponseItem
      */
-    public function setExecutionDate($executionDate)
+    public function setExecutionDate($executionDate): InfoResponseItem
     {
         $this->executionDate = $executionDate;
         return $this;
@@ -348,7 +348,7 @@ class InfoResponseItem
     /**
      * @return \DateTime|null
      */
-    public function getSystemInDate()
+    public function getSystemInDate(): ?\DateTime
     {
         return $this->systemInDate;
     }
@@ -357,7 +357,7 @@ class InfoResponseItem
      * @param \DateTime|null $systemInDate
      * @return InfoResponseItem
      */
-    public function setSystemInDate($systemInDate)
+    public function setSystemInDate($systemInDate): InfoResponseItem
     {
         $this->systemInDate = $systemInDate;
         return $this;
@@ -366,7 +366,7 @@ class InfoResponseItem
     /**
      * @return \DateTime|null
      */
-    public function getPaidUntilDate()
+    public function getPaidUntilDate(): ?\DateTime
     {
         return $this->paidUntilDate;
     }
@@ -375,7 +375,7 @@ class InfoResponseItem
      * @param \DateTime|null $paidUntilDate
      * @return InfoResponseItem
      */
-    public function setPaidUntilDate($paidUntilDate)
+    public function setPaidUntilDate($paidUntilDate): InfoResponseItem
     {
         $this->paidUntilDate = $paidUntilDate;
         return $this;
@@ -384,7 +384,7 @@ class InfoResponseItem
     /**
      * @return \DateTime|null
      */
-    public function getToBeDeletedDate()
+    public function getToBeDeletedDate(): ?\DateTime
     {
         return $this->toBeDeletedDate;
     }
@@ -393,7 +393,7 @@ class InfoResponseItem
      * @param \DateTime|null $toBeDeletedDate
      * @return InfoResponseItem
      */
-    public function setToBeDeletedDate($toBeDeletedDate)
+    public function setToBeDeletedDate($toBeDeletedDate): InfoResponseItem
     {
         $this->toBeDeletedDate = $toBeDeletedDate;
         return $this;
@@ -438,7 +438,7 @@ class InfoResponseItem
     /**
      * @return string[]|null
      */
-    public function getDomainSubStatus()
+    public function getDomainSubStatus(): ?array
     {
         return $this->domainSubStatus;
     }
@@ -492,7 +492,7 @@ class InfoResponseItem
     /**
      * @return null|string
      */
-    public function getRemarks()
+    public function getRemarks(): ?string
     {
         return $this->remarks;
     }
@@ -501,7 +501,7 @@ class InfoResponseItem
      * @param null|string $remarks
      * @return InfoResponseItem
      */
-    public function setRemarks($remarks)
+    public function setRemarks($remarks): InfoResponseItem
     {
         $this->remarks = $remarks;
         return $this;
@@ -510,7 +510,7 @@ class InfoResponseItem
     /**
      * @return null|string
      */
-    public function getNotifyEmail()
+    public function getNotifyEmail(): ?string
     {
         return $this->notifyEmail;
     }
@@ -519,7 +519,7 @@ class InfoResponseItem
      * @param null|string $notifyEmail
      * @return InfoResponseItem
      */
-    public function setNotifyEmail($notifyEmail)
+    public function setNotifyEmail($notifyEmail): InfoResponseItem
     {
         $this->notifyEmail = $notifyEmail;
         return $this;
@@ -537,7 +537,7 @@ class InfoResponseItem
      * @param null|string[]|string $tags
      * @return InfoResponseItem
      */
-    public function setTags($tags)
+    public function setTags($tags): InfoResponseItem
     {
         $this->tags = $tags;
         return $this;

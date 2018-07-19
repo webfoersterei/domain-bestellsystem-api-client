@@ -38,7 +38,7 @@ abstract class AbstractResponse
     /**
      * @return int|null
      */
-    public function getReturnCode()
+    public function getReturnCode(): ?int
     {
         return $this->returnCode;
     }
@@ -57,7 +57,7 @@ abstract class AbstractResponse
     /**
      * @return null|integer
      */
-    public function getReturnSubCode()
+    public function getReturnSubCode(): ?int
     {
         return $this->returnSubCode;
     }
@@ -76,7 +76,7 @@ abstract class AbstractResponse
     /**
      * @return null|string
      */
-    public function getReturnMessage()
+    public function getReturnMessage(): ?string
     {
         return $this->returnMessage;
     }
@@ -95,7 +95,7 @@ abstract class AbstractResponse
     /**
      * @return null|string
      */
-    public function getClientTRID()
+    public function getClientTRID(): ?string
     {
         return $this->clientTRID;
     }
@@ -114,7 +114,7 @@ abstract class AbstractResponse
     /**
      * @return null|string
      */
-    public function getServerTRID()
+    public function getServerTRID(): ?string
     {
         return $this->serverTRID;
     }
