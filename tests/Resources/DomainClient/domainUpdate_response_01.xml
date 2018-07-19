@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="http://soap.domain-bestellsystem.de/soap/1.1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+    <SOAP-ENV:Body>
+        <ns1:domainUpdateResponse>
+            <return xsi:type="ns1:DomainUpdateResponseObject">
+                <returnCode xsi:type="xsd:int">1001</returnCode>
+                <returnSubCode xsi:nil="true" />
+                <returnMessage xsi:type="xsd:string">Domain update pending</returnMessage>
+                <clientTRID xsi:type="xsd:string">FAKE.5b509502875765.02751234</clientTRID>
+                <serverTRID xsi:type="xsd:string" />
+            </return>
+        </ns1:domainUpdateResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

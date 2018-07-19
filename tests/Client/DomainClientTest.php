@@ -11,6 +11,7 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\InfoResponseItemExtension;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\ListResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Domain\UpdateRequest;
 use Webfoersterei\DomainBestellSystemApiClient\Tests\AbstractClientTest;
 
 class DomainClientTest extends AbstractClientTest
@@ -118,6 +119,22 @@ class DomainClientTest extends AbstractClientTest
         $this->assertEquals('notify@example.com', $domain->getNotifyEmail());
         $this->assertNull($domain->getTags());
         $this->assertInstanceOf(InfoResponseItemExtension::class, $domain->getExtension());
+    }
+
+    public function testDomainUpdate()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/DomainClient/domainUpdate_response_01.xml');
+        $soapClient = $this->getSoapClient('domainUpdate', $this->createStdClassFromApiResponse($response));
+        $domainClient = $this->getDomainClient($soapClient);
+
+        $updateRequest = new UpdateRequest('example.org');
+        $response = $domainClient->update($updateRequest);
+
+        $this->assertEquals(1001, $response->getReturnCode());
+        $this->assertNull($response->getReturnSubCode());
+        $this->assertEquals('Domain update pending', $response->getReturnMessage());
+        $this->assertEquals('FAKE.5b509502875765.02751234', $response->getClientTRID());
+        $this->assertNull($response->getServerTRID());
     }
 
 }
