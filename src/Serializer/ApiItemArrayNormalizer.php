@@ -27,11 +27,10 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
      */
     public function setSerializer(SerializerInterface $serializer): ApiItemArrayNormalizer
     {
-        parent::setSerializer($serializer);
-
         if (!$serializer instanceof NormalizerInterface) {
             throw new InvalidArgumentException('Expected a serializer that also implements NormalizerInterface.');
         }
+        parent::setSerializer($serializer);
         $this->serializer = $serializer;
 
         return $this;
@@ -39,12 +38,13 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
 
     /**
      * @inheritDoc
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      * @throws \InvalidArgumentException
      */
     public function normalize($object, $format = null, array $context = array())
     {
         if (!\is_array($object) || !$this->isItemArray($object)) {
-            throw new \InvalidArgumentException('Normalize called wrong');
+            throw new InvalidArgumentException('Normalize called wrong');
         }
 
         $filteredArray = [];
@@ -83,7 +83,7 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
      */
     public function supportsNormalization($data, $format = null)
     {
-        return \is_array($data) && $this->isItemArray($data);
+        return $this->isItemArray($data);
     }
 
     /**
