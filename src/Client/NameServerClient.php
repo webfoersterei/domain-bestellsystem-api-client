@@ -63,18 +63,6 @@ class NameServerClient extends AbstractClient
         return $createResponse;
     }
 
-    /**
-     * @param string $domain
-     * @return ZoneInfoResponse
-     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
-     */
-    public function zoneInfo(string $domain): ZoneInfoResponse
-    {
-        /** @var ZoneInfoResponse $infoResponse */
-        $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $domain]);
-
-        return $infoResponse;
-    }
 
     /**
      * @param string $domain
@@ -89,4 +77,17 @@ class NameServerClient extends AbstractClient
         return $deleteResponse;
     }
 
+
+    /**
+     * @param string $domain
+     * @return ZoneInfoResponse
+     * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
+     */
+    public function zoneInfo(string $domain): ZoneInfoResponse
+    {
+        /** @var ZoneInfoResponse $infoResponse */
+        $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $domain]);
+
+        return $infoResponse;
+    }
 }

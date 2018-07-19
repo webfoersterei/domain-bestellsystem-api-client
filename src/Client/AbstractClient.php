@@ -9,7 +9,6 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client;
 
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Webfoersterei\DomainBestellSystemApiClient\AbstractResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Enum\ResponseReturnCodeEnum;
@@ -29,18 +28,12 @@ abstract class AbstractClient
      */
     protected $serializer;
 
-    /**
-     * @var ObjectNormalizer
-     */
-    private $objectNormalizer;
-
-    public function __construct(\SoapClient $soapClient, Serializer $serializer, ObjectNormalizer $arrayNormalizer)
+    public function __construct(\SoapClient $soapClient, Serializer $serializer)
     {
         $this->soapClient = $soapClient;
         $this->serializer = $serializer;
-        $this->objectNormalizer = $arrayNormalizer;
         $this->logger = new NullLogger();
-    }/** @noinspection GenericObjectTypeUsageInspection */
+    }
 
     /**
      * @param string $method
@@ -104,19 +97,20 @@ abstract class AbstractClient
     {
 
         if (!\is_array($value)) {
-            if($value === 'false') {
+            if ($value === 'false') {
                 return false;
             }
-            if($value === 'true') {
+            if ($value === 'true') {
                 return true;
             }
-            if((string)(int)$value === $value) {
+            if ((string)(int)$value === $value) {
                 return (int)$value;
             }
+
             return $value;
         }
 
-        if($value === []) {
+        if ($value === []) {
             return null;
         }
 
@@ -149,53 +143,6 @@ abstract class AbstractClient
      */
     protected function convertRequestToArray($request): array
     {
-        $requestArray = $this->objectNormalizer->normalize($request);
-
-        return $this->createArrayWrapper($requestArray);
-    }
-
-    /**
-     * @param $requestArray
-     * @return mixed
-     */
-    private function createArrayWrapper($requestArray)
-    {
-        $filteredArray = [];
-
-        if (!\is_array($requestArray)) {
-            return $requestArray;
-        }
-
-        foreach ($requestArray as $key => $value) {
-            if ($this->isItemArray($value)) {
-                $filteredArray[$key] = ['item' => $value];
-            } else {
-                $filteredArray[$key] = $this->createArrayWrapper($value);
-            }
-        }
-
-        return $filteredArray;
-    }
-
-    /**
-     * @param $value
-     * @return bool
-     */
-    private function isItemArray($value): bool
-    {
-        if (!\is_array($value)) {
-            return false;
-        }
-
-        // If multiDimension-array: true
-        foreach ($value as $v) {
-            if (\is_array($v)) {
-                return true;
-            }
-        }
-
-        // If array has more than one key and the keys are numeric (list of something...)
-        // List of String is needed for DomainUpdate.nameserver
-        return \count($value) > 1 && \count(array_filter(array_keys($value), '\is_string')) === 0;
+        return $this->serializer->normalize($request);
     }
 }

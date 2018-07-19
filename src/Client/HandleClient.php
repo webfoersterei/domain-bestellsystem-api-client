@@ -79,7 +79,6 @@ class HandleClient extends AbstractClient
     {
         $parameters = ['handle' => $handle, 'moveTo' => $targetReseller];
 
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->doApiCall('handleMove', MoveResponse::class, $parameters);
     }
 

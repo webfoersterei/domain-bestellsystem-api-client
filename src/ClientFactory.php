@@ -17,7 +17,7 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\HandleClient;
 use Webfoersterei\DomainBestellSystemApiClient\Client\NameServerClient;
 use Webfoersterei\DomainBestellSystemApiClient\Serializer\DateTimeTimestampNormalizer;
-use Webfoersterei\DomainBestellSystemApiClient\Serializer\ApiItemArrayDenormalizer;
+use Webfoersterei\DomainBestellSystemApiClient\Serializer\ApiItemArrayNormalizer;
 
 
 /**
@@ -43,10 +43,8 @@ class ClientFactory
     {
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
-        $objectNormalizer = static::createObjectNormalizer();
-        $objectNormalizer->setSerializer($serializer);
 
-        $domainClient = new DomainClient($soapClient, $serializer, $objectNormalizer);
+        $domainClient = new DomainClient($soapClient, $serializer);
         $domainClient->setLogger(static::getLogger());
 
         return $domainClient;
@@ -73,12 +71,11 @@ class ClientFactory
      */
     protected static function createSerializer(): Serializer
     {
-
         $objectNormalizer = static::createObjectNormalizer();
         $normalizers = [
             new DateTimeTimestampNormalizer(),
             $objectNormalizer,
-            new ApiItemArrayDenormalizer(),
+            new ApiItemArrayNormalizer(),
             new ArrayDenormalizer(),
         ];
         $encoders = [new JsonEncoder()];
@@ -137,10 +134,8 @@ class ClientFactory
     {
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
-        $objectNormalizer = static::createObjectNormalizer();
-        $objectNormalizer->setSerializer($serializer);
 
-        $handleClient = new HandleClient($soapClient, $serializer, $objectNormalizer);
+        $handleClient = new HandleClient($soapClient, $serializer);
         $handleClient->setLogger(static::getLogger());
 
         return $handleClient;
@@ -156,10 +151,8 @@ class ClientFactory
     {
         $soapClient = static::createSoapClient($url, $username, $password);
         $serializer = static::createSerializer();
-        $objectNormalizer = static::createObjectNormalizer();
-        $objectNormalizer->setSerializer($serializer);
 
-        $nameServerClient = new NameServerClient($soapClient, $serializer, $objectNormalizer);
+        $nameServerClient = new NameServerClient($soapClient, $serializer);
         $nameServerClient->setLogger(static::getLogger());
 
         return $nameServerClient;
