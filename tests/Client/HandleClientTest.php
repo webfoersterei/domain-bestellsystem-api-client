@@ -7,18 +7,23 @@
 namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Client;
 
 
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CheckResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Tests\AbstractClientTest;
 
 class HandleClientTest extends AbstractClientTest
 {
 
-    public function testList()
+    public function testHandleList()
     {
         $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleList_response_01.xml');
         $soapClient = $this->getSoapClient('handleList', $this->createStdClassFromApiResponse($response));
         $handleClient = $this->getHandleClient($soapClient);
 
         $response = $handleClient->getList();
+
+        $this->assertInstanceOf(ListResponse::class, $response);
 
         $this->assertEquals(1000, $response->getReturnCode());
         $this->assertCount(2, $response->getHandleList());
@@ -36,13 +41,15 @@ class HandleClientTest extends AbstractClientTest
         $this->assertEquals('TT8888888@HANDLES.DE', $handle2->getHandleId());
     }
 
-    public function testGet()
+    public function testHandleGet()
     {
         $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleGet_response_01.xml');
         $soapClient = $this->getSoapClient('handleInfo', $this->createStdClassFromApiResponse($response));
         $handleClient = $this->getHandleClient($soapClient);
 
         $response = $handleClient->get('TT7777777@HANDLES.DE');
+
+        $this->assertInstanceOf(InfoResponse::class, $response);
 
         $this->assertEquals('Tanja', $response->getFirstname());
         $this->assertEquals('Testerin', $response->getLastname());
@@ -61,6 +68,30 @@ class HandleClientTest extends AbstractClientTest
         $this->assertEquals(1000, $response->getReturnCode());
         $this->assertEquals('FAKE.5b50afc6e89892.96756787', $response->getClientTRID());
         $this->assertNull($response->getExtension());
+    }
+
+    public function testHandleCheckNotAvailable()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleCheck_response_01.xml');
+        $soapClient = $this->getSoapClient('handleCheck', $this->createStdClassFromApiResponse($response));
+        $handleClient = $this->getHandleClient($soapClient);
+
+        $response = $handleClient->check('TT1775777@HANDLES.DE');
+
+        $this->assertInstanceOf(CheckResponse::class, $response);
+        $this->assertFalse($response->isAvailable());
+    }
+
+    public function testHandleCheckAvailable()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleCheck_response_02.xml');
+        $soapClient = $this->getSoapClient('handleCheck', $this->createStdClassFromApiResponse($response));
+        $handleClient = $this->getHandleClient($soapClient);
+
+        $response = $handleClient->check('TT7777777@HANDLES.DE');
+
+        $this->assertInstanceOf(CheckResponse::class, $response);
+        $this->assertTrue($response->isAvailable());
     }
 
 }
