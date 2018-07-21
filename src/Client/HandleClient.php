@@ -52,7 +52,7 @@ class HandleClient extends AbstractClient
      * @return InfoResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function get(string $handleId): InfoResponse
+    public function info(string $handleId): InfoResponse
     {
         /** @var InfoResponse $infoResponse */
         $infoResponse = $this->doApiCall('handleInfo', InfoResponse::class, ['handle' => $handleId]);
@@ -64,7 +64,7 @@ class HandleClient extends AbstractClient
      * @return ListResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function getList(): ListResponse
+    public function list(): ListResponse
     {
         return $this->doApiCall('handleList', ListResponse::class);
     }

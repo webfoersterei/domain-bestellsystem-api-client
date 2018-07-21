@@ -37,16 +37,18 @@ class DomainClient extends AbstractClient
     }
 
     /**
+     * @param string $domainName
      * @param CreateRequest $createRequest
      * @return CreateResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function create(CreateRequest $createRequest): CreateResponse
+    public function create(string $domainName, CreateRequest $createRequest): CreateResponse
     {
         $requestArray = $this->convertRequestToArray($createRequest);
 
         /** @var CreateResponse $createResponse */
-        $createResponse = $this->doApiCall('domainCreate', CreateResponse::class, $requestArray);
+        $createResponse = $this->doApiCall('domainCreate', CreateResponse::class,
+            array_merge(['domainName' => $domainName], $requestArray));
 
         return $createResponse;
     }
@@ -95,46 +97,52 @@ class DomainClient extends AbstractClient
     }
 
     /**
+     * @param string $domainName
      * @param TradeRequest $tradeRequest
      * @return TradeResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function trade(TradeRequest $tradeRequest): TradeResponse
+    public function trade(string $domainName, TradeRequest $tradeRequest): TradeResponse
     {
         $requestArray = $this->convertRequestToArray($tradeRequest);
 
         /** @var TradeResponse $tradeResponse */
-        $tradeResponse = $this->doApiCall('domainTrade', TradeResponse::class, $requestArray);
+        $tradeResponse = $this->doApiCall('domainTrade', TradeResponse::class,
+            array_merge(['domainName' => $domainName], $requestArray));
 
         return $tradeResponse;
     }
 
     /**
+     * @param string $domainName
      * @param TransferRequest $transferRequest
      * @return TransferResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function transfer(TransferRequest $transferRequest): TransferResponse
+    public function transfer(string $domainName, TransferRequest $transferRequest): TransferResponse
     {
         $requestArray = $this->convertRequestToArray($transferRequest);
 
         /** @var TransferResponse $transferResponse */
-        $transferResponse = $this->doApiCall('domainTransfer', TransferResponse::class, $requestArray);
+        $transferResponse = $this->doApiCall('domainTransfer', TransferResponse::class,
+            array_merge(['domainName' => $domainName], $requestArray));
 
         return $transferResponse;
     }
 
     /**
+     * @param string $domainName
      * @param UpdateRequest $updateRequest
      * @return UpdateResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function update(UpdateRequest $updateRequest): UpdateResponse
+    public function update(string $domainName, UpdateRequest $updateRequest): UpdateResponse
     {
         $requestArray = $this->convertRequestToArray($updateRequest);
 
         /** @var UpdateResponse $updateResponse */
-        $updateResponse = $this->doApiCall('domainUpdate', UpdateResponse::class, $requestArray);
+        $updateResponse = $this->doApiCall('domainUpdate', UpdateResponse::class,
+            array_merge(['domainName' => $domainName], $requestArray));
 
         return $updateResponse;
     }

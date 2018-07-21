@@ -32,11 +32,6 @@ class TransferRequest
     private $nameserver;
 
     /**
-     * @var string
-     */
-    private $domainName;
-
-    /**
      * @var \DateTime|null
      */
     private $startDate;
@@ -138,25 +133,6 @@ class TransferRequest
     public function setNameserver($nameserver): TransferRequest
     {
         $this->nameserver = $nameserver;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDomainName(): string
-    {
-        return $this->domainName;
-    }
-
-    /**
-     * @param string $domainName
-     * @return TransferRequest
-     */
-    public function setDomainName(string $domainName): TransferRequest
-    {
-        $this->domainName = $domainName;
 
         return $this;
     }

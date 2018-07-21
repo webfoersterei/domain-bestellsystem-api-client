@@ -127,8 +127,8 @@ class DomainClientTest extends AbstractClientTest
         $soapClient = $this->getSoapClient('domainUpdate', $this->createStdClassFromApiResponse($response));
         $domainClient = $this->getDomainClient($soapClient);
 
-        $updateRequest = new UpdateRequest('example.org');
-        $response = $domainClient->update($updateRequest);
+        $updateRequest = new UpdateRequest();
+        $response = $domainClient->update('example.org', $updateRequest);
 
         $this->assertEquals(1001, $response->getReturnCode());
         $this->assertNull($response->getReturnSubCode());

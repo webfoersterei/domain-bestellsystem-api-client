@@ -16,11 +16,6 @@ class TradeRequest
     private $ownerC;
 
     /**
-     * @var string
-     */
-    private $domainName;
-
-    /**
      * @var string|null
      */
     private $notify;
@@ -40,24 +35,6 @@ class TradeRequest
     public function setOwnerC(string $ownerC): TradeRequest
     {
         $this->ownerC = $ownerC;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDomainName(): string
-    {
-        return $this->domainName;
-    }
-
-    /**
-     * @param string $domainName
-     * @return TradeRequest
-     */
-    public function setDomainName(string $domainName): TradeRequest
-    {
-        $this->domainName = $domainName;
         return $this;
     }
 

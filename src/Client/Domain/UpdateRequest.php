@@ -37,11 +37,6 @@ class UpdateRequest
     private $notify;
 
     /**
-     * @var string
-     */
-    private $domainName;
-
-    /**
      * @var string[]
      */
     private $nameserver;
@@ -50,33 +45,14 @@ class UpdateRequest
      * UpdateRequest constructor.
      * @param string $domainName
      */
-    public function __construct(string $domainName)
+    public function __construct()
     {
-        $this->setDomainName($domainName)
-            ->setAdminC('NOCHANGE')
+        $this->setAdminC('NOCHANGE')
             ->setOwnerC('NOCHANGE')
             ->setTechC('NOCHANGE')
             ->setZoneC('NOCHANGE')
             ->setNameserver(['NOCHANGE'])
             ->setNotify('NOCHANGE');
-    }
-
-    /**
-     * @return string
-     */
-    public function getDomainName(): string
-    {
-        return $this->domainName;
-    }
-
-    /**
-     * @param string $domainName
-     * @return $this
-     */
-    public function setDomainName(string $domainName): UpdateRequest
-    {
-        $this->domainName = $domainName;
-        return $this;
     }
 
     /**

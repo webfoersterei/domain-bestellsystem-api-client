@@ -21,7 +21,7 @@ class HandleClientTest extends AbstractClientTest
         $soapClient = $this->getSoapClient('handleList', $this->createStdClassFromApiResponse($response));
         $handleClient = $this->getHandleClient($soapClient);
 
-        $response = $handleClient->getList();
+        $response = $handleClient->list();
 
         $this->assertInstanceOf(ListResponse::class, $response);
 
@@ -47,7 +47,7 @@ class HandleClientTest extends AbstractClientTest
         $soapClient = $this->getSoapClient('handleInfo', $this->createStdClassFromApiResponse($response));
         $handleClient = $this->getHandleClient($soapClient);
 
-        $response = $handleClient->get('TT7777777@HANDLES.DE');
+        $response = $handleClient->info('TT7777777@HANDLES.DE');
 
         $this->assertInstanceOf(InfoResponse::class, $response);
 

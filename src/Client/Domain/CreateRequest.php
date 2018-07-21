@@ -22,17 +22,10 @@ class CreateRequest
     private $nsEntry;
 
     /**
-     * @var string
-     */
-    private $domainName;
-
-    /**
      * CreateRequest constructor.
-     * @param $domainName
      */
-    public function __construct($domainName)
+    public function __construct()
     {
-        $this->setDomainName($domainName);
     }
 
     /**
@@ -50,6 +43,7 @@ class CreateRequest
     public function setNameserver(array $nameserver): CreateRequest
     {
         $this->nameserver = $nameserver;
+
         return $this;
     }
 
@@ -68,24 +62,7 @@ class CreateRequest
     public function setNsEntry($nsEntry): CreateRequest
     {
         $this->nsEntry = $nsEntry;
-        return $this;
-    }
 
-    /**
-     * @return string
-     */
-    public function getDomainName(): string
-    {
-        return $this->domainName;
-    }
-
-    /**
-     * @param string $domainName
-     * @return CreateRequest
-     */
-    public function setDomainName(string $domainName): CreateRequest
-    {
-        $this->domainName = $domainName;
         return $this;
     }
 }
