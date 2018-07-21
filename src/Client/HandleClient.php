@@ -70,29 +70,31 @@ class HandleClient extends AbstractClient
     }
 
     /**
-     * @param string $handle
+     * @param string $handleId
      * @param string $targetReseller
      * @return MoveResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function move(string $handle, string $targetReseller): MoveResponse
+    public function move(string $handleId, string $targetReseller): MoveResponse
     {
-        $parameters = ['handle' => $handle, 'moveTo' => $targetReseller];
+        $parameters = ['handle' => $handleId, 'moveTo' => $targetReseller];
 
         return $this->doApiCall('handleMove', MoveResponse::class, $parameters);
     }
 
     /**
+     * @param string $handleId
      * @param UpdateRequest $updateRequest
      * @return UpdateResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function update(UpdateRequest $updateRequest): UpdateResponse
+    public function update(string $handleId, UpdateRequest $updateRequest): UpdateResponse
     {
         $arrayRequest = $this->convertRequestToArray($updateRequest);
 
         /** @var UpdateResponse $updateResponse */
-        $updateResponse = $this->doApiCall('handleUpdate', UpdateResponse::class, $arrayRequest);
+        $updateResponse = $this->doApiCall('handleUpdate', UpdateResponse::class,
+            array_merge(['handle' => $handleId], $arrayRequest));
 
         return $updateResponse;
     }

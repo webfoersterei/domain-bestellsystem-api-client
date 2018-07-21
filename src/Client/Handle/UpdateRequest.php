@@ -9,7 +9,6 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client\Handle;
 
 class UpdateRequest
 {
-    use BasicTrait;
     use NameTrait;
     use AddressTrait;
     use ContactTrait;

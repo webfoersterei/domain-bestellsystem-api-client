@@ -10,6 +10,8 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Client;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\CheckResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\InfoResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\ListResponse;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\UpdateRequest;
+use Webfoersterei\DomainBestellSystemApiClient\Client\Handle\UpdateResponse;
 use Webfoersterei\DomainBestellSystemApiClient\Tests\AbstractClientTest;
 
 class HandleClientTest extends AbstractClientTest
@@ -92,6 +94,28 @@ class HandleClientTest extends AbstractClientTest
 
         $this->assertInstanceOf(CheckResponse::class, $response);
         $this->assertTrue($response->isAvailable());
+    }
+
+    public function testHandleUpdate()
+    {
+        $response = file_get_contents(__DIR__.'/../Resources/HandleClient/handleUpdate_response_01.xml');
+        $soapClient = $this->getSoapClient('handleUpdate', $this->createStdClassFromApiResponse($response));
+        $handleClient = $this->getHandleClient($soapClient);
+
+        $updateRequest = new UpdateRequest();
+        $updateRequest->setFirstname('Tanja')
+            ->setLastname('Testerin')
+            ->setCompany('Testfirma GmbH')
+            ->setStreet('Testgasse 29b')
+            ->setPcode('01255')
+            ->setCity('Berlin')
+            ->setCountry('DE')
+            ->setPhone('+49 555 12345678');
+        $response = $handleClient->update('TT7777777@HANDLES.DE', $updateRequest);
+
+        $this->assertInstanceOf(UpdateResponse::class, $response);
+        $this->assertEquals(1001, $response->getReturnCode());
+        $this->assertEquals('Handle update pending', $response->getReturnMessage());
     }
 
 }
