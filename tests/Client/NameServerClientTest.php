@@ -91,10 +91,9 @@ class NameServerClientTest extends AbstractClientTest
         $newRr = new ResourceRecord();
         $newRr->setName('test')->setType('A')->setData('127.0.0.1')->setTtl(300);
         $rrCreate = new ResourceRecordCreateRequest();
-        $rrCreate->setSoaOrigin('example.org')
-            ->setRr([$newRr]);
+        $rrCreate->setRr([$newRr]);
 
-        $response = $nameServerClient->rrCreate($rrCreate);
+        $response = $nameServerClient->rrCreate('example.org', $rrCreate);
         $this->assertInstanceOf(ResourceRecordCreateResponse::class, $response);
         $this->assertEquals(1000, $response->getReturnCode());
     }
@@ -108,10 +107,9 @@ class NameServerClientTest extends AbstractClientTest
         $oldRr = new ResourceRecord();
         $oldRr->setName('test')->setType('A')->setData('127.0.0.1')->setTtl(300);
         $rrDelete = new ResourceRecordDeleteRequest();
-        $rrDelete->setSoaOrigin('example.org')
-            ->setRr($oldRr);
+        $rrDelete->setRr($oldRr);
 
-        $response = $nameServerClient->rrDelete($rrDelete);
+        $response = $nameServerClient->rrDelete('example.org', $rrDelete);
         $this->assertInstanceOf(ResourceRecordDeleteResponse::class, $response);
         $this->assertEquals(1000, $response->getReturnCode());
     }
@@ -142,11 +140,10 @@ class NameServerClientTest extends AbstractClientTest
             ->setType('A')
             ->setData('123.123.123.123');
         $resourceRecords[] = $resourceRecord;
-        $zoneCreateRequest->setSoaOrigin('example.org')
-            ->setSoaMbox('root.example.org')
+        $zoneCreateRequest->setSoaMbox('root.example.org')
             ->setRr($resourceRecords);
 
-        $response = $nameServerClient->zoneCreate($zoneCreateRequest);
+        $response = $nameServerClient->zoneCreate('example.org', $zoneCreateRequest);
 
         $this->assertInstanceOf(ZoneCreateResponse::class, $response);
         $this->assertEquals(1000, $response->getReturnCode());

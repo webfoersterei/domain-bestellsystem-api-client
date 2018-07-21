@@ -19,74 +19,85 @@ use Webfoersterei\DomainBestellSystemApiClient\Client\NameServer\ZoneCreateRespo
 class NameServerClient extends AbstractClient
 {
     /**
+     * @param string $soaOrigin
      * @param ResourceRecordCreateRequest $resourceRecordCreateRequest
      * @return ResourceRecordCreateResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function rrCreate(ResourceRecordCreateRequest $resourceRecordCreateRequest): ResourceRecordCreateResponse
-    {
+    public function rrCreate(
+        string $soaOrigin,
+        ResourceRecordCreateRequest $resourceRecordCreateRequest
+    ): ResourceRecordCreateResponse {
         $arrayRequest = $this->convertRequestToArray($resourceRecordCreateRequest);
 
         /** @var ResourceRecordCreateResponse $createResponse */
-        $createResponse = $this->doApiCall('nameserverRRCreate', ResourceRecordCreateResponse::class, $arrayRequest);
+        $createResponse = $this->doApiCall('nameserverRRCreate', ResourceRecordCreateResponse::class,
+            array_merge(['soaOrigin' => $soaOrigin], $arrayRequest));
 
         return $createResponse;
     }
 
     /**
+     * @param string $soaOrigin
      * @param ResourceRecordDeleteRequest $resourceRecordDeleteRequest
      * @return ResourceRecordDeleteResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function rrDelete(ResourceRecordDeleteRequest $resourceRecordDeleteRequest): ResourceRecordDeleteResponse
-    {
+    public function rrDelete(
+        string $soaOrigin,
+        ResourceRecordDeleteRequest $resourceRecordDeleteRequest
+    ): ResourceRecordDeleteResponse {
         $arrayRequest = $this->convertRequestToArray($resourceRecordDeleteRequest);
 
         /** @var ResourceRecordDeleteResponse $deleteResponse */
-        $deleteResponse = $this->doApiCall('nameserverRRDelete', ResourceRecordDeleteResponse::class, $arrayRequest);
+        $deleteResponse = $this->doApiCall('nameserverRRDelete', ResourceRecordDeleteResponse::class,
+            array_merge(['soaOrigin' => $soaOrigin], $arrayRequest));
 
         return $deleteResponse;
     }
 
     /**
+     * @param string $soaOrigin
      * @param ZoneCreateRequest $zoneCreateRequest
      * @return ZoneCreateResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function zoneCreate(ZoneCreateRequest $zoneCreateRequest): ZoneCreateResponse
+    public function zoneCreate(string $soaOrigin, ZoneCreateRequest $zoneCreateRequest): ZoneCreateResponse
     {
         $arrayRequest = $this->convertRequestToArray($zoneCreateRequest);
 
         /** @var ZoneCreateResponse $createResponse */
-        $createResponse = $this->doApiCall('nameserverZoneCreate', ZoneCreateResponse::class, $arrayRequest);
+        $createResponse = $this->doApiCall('nameserverZoneCreate', ZoneCreateResponse::class,
+            array_merge(['soaOrigin' => $soaOrigin], $arrayRequest));
 
         return $createResponse;
     }
 
 
     /**
-     * @param string $domain
+     * @param string $soaOrigin
      * @return ZoneDeleteResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function zoneDelete(string $domain): ZoneDeleteResponse
+    public function zoneDelete(string $soaOrigin): ZoneDeleteResponse
     {
         /** @var ZoneDeleteResponse $deleteResponse */
-        $deleteResponse = $this->doApiCall('nameserverZoneDelete', ZoneDeleteResponse::class, ['soaOrigin' => $domain]);
+        $deleteResponse = $this->doApiCall('nameserverZoneDelete', ZoneDeleteResponse::class,
+            ['soaOrigin' => $soaOrigin]);
 
         return $deleteResponse;
     }
 
 
     /**
-     * @param string $domain
+     * @param string $soaOrigin
      * @return ZoneInfoResponse
      * @throws \Webfoersterei\DomainBestellSystemApiClient\Exception\InvalidArgumentException
      */
-    public function zoneInfo(string $domain): ZoneInfoResponse
+    public function zoneInfo(string $soaOrigin): ZoneInfoResponse
     {
         /** @var ZoneInfoResponse $infoResponse */
-        $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $domain]);
+        $infoResponse = $this->doApiCall('nameserverZoneInfo', ZoneInfoResponse::class, ['soaOrigin' => $soaOrigin]);
 
         return $infoResponse;
     }

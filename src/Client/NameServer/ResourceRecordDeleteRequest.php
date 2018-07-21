@@ -10,32 +10,9 @@ namespace Webfoersterei\DomainBestellSystemApiClient\Client\NameServer;
 class ResourceRecordDeleteRequest
 {
     /**
-     * @var string
-     */
-    private $soaOrigin;
-
-    /**
      * @var ResourceRecord
      */
     private $rr;
-
-    /**
-     * @return string
-     */
-    public function getSoaOrigin(): string
-    {
-        return $this->soaOrigin;
-    }
-
-    /**
-     * @param string $soaOrigin
-     * @return ResourceRecordDeleteRequest
-     */
-    public function setSoaOrigin(string $soaOrigin): ResourceRecordDeleteRequest
-    {
-        $this->soaOrigin = $soaOrigin;
-        return $this;
-    }
 
     /**
      * @return ResourceRecord
@@ -52,6 +29,7 @@ class ResourceRecordDeleteRequest
     public function setRr(ResourceRecord $rr): ResourceRecordDeleteRequest
     {
         $this->rr = $rr;
+
         return $this;
     }
 }

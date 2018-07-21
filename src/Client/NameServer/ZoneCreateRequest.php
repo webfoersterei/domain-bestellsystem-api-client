@@ -12,11 +12,6 @@ class ZoneCreateRequest
     /**
      * @var string
      */
-    private $soaOrigin;
-
-    /**
-     * @var string
-     */
     private $soaExpire = 604800;
 
     /**
@@ -52,24 +47,6 @@ class ZoneCreateRequest
     /**
      * @return string
      */
-    public function getSoaOrigin(): string
-    {
-        return $this->soaOrigin;
-    }
-
-    /**
-     * @param string $soaOrigin
-     * @return ZoneCreateRequest
-     */
-    public function setSoaOrigin(string $soaOrigin): ZoneCreateRequest
-    {
-        $this->soaOrigin = $soaOrigin;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getSoaExpire(): string
     {
         return $this->soaExpire;
@@ -82,6 +59,7 @@ class ZoneCreateRequest
     public function setSoaExpire(string $soaExpire): ZoneCreateRequest
     {
         $this->soaExpire = $soaExpire;
+
         return $this;
     }
 
@@ -100,6 +78,7 @@ class ZoneCreateRequest
     public function setSoaMbox(string $soaMbox): ZoneCreateRequest
     {
         $this->soaMbox = $soaMbox;
+
         return $this;
     }
 
@@ -118,6 +97,7 @@ class ZoneCreateRequest
     public function setSoaMinimum(string $soaMinimum): ZoneCreateRequest
     {
         $this->soaMinimum = $soaMinimum;
+
         return $this;
     }
 
@@ -136,6 +116,7 @@ class ZoneCreateRequest
     public function setSoaRefresh(string $soaRefresh): ZoneCreateRequest
     {
         $this->soaRefresh = $soaRefresh;
+
         return $this;
     }
 
@@ -154,6 +135,7 @@ class ZoneCreateRequest
     public function setSoaRetry(string $soaRetry): ZoneCreateRequest
     {
         $this->soaRetry = $soaRetry;
+
         return $this;
     }
 
@@ -172,6 +154,7 @@ class ZoneCreateRequest
     public function setSoaTtl(string $soaTtl): ZoneCreateRequest
     {
         $this->soaTtl = $soaTtl;
+
         return $this;
     }
 
@@ -190,6 +173,7 @@ class ZoneCreateRequest
     public function setRr(array $rr): ZoneCreateRequest
     {
         $this->rr = $rr;
+
         return $this;
     }
 
