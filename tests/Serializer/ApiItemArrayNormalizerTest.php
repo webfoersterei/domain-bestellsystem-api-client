@@ -18,7 +18,7 @@ class ApiItemArrayNormalizerTest extends TestCase
     /** @var ApiItemArrayNormalizer */
     private $normalizer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->normalizer = new ApiItemArrayNormalizer();
     }

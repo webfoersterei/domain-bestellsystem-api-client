@@ -1,6 +1,6 @@
 {
     "name": "webfoersterei/domain-bestellsystem-api-client",
-    "description": "A client to use the XML-SOAP-API of domain-bestellsystem.de (usable for domain-offensive)",
+    "description": "A client to use the XML-SOAP-API of domain-bestellsystem.de",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -16,16 +16,15 @@
         }
     },
     "require": {
-        "php": ">=7.1",
+        "php": "^8.0",
         "ext-soap": "*",
-        "symfony/serializer": "^4.1",
-        "symfony/property-access": "^4.1",
-        "symfony/property-info": "^4.1",
-        "phpdocumentor/reflection-docblock": "^4.1",
-        "monolog/monolog": "^1.23"
+        "symfony/serializer": "^5.0",
+        "symfony/property-access": "^5.0",
+        "symfony/property-info": "^5.0",
+        "phpdocumentor/reflection-docblock": "^5.2",
+        "monolog/monolog": "^2.0"
     },
     "require-dev": {
-        "zendframework/zend-code": "^3.0.4",
-        "phpunit/phpunit": "^7.2"
+        "phpunit/phpunit": "^8.0"
     }
 }
