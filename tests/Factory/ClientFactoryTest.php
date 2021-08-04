@@ -4,7 +4,7 @@
  * @date   14.12.17
  */
 
-namespace Webfoersterei\DomainBestellSystemApiClient\Tests;
+namespace Webfoersterei\DomainBestellSystemApiClient\Tests\Factory;
 
 use PHPUnit\Framework\TestCase;
 use Webfoersterei\DomainBestellSystemApiClient\Client\DomainClient;
