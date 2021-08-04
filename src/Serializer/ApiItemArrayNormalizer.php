@@ -117,7 +117,7 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
     /**
      * @inheritDoc
      */
-    public function supportsDenormalization($data, $type, $format = null, array $context = array())
+    public function supportsDenormalization($data, $type, $format = null, array $context = array()): bool
     {
         return \is_array($data) && isset($data['item']) && false !== strpos($type,
                 'Webfoersterei\DomainBestellSystemApiClient');
