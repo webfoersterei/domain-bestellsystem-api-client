@@ -89,7 +89,7 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
     /**
      * @inheritDoc
      */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, string $type, ?string $format = null, array $context = []): array
     {
 
         /**
@@ -111,7 +111,7 @@ class ApiItemArrayNormalizer extends ArrayDenormalizer implements NormalizerInte
             $data['item'] = [$data['item']]; # wrap it as array
         }
 
-        return parent::denormalize($data['item'], $class, $format, $context);
+        return parent::denormalize($data['item'], $type, $format, $context);
     }
 
     /**
