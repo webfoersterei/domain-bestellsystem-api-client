@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/webfoersterei/domain-bestellsystem-api-client.svg?branch=master)](https://travis-ci.org/webfoersterei/domain-bestellsystem-api-client)
+[![Build Status](https://travis-ci.com/webfoersterei/domain-bestellsystem-api-client.svg?branch=master)](https://travis-ci.org/webfoersterei/domain-bestellsystem-api-client)
 
 # domain-bestellsystem API Client
 A client to use the XML-SOAP-API of domain-bestellsystem.de
@@ -11,7 +11,7 @@ composer require webfoersterei/domain-bestellsystem-api-client
 ```
 
 ### Requirements
- * PHP version >= 7.1
+ * PHP version >= 8.0
  * PHP ext-soap (SOAP-Extension)
  * composer - Dependency Manager for PHP (see https://getcomposer.org/)
 
